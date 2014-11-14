@@ -1,0 +1,71 @@
+<table cellpadding=2 cellspacing=1 border="0" class="tbl sttable">
+<thead><tr class=" decor "><th class="sblk " colspan="1" rowspan="1">Amount</th>
+	<th colspan="4" >&nbsp;</th></tr><tr><th data-ptitle="CLI : Client Status" colspan="1" class="missgr">CLI : Client Status</th><th data-ptitle="Female"  data-oid="0_0"  data-ocols="1" colspan="1" >Female-&nbsp;Gender</th>
+	<th data-ptitle="Male"  data-oid="0_1"  data-ocols="1" colspan="1" >Male-&nbsp;Gender</th>
+	<th rowspan="1">Grand Total</th></tr>
+</thead><tbody><tr><td class="rowhead ysub" data-ptitle="Active"  data-rtitle="Active" rowspan="1">Active</td>
+<td class="vdata ">607</td>
+	<td class="vdata ">535</td>
+	<td class="summr">1142</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="Deceased"  data-rtitle="Deceased" rowspan="1">Deceased</td>
+<td class="vdata ">112</td>
+	<td class="vdata ">121</td>
+	<td class="summr">233</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="Declined"  data-rtitle="Declined" rowspan="1">Declined</td>
+<td class="vdata ">12</td>
+	<td class="vdata ">13</td>
+	<td class="summr">25</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="Exits over 18yrs"  data-rtitle="Exits over 18yrs" rowspan="1">Exits over 18yrs</td>
+<td class="vdata ">4</td>
+	<td class="vdata ">1</td>
+	<td class="summr">5</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="Lost to follow-up"  data-rtitle="Lost to follow-up" rowspan="1">Lost to follow-up</td>
+<td class="vdata ">278</td>
+	<td class="vdata ">276</td>
+	<td class="summr">554</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="Relocated"  data-rtitle="Relocated" rowspan="1">Relocated</td>
+<td class="vdata ">7</td>
+	<td class="vdata ">5</td>
+	<td class="summr">12</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="Retested Negative"  data-rtitle="Retested Negative" rowspan="1">Retested Negative</td>
+<td class="vdata ">156</td>
+	<td class="vdata ">190</td>
+	<td class="summr">346</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="Transfer Out"  data-rtitle="Transfer Out" rowspan="1">Transfer Out</td>
+<td class="vdata ">151</td>
+	<td class="vdata ">112</td>
+	<td class="summr">263</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="Transfer to LTP Centre"  data-rtitle="Transfer to LTP Centre" rowspan="1">Transfer to LTP Centre</td>
+<td class="vdata ">38</td>
+	<td class="vdata ">32</td>
+	<td class="summr">70</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="VCT"  data-rtitle="VCT" rowspan="1">VCT</td>
+<td class="vdata ">168</td>
+	<td class="vdata ">157</td>
+	<td class="summr">325</td>
+	</tr>
+
+	<tr class="jkdata itog"><td class="rowhead" colspan="1"><b>Grand Total</b></td>
+<td>1533</td>
+	<td>1442</td>
+	<td class="summr">2975</td>
+	</tr>
+	</tbody></table>

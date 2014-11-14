@@ -1,0 +1,4669 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.10deb1.natty~ppa.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Feb 26, 2012 at 11:08 PM
+-- Server version: 5.1.54
+-- PHP Version: 5.3.5-1ubuntu7.7
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `db11-kaw`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activities_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `activities_staging` (
+  `activity_id` int(11) unsigned DEFAULT NULL,
+  `activity_date` date DEFAULT NULL,
+  `activity_curriculum` int(11) DEFAULT NULL,
+  `activity_curriculum_desc` varchar(150) DEFAULT NULL,
+  `activity_entry_date` date DEFAULT NULL,
+  `activity_description` varchar(150) DEFAULT NULL,
+  `activity_clinic` int(11) DEFAULT NULL,
+  `clinic_name` varchar(150) DEFAULT NULL,
+  `activity_male_count` int(11) DEFAULT NULL,
+  `activity_female_count` int(11) DEFAULT NULL,
+  `activity_notes` text,
+  `activity_custom` longtext,
+  `activity_hpd` float unsigned NOT NULL,
+  `activity_visiters_total` int(10) DEFAULT NULL,
+  `activity_cadres` varchar(30) DEFAULT NULL,
+  `activity_end_date` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity`
+--
+
+CREATE TABLE IF NOT EXISTS `activity` (
+  `activity_id` int(10) NOT NULL AUTO_INCREMENT,
+  `activity_date` date DEFAULT NULL,
+  `activity_curriculum` int(11) DEFAULT NULL,
+  `activity_curriculum_desc` varchar(150) DEFAULT NULL,
+  `activity_entry_date` date DEFAULT NULL,
+  `activity_description` varchar(150) DEFAULT NULL,
+  `activity_clinic` int(11) DEFAULT NULL,
+  `activity_male_count` double DEFAULT NULL,
+  `activity_female_count` double DEFAULT NULL,
+  `activity_notes` text,
+  `activity_custom` longtext,
+  `activity_hpd` float unsigned NOT NULL,
+  `activity_visiters_total` int(10) DEFAULT NULL,
+  `activity_cadres` varchar(30) DEFAULT NULL,
+  `activity_end_date` date DEFAULT NULL,
+  PRIMARY KEY (`activity_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=144 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_caregivers`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_caregivers` (
+  `activity_caregivers_activity_id` int(10) NOT NULL,
+  `activity_caregivers_caregiver_id` int(11) NOT NULL,
+  `activity_caregivers_other` varchar(100) DEFAULT NULL,
+  KEY `act_id` (`activity_caregivers_activity_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_caregivers_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_caregivers_staging` (
+  `activity_description` varchar(150) DEFAULT NULL,
+  `activity_date` date DEFAULT NULL,
+  `caregiver_fname` varchar(150) DEFAULT NULL,
+  `caregiver_lname` varchar(150) DEFAULT NULL,
+  `client_adm_no` varchar(150) DEFAULT NULL,
+  `client_first_name` varchar(150) DEFAULT NULL,
+  `client_other_name` varchar(150) DEFAULT NULL,
+  `client_last_name` varchar(150) DEFAULT NULL,
+  `activity_caregivers_activity_id` int(11) DEFAULT NULL,
+  `activity_caregivers_caregiver_id` int(11) DEFAULT NULL,
+  `caregiver_role` enum('mother','father','pri','sec') DEFAULT NULL,
+  `activity_caregivers_other` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_clients`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_clients` (
+  `activity_clients_activity_id` int(10) NOT NULL,
+  `activity_clients_client_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`activity_clients_activity_id`,`activity_clients_client_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_clients_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_clients_staging` (
+  `activity_description` varchar(150) DEFAULT NULL,
+  `activity_date` date DEFAULT NULL,
+  `client_adm_no` varchar(150) DEFAULT NULL,
+  `client_first_name` varchar(150) DEFAULT NULL,
+  `client_other_name` varchar(150) DEFAULT NULL,
+  `client_last_name` varchar(150) DEFAULT NULL,
+  `activity_clients_activity_id` int(11) DEFAULT NULL,
+  `activity_clients_client_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_contacts` (
+  `activity_contacts_activity_id` int(10) NOT NULL,
+  `activity_contacts_contact_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`activity_contacts_activity_id`,`activity_contacts_contact_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_facilitator`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_facilitator` (
+  `facilitator_id` int(10) NOT NULL AUTO_INCREMENT,
+  `facilitator_activity_id` int(11) NOT NULL,
+  `facilitator_training_id` int(10) NOT NULL,
+  `facilitator_training` varchar(150) DEFAULT NULL,
+  `facilitator_name` varchar(150) DEFAULT NULL,
+  `facilitator_custom` longtext,
+  `facilitator_topic` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`facilitator_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=286 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_facilitator_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_facilitator_staging` (
+  `activity_description` varchar(150) DEFAULT NULL,
+  `activity_date` date DEFAULT NULL,
+  `training_name` varchar(150) DEFAULT NULL,
+  `facilitator_training_id` int(11) DEFAULT NULL,
+  `facilitator_training` varchar(150) DEFAULT NULL,
+  `facilitator_name` varchar(150) DEFAULT NULL,
+  `facilitator_topic` varchar(100) DEFAULT NULL,
+  `facilitator_activity_id` int(11) DEFAULT NULL,
+  `facilitator_custom` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_staff_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_staff_staging` (
+  `activity_description` varchar(150) DEFAULT NULL,
+  `activity_date` date DEFAULT NULL,
+  `contact_first_name` varchar(150) DEFAULT NULL,
+  `contact_other_name` varchar(150) DEFAULT NULL,
+  `contact_last_name` varchar(150) DEFAULT NULL,
+  `activity_staff_name` varchar(150) DEFAULT NULL,
+  `activity_contacts_activity_id` int(11) DEFAULT NULL,
+  `activity_contacts_contact_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admission_caregivers`
+--
+
+CREATE TABLE IF NOT EXISTS `admission_caregivers` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `fname` varchar(100) DEFAULT NULL,
+  `lname` varchar(100) DEFAULT NULL,
+  `age` varchar(10) DEFAULT NULL,
+  `health_status` tinyint(1) unsigned DEFAULT '0',
+  `marital_status` tinyint(2) unsigned DEFAULT '0',
+  `status` tinyint(1) DEFAULT NULL,
+  `educ_level` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `employment` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `idno` varchar(100) NOT NULL DEFAULT '',
+  `mobile` varchar(50) NOT NULL DEFAULT '',
+  `client_id` int(11) unsigned NOT NULL,
+  `reason` tinyint(2) unsigned DEFAULT NULL,
+  `datesoff` date DEFAULT NULL,
+  `role` enum('mother','father','pri','sec') DEFAULT NULL,
+  `relationship` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client_id` (`client_id`),
+  KEY `role` (`role`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='admission_caregivers' AUTO_INCREMENT=4426 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admission_caregivers_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `admission_caregivers_staging` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `new_id` int(11) unsigned NOT NULL,
+  `fname` varchar(100) DEFAULT NULL,
+  `lname` varchar(100) DEFAULT NULL,
+  `age` varchar(10) DEFAULT NULL,
+  `health_status` tinyint(1) unsigned DEFAULT '0',
+  `marital_status` tinyint(2) unsigned DEFAULT '0',
+  `educ_level` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `employment` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `idno` varchar(100) NOT NULL DEFAULT '',
+  `mobile` varchar(50) NOT NULL DEFAULT '',
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT NULL,
+  `client_other_name` varchar(100) DEFAULT NULL,
+  `client_last_name` varchar(100) DEFAULT NULL,
+  `client_id` int(11) DEFAULT NULL,
+  `reason` tinyint(2) unsigned DEFAULT NULL,
+  `datesoff` date DEFAULT NULL,
+  `role` enum('mother','father','pri','sec') DEFAULT NULL,
+  `relationship` varchar(50) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `role` (`role`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admission_info`
+--
+
+CREATE TABLE IF NOT EXISTS `admission_info` (
+  `admission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `admission_client_id` int(10) unsigned NOT NULL,
+  `admission_staff_id` int(11) unsigned DEFAULT '0',
+  `admission_chw` int(11) unsigned DEFAULT NULL,
+  `admission_clinic_id` int(11) unsigned DEFAULT NULL,
+  `admission_dob` date DEFAULT NULL,
+  `admission_age_yrs` double DEFAULT NULL,
+  `admission_age_months` double DEFAULT NULL,
+  `admission_age_status` tinyint(1) unsigned DEFAULT NULL,
+  `admission_gender` enum('1','2') DEFAULT NULL,
+  `admission_residence` varchar(150) DEFAULT NULL,
+  `admission_location` int(11) unsigned DEFAULT NULL,
+  `admission_entry_date` date DEFAULT NULL,
+  `admission_school_level` tinyint(2) unsigned DEFAULT NULL,
+  `admission_reason_not_attending` tinyint(2) unsigned DEFAULT NULL,
+  `admission_reason_not_attending_notes` varchar(100) DEFAULT '',
+  `admission_total_orphan` tinyint(1) unsigned DEFAULT NULL,
+  `admission_province` varchar(100) DEFAULT '',
+  `admission_district` varchar(100) DEFAULT '',
+  `admission_village` varchar(100) DEFAULT '',
+  `admission_father` int(11) unsigned DEFAULT NULL,
+  `admission_father_status` tinyint(2) unsigned DEFAULT NULL,
+  `admission_father_raising_child` enum('1','2') DEFAULT NULL,
+  `admission_mother` int(11) unsigned DEFAULT NULL,
+  `admission_mother_status` tinyint(2) unsigned DEFAULT NULL,
+  `admission_mother_raising_child` enum('1','2') DEFAULT NULL,
+  `admission_caregiver_pri` int(11) unsigned DEFAULT NULL,
+  `admission_caregiver_pri_relationship` varchar(100) DEFAULT NULL,
+  `admission_caregiver_sec` int(11) unsigned NOT NULL,
+  `admission_caregiver_sec_relationship` varchar(100) NOT NULL,
+  `admission_caregiver_sec_residence` varchar(100) DEFAULT NULL,
+  `admission_family_income` int(11) DEFAULT NULL,
+  `admission_risk_level` tinyint(1) unsigned DEFAULT NULL,
+  `admission_risk_level_description` text,
+  `admission_notes` text,
+  `admission_custom` longtext,
+  `admission_enclosures` varchar(20) DEFAULT NULL,
+  `admission_birth_cert` varchar(50) DEFAULT NULL,
+  `admission_id_no` varchar(50) DEFAULT NULL,
+  `admission_med_recs` tinyint(1) DEFAULT NULL,
+  `admission_nhf` varchar(50) DEFAULT NULL,
+  `admission_immun` varchar(50) DEFAULT NULL,
+  `admission_death_cert` varchar(50) DEFAULT NULL,
+  `admission_enclosures_other` varchar(200) DEFAULT NULL,
+  `admission_caregiver_pri_residence` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`admission_id`),
+  UNIQUE KEY `admission_id` (`admission_id`),
+  KEY `client_clinic_id` (`admission_client_id`,`admission_clinic_id`),
+  KEY `client_staff_id` (`admission_client_id`,`admission_staff_id`),
+  KEY `client_dob` (`admission_dob`),
+  KEY `admission_entry_date` (`admission_entry_date`),
+  KEY `admission_staff_id` (`admission_id`,`admission_staff_id`),
+  KEY `admission_client_id` (`admission_client_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1471 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admission_info_old`
+--
+
+CREATE TABLE IF NOT EXISTS `admission_info_old` (
+  `admission_id` int(10) NOT NULL AUTO_INCREMENT,
+  `admission_client_id` int(10) NOT NULL,
+  `admission_staff_id` int(11) DEFAULT '0',
+  `admission_clinic_id` int(11) DEFAULT NULL,
+  `admission_dob` date DEFAULT NULL,
+  `admission_age_yrs` double DEFAULT NULL,
+  `admission_age_months` double DEFAULT NULL,
+  `admission_age_status` int(11) DEFAULT NULL,
+  `admission_gender` int(11) DEFAULT NULL,
+  `admission_residence` varchar(150) DEFAULT NULL,
+  `admission_location` int(11) DEFAULT NULL,
+  `admission_entry_date` date DEFAULT NULL,
+  `admission_school_level` int(11) DEFAULT NULL,
+  `admission_reason_not_attending` int(11) DEFAULT NULL,
+  `admission_reason_not_attending_notes` varchar(100) DEFAULT '',
+  `admission_total_orphan` int(11) DEFAULT NULL,
+  `admission_province` varchar(100) DEFAULT '',
+  `admission_district` varchar(100) DEFAULT '',
+  `admission_village` varchar(100) DEFAULT '',
+  `admission_father_fname` varchar(100) DEFAULT '',
+  `admission_father_lname` varchar(100) DEFAULT '',
+  `admission_father_age` varchar(100) DEFAULT '',
+  `admission_father_status` tinyint(2) unsigned DEFAULT NULL,
+  `admission_father_health_status` int(11) DEFAULT NULL,
+  `admission_father_raising_child` enum('1','2') DEFAULT NULL,
+  `admission_father_marital_status` int(11) DEFAULT NULL,
+  `admission_father_educ_level` int(11) DEFAULT NULL,
+  `admission_father_employment` int(11) DEFAULT NULL,
+  `admission_father_income` int(11) DEFAULT NULL,
+  `admission_father_idno` varchar(100) DEFAULT '',
+  `admission_father_mobile` varchar(100) DEFAULT '',
+  `admission_mother_fname` varchar(100) DEFAULT '',
+  `admission_mother_lname` varchar(100) DEFAULT '',
+  `admission_mother_age` varchar(100) DEFAULT '',
+  `admission_mother_status` tinyint(2) unsigned DEFAULT NULL,
+  `admission_mother_health_status` int(11) DEFAULT NULL,
+  `admission_mother_raising_child` enum('1','2') DEFAULT NULL,
+  `admission_mother_marital_status` int(11) DEFAULT NULL,
+  `admission_mother_educ_level` int(11) DEFAULT NULL,
+  `admission_mother_employment` int(11) DEFAULT NULL,
+  `admission_mother_income` int(11) DEFAULT NULL,
+  `admission_mother_idno` varchar(100) DEFAULT '',
+  `admission_mother_mobile` varchar(100) DEFAULT '',
+  `admission_caregiver_fname` varchar(100) DEFAULT '',
+  `admission_caregiver_lname` varchar(100) DEFAULT '',
+  `admission_caregiver_age` varchar(100) DEFAULT '',
+  `admission_caregiver_status` int(11) DEFAULT NULL,
+  `admission_caregiver_health_status` int(11) DEFAULT NULL,
+  `admission_caregiver_relationship` varchar(100) DEFAULT '',
+  `admission_caregiver_marital_status` int(11) DEFAULT NULL,
+  `admission_caregiver_educ_level` int(11) DEFAULT NULL,
+  `admission_caregiver_employment` int(11) DEFAULT NULL,
+  `admission_caregiver_income` int(11) DEFAULT '0',
+  `admission_caregiver_idno` varchar(100) DEFAULT '',
+  `admission_caregiver_mobile` varchar(100) DEFAULT '',
+  `admission_family_income` int(11) DEFAULT NULL,
+  `admission_risk_level` int(11) DEFAULT NULL,
+  `admission_risk_level_description` text,
+  `admission_notes` text,
+  `admission_custom` longtext,
+  `admission_chw` int(11) unsigned DEFAULT NULL,
+  `admission_father` int(11) unsigned DEFAULT NULL,
+  `admission_mother` int(11) unsigned DEFAULT NULL,
+  `admission_caregiver_pri` int(11) unsigned DEFAULT NULL,
+  `admission_caregiver_pri_relationship` varchar(100) DEFAULT NULL,
+  `admission_caregiver_sec` int(11) unsigned NOT NULL,
+  `admission_caregiver_sec_relationship` varchar(100) NOT NULL,
+  `admission_enclosures` varchar(20) DEFAULT NULL,
+  `admission_birth_cert` varchar(50) DEFAULT NULL,
+  `admission_id_no` varchar(50) DEFAULT NULL,
+  `admission_med_recs` tinyint(1) DEFAULT NULL,
+  `admission_nhf` varchar(50) DEFAULT NULL,
+  `admission_immun` varchar(50) DEFAULT NULL,
+  `admission_death_cert` varchar(50) DEFAULT NULL,
+  `admission_enclosures_other` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`admission_id`),
+  UNIQUE KEY `admission_id` (`admission_id`),
+  KEY `client_clinic_id` (`admission_client_id`,`admission_clinic_id`),
+  KEY `client_staff_id` (`admission_client_id`,`admission_staff_id`),
+  KEY `client_dob` (`admission_dob`),
+  KEY `admission_entry_date` (`admission_entry_date`),
+  KEY `admission_staff_id` (`admission_id`,`admission_staff_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1351 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admission_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `admission_staging` (
+  `admission_id` int(10) DEFAULT NULL,
+  `new_admission_id` int(11) DEFAULT NULL,
+  `admission_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `admission_staff_id` int(11) DEFAULT '0',
+  `admission_staff_name` varchar(150) DEFAULT NULL,
+  `contact_first_name` varchar(30) DEFAULT NULL,
+  `contact_other_name` varchar(255) DEFAULT NULL,
+  `contact_last_name` varchar(30) DEFAULT NULL,
+  `admission_clinic_id` int(11) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `admission_dob` date DEFAULT NULL,
+  `admission_age_yrs` double DEFAULT NULL,
+  `admission_age_months` double DEFAULT NULL,
+  `admission_age_status` int(11) DEFAULT NULL,
+  `admission_gender` int(11) DEFAULT NULL,
+  `admission_residence` varchar(150) DEFAULT NULL,
+  `admission_location` int(11) DEFAULT NULL,
+  `location_name` varchar(150) DEFAULT NULL,
+  `admission_entry_date` date DEFAULT NULL,
+  `admission_school_level` int(11) DEFAULT NULL,
+  `admission_reason_not_attending` int(11) DEFAULT NULL,
+  `admission_reason_not_attending_notes` varchar(100) DEFAULT '',
+  `admission_total_orphan` int(11) DEFAULT NULL,
+  `admission_province` varchar(100) DEFAULT '',
+  `admission_district` varchar(100) DEFAULT '',
+  `admission_village` varchar(100) DEFAULT '',
+  `admission_father_fname` varchar(100) DEFAULT '',
+  `admission_father_lname` varchar(100) DEFAULT '',
+  `admission_father_age` varchar(100) DEFAULT '',
+  `admission_father_status` int(11) DEFAULT NULL,
+  `admission_father_health_status` int(11) DEFAULT NULL,
+  `admission_father_raising_child` int(11) DEFAULT NULL,
+  `admission_father_marital_status` int(11) DEFAULT NULL,
+  `admission_father_educ_level` int(11) DEFAULT NULL,
+  `admission_father_employment` int(11) DEFAULT NULL,
+  `admission_father_income` int(11) DEFAULT NULL,
+  `admission_father_idno` varchar(100) DEFAULT '',
+  `admission_father_mobile` varchar(100) DEFAULT '',
+  `admission_mother_fname` varchar(100) DEFAULT '',
+  `admission_mother_lname` varchar(100) DEFAULT '',
+  `admission_mother_age` varchar(100) DEFAULT '',
+  `admission_mother_status` int(11) DEFAULT NULL,
+  `admission_mother_health_status` int(11) DEFAULT NULL,
+  `admission_mother_raising_child` int(11) DEFAULT NULL,
+  `admission_mother_marital_status` int(11) DEFAULT NULL,
+  `admission_mother_educ_level` int(11) DEFAULT NULL,
+  `admission_mother_employment` int(11) DEFAULT NULL,
+  `admission_mother_income` int(11) DEFAULT NULL,
+  `admission_mother_idno` varchar(100) DEFAULT '',
+  `admission_mother_mobile` varchar(100) DEFAULT '',
+  `admission_caregiver_fname` varchar(100) DEFAULT '',
+  `admission_caregiver_lname` varchar(100) DEFAULT '',
+  `admission_caregiver_age` varchar(100) DEFAULT '',
+  `admission_caregiver_status` int(11) DEFAULT NULL,
+  `admission_caregiver_health_status` int(11) DEFAULT NULL,
+  `admission_caregiver_relationship` varchar(100) DEFAULT '',
+  `admission_caregiver_marital_status` int(11) DEFAULT NULL,
+  `admission_caregiver_educ_level` int(11) DEFAULT NULL,
+  `admission_caregiver_employment` int(11) DEFAULT NULL,
+  `admission_caregiver_income` int(11) DEFAULT '0',
+  `admission_caregiver_idno` varchar(100) DEFAULT '',
+  `admission_caregiver_mobile` varchar(100) DEFAULT '',
+  `admission_family_income` int(11) DEFAULT NULL,
+  `admission_risk_level` int(11) DEFAULT NULL,
+  `admission_risk_level_description` text,
+  `admission_notes` text,
+  `admission_custom` longtext,
+  `admission_chw` int(11) unsigned DEFAULT NULL,
+  `admission_father` int(11) unsigned DEFAULT NULL,
+  `admission_mother` int(11) unsigned DEFAULT NULL,
+  `admission_caregiver_pri` int(11) unsigned DEFAULT NULL,
+  `admission_caregiver_pri_relationship` varchar(100) DEFAULT NULL,
+  `admission_caregiver_sec` int(11) unsigned NOT NULL,
+  `admission_caregiver_sec_relationship` varchar(100) NOT NULL,
+  `admission_caregiver_sec_residence` varchar(100) DEFAULT NULL,
+  `admission_enclosures` varchar(20) DEFAULT NULL,
+  `admission_birth_cert` varchar(50) DEFAULT NULL,
+  `admission_id_no` varchar(50) DEFAULT NULL,
+  `admission_med_recs` tinyint(1) DEFAULT NULL,
+  `admission_nhf` varchar(50) DEFAULT NULL,
+  `admission_immun` varchar(50) DEFAULT NULL,
+  `admission_death_cert` varchar(50) DEFAULT NULL,
+  `admission_enclosures_other` varchar(200) DEFAULT NULL,
+  KEY `admission_id` (`admission_id`),
+  KEY `client_admission_id` (`admission_id`,`admission_client_id`),
+  KEY `admission_staff_id` (`admission_id`,`admission_staff_id`),
+  KEY `admission_clinic_id` (`admission_id`,`admission_clinic_id`),
+  KEY `client_clinic_id` (`admission_client_id`,`admission_clinic_id`),
+  KEY `client_admission_no` (`client_adm_no`),
+  KEY `client_staff_id` (`admission_client_id`,`admission_staff_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `billingcode`
+--
+
+CREATE TABLE IF NOT EXISTS `billingcode` (
+  `billingcode_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `billingcode_name` varchar(25) NOT NULL DEFAULT '',
+  `billingcode_value` float NOT NULL DEFAULT '0',
+  `billingcode_desc` varchar(255) NOT NULL DEFAULT '',
+  `billingcode_status` int(1) NOT NULL DEFAULT '0',
+  `company_id` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`billingcode_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `caregivers`
+--
+
+CREATE TABLE IF NOT EXISTS `caregivers` (
+  `caregiver_id` int(10) NOT NULL AUTO_INCREMENT,
+  `caregiver_module` int(10) NOT NULL DEFAULT '0',
+  `caregiver_code` varchar(50) DEFAULT NULL,
+  `caregiver_contact` int(10) NOT NULL,
+  `caregiver_entry_date` date DEFAULT NULL,
+  `caregiver_status` int(10) DEFAULT NULL,
+  `caregiver_raising_child` int(10) DEFAULT '0',
+  `caregiver_yob` varchar(30) DEFAULT '',
+  `caregiver_idno` varchar(30) DEFAULT '',
+  `caregiver_condition` int(10) DEFAULT NULL,
+  `caregiver_education` varchar(50) DEFAULT NULL,
+  `caregiver_employment` int(10) DEFAULT NULL,
+  `caregiver_income` float DEFAULT NULL,
+  `caregiver_notes` varchar(255) DEFAULT '',
+  `caregiver_custom` longtext,
+  PRIMARY KEY (`caregiver_id`),
+  UNIQUE KEY `caregiver_id` (`caregiver_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `caregiver_client`
+--
+
+CREATE TABLE IF NOT EXISTS `caregiver_client` (
+  `caregiver_id` int(10) NOT NULL AUTO_INCREMENT,
+  `caregiver_client_id` int(10) NOT NULL DEFAULT '0',
+  `caregiver_client_caregiver_type` varchar(50) DEFAULT NULL,
+  `caregiver_entry_date` date DEFAULT NULL,
+  `caregiver_fname` varchar(100) DEFAULT '',
+  `caregiver_lname` varchar(100) DEFAULT '',
+  `caregiver_age` varchar(100) DEFAULT '',
+  `caregiver_status` int(11) DEFAULT NULL,
+  `caregiver_health_status` int(11) DEFAULT NULL,
+  `caregiver_raising_child` int(11) DEFAULT NULL,
+  `caregiver_marital_status` int(11) DEFAULT NULL,
+  `caregiver_educ_level` int(11) DEFAULT NULL,
+  `caregiver_employment` int(11) DEFAULT NULL,
+  `caregiver_income` int(11) DEFAULT NULL,
+  `caregiver_idno` varchar(100) DEFAULT '',
+  `caregiver_mobile` varchar(100) DEFAULT '',
+  `caregiver_notes` text,
+  `caregiver_custom` longtext,
+  `caregiver_role` enum('pri','sec') NOT NULL DEFAULT 'pri',
+  `caregiver_active` enum('0','1') NOT NULL DEFAULT '1',
+  `caregiver_off` date DEFAULT NULL,
+  PRIMARY KEY (`caregiver_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=984 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cbc_info`
+--
+
+CREATE TABLE IF NOT EXISTS `cbc_info` (
+  `cbc_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `cbc_client_id` int(11) DEFAULT NULL,
+  `cbc_name` varchar(100) DEFAULT NULL,
+  `cbc_village` varchar(100) DEFAULT NULL,
+  `cbc_center_id` int(10) DEFAULT NULL,
+  `cbc_location` varchar(100) DEFAULT NULL,
+  `cbc_entry_date` date DEFAULT NULL,
+  `cbc_adm_no` varchar(30) DEFAULT NULL,
+  `cbc_old` tinyint(1) DEFAULT NULL,
+  `cbc_sex` tinyint(1) DEFAULT NULL,
+  `cbc_age` varchar(10) DEFAULT NULL,
+  `cbc_hbcare` varchar(50) DEFAULT NULL,
+  `cbc_adh_support` tinyint(1) DEFAULT NULL,
+  `cbc_remarks` text,
+  `cbc_refers` varchar(255) DEFAULT NULL,
+  `cbc_refers_note` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`cbc_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cbc_info_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `cbc_info_staging` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `cbc_client_id` int(11) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `cbc_name` varchar(100) DEFAULT NULL,
+  `cbc_village` varchar(100) DEFAULT NULL,
+  `cbc_center_id` int(10) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `cbc_location` varchar(100) DEFAULT NULL,
+  `cbc_entry_date` date DEFAULT NULL,
+  `cbc_adm_no` varchar(30) DEFAULT NULL,
+  `cbc_old` tinyint(1) DEFAULT NULL,
+  `cbc_sex` tinyint(1) DEFAULT NULL,
+  `cbc_age` varchar(10) DEFAULT NULL,
+  `cbc_hbcare` varchar(50) DEFAULT NULL,
+  `cbc_adh_support` tinyint(1) DEFAULT NULL,
+  `cbc_remarks` text,
+  `cbc_refers` varchar(255) DEFAULT NULL,
+  `cbc_refers_note` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chw_info`
+--
+
+CREATE TABLE IF NOT EXISTS `chw_info` (
+  `chw_id` int(11) NOT NULL AUTO_INCREMENT,
+  `chw_client_id` int(11) DEFAULT NULL,
+  `chw_name` varchar(100) DEFAULT NULL,
+  `chw_center_id` int(11) DEFAULT NULL,
+  `chw_village` varchar(100) DEFAULT NULL,
+  `chw_location` varchar(100) DEFAULT NULL,
+  `chw_entry_date` date DEFAULT NULL,
+  `chw_adm_no` varchar(30) DEFAULT NULL,
+  `chw_sex` tinyint(1) DEFAULT NULL,
+  `chw_old` tinyint(1) DEFAULT NULL,
+  `chw_age` varchar(5) DEFAULT NULL,
+  `chw_hasplan` tinyint(1) DEFAULT NULL,
+  `chw_arv` tinyint(1) DEFAULT NULL,
+  `chw_arv_note` tinyint(1) DEFAULT NULL,
+  `chw_oir` tinyint(1) DEFAULT NULL,
+  `chw_oir_note` varchar(100) DEFAULT NULL,
+  `chw_tb` tinyint(1) DEFAULT NULL,
+  `chw_nutrition` text,
+  `chw_adh_support` varchar(50) DEFAULT NULL,
+  `chw_assess` varchar(50) DEFAULT NULL,
+  `chw_support` varchar(50) DEFAULT NULL,
+  `chw_comm_mob` varchar(50) DEFAULT NULL,
+  `chw_refers` text,
+  `chw_remarks` text,
+  PRIMARY KEY (`chw_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=195 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chw_info_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `chw_info_staging` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `chw_client_id` int(11) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `chw_name` varchar(100) DEFAULT NULL,
+  `chw_center_id` int(11) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `chw_village` varchar(100) DEFAULT NULL,
+  `chw_location` varchar(100) DEFAULT NULL,
+  `chw_entry_date` date DEFAULT NULL,
+  `chw_adm_no` varchar(30) DEFAULT NULL,
+  `chw_sex` tinyint(1) DEFAULT NULL,
+  `chw_old` tinyint(1) DEFAULT NULL,
+  `chw_age` varchar(5) DEFAULT NULL,
+  `chw_hasplan` tinyint(1) DEFAULT NULL,
+  `chw_arv` tinyint(1) DEFAULT NULL,
+  `chw_arv_note` tinyint(1) DEFAULT NULL,
+  `chw_oir` tinyint(1) DEFAULT NULL,
+  `chw_oir_note` varchar(100) DEFAULT NULL,
+  `chw_tb` tinyint(1) DEFAULT NULL,
+  `chw_nutrition` text,
+  `chw_adh_support` varchar(50) DEFAULT NULL,
+  `chw_assess` varchar(50) DEFAULT NULL,
+  `chw_support` varchar(50) DEFAULT NULL,
+  `chw_comm_mob` varchar(50) DEFAULT NULL,
+  `chw_refers` text,
+  `chw_remarks` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clients`
+--
+
+CREATE TABLE IF NOT EXISTS `clients` (
+  `client_id` int(10) NOT NULL AUTO_INCREMENT,
+  `client_module` int(10) NOT NULL DEFAULT '0',
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_entry_date` date DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `client_notes` text,
+  `client_status` int(3) NOT NULL DEFAULT '0',
+  `client_custom` longtext,
+  `client_gender` enum('1','2') DEFAULT NULL,
+  `client_dob` date DEFAULT NULL,
+  `client_doa` date DEFAULT NULL,
+  `client_center` int(3) DEFAULT NULL,
+  `client_nhif` varchar(100) DEFAULT NULL,
+  `client_immun` varchar(100) DEFAULT NULL,
+  `client_nhif_n` varchar(100) DEFAULT NULL,
+  `client_immun_n` varchar(100) DEFAULT NULL,
+  `client_lvd` date DEFAULT NULL,
+  `client_lvd_form` varchar(50) DEFAULT NULL,
+  `client_obsolete` enum('0','1') NOT NULL DEFAULT '0',
+  PRIMARY KEY (`client_id`),
+  UNIQUE KEY `client_id` (`client_id`),
+  KEY `client_adm_no` (`client_id`,`client_adm_no`),
+  KEY `update_index` (`client_adm_no`,`client_first_name`,`client_other_name`,`client_last_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1888 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clients_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `clients_staging` (
+  `client_id` int(10) DEFAULT NULL,
+  `client_module` int(10) DEFAULT '0',
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_entry_date` date DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `client_notes` text,
+  `client_status` int(3) DEFAULT '0',
+  `client_custom` longtext,
+  `client_gender` enum('1','2') DEFAULT NULL,
+  `client_dob` date DEFAULT NULL,
+  `client_doa` date DEFAULT NULL,
+  `clinic_name` varchar(30) DEFAULT NULL,
+  `client_center` int(4) DEFAULT NULL,
+  `client_nhif` varchar(100) DEFAULT NULL,
+  `client_nhif_n` varchar(100) DEFAULT NULL,
+  `client_immun` varchar(100) DEFAULT NULL,
+  `client_immun_n` varchar(100) DEFAULT NULL,
+  KEY `client_id` (`client_id`),
+  KEY `client_adm_no` (`client_id`,`client_adm_no`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `client_contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `client_contacts` (
+  `client_contacts_contact_id` int(10) NOT NULL AUTO_INCREMENT,
+  `client_contacts_client_id` varchar(255) NOT NULL DEFAULT '0',
+  `client_contacts_contact_type` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`client_contacts_contact_id`,`client_contacts_client_id`,`client_contacts_contact_type`),
+  UNIQUE KEY `client_contact_id` (`client_contacts_contact_id`,`client_contacts_client_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `client_status_history`
+--
+
+CREATE TABLE IF NOT EXISTS `client_status_history` (
+  `status_history_client_id` int(10) NOT NULL,
+  `status_history_status_date` datetime NOT NULL,
+  `status_history_old_status` int(10) NOT NULL,
+  `status_history_new_status` int(10) NOT NULL,
+  PRIMARY KEY (`status_history_client_id`,`status_history_status_date`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `client_status_history_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `client_status_history_staging` (
+  `client_adm_no` varchar(150) DEFAULT NULL,
+  `client_first_name` varchar(150) DEFAULT NULL,
+  `client_other_name` varchar(150) DEFAULT NULL,
+  `client_last_name` varchar(150) DEFAULT NULL,
+  `client_id` int(10) DEFAULT NULL,
+  `status_history_client_id` int(10) DEFAULT NULL,
+  `status_history_status_date` datetime DEFAULT NULL,
+  `status_history_old_status` int(10) DEFAULT NULL,
+  `status_history_new_status` int(10) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clinical_info`
+--
+
+CREATE TABLE IF NOT EXISTS `clinical_info` (
+  `clinical_id` int(10) NOT NULL AUTO_INCREMENT,
+  `clinical_client_id` int(10) NOT NULL,
+  `clinical_entry_date` date DEFAULT NULL,
+  `clinical_clinic_id` int(10) DEFAULT NULL,
+  `clinical_age_yrs` int(10) DEFAULT NULL,
+  `clinical_age_months` int(10) DEFAULT NULL,
+  `clinical_child_attending` int(11) DEFAULT '2',
+  `clinical_caregiver_attending` int(11) DEFAULT '2',
+  `clinical_caregiver_id` int(10) DEFAULT NULL,
+  `clinical_illness` varchar(150) DEFAULT NULL,
+  `clinical_diarrhoea` int(11) DEFAULT '2',
+  `clinical_vomiting` int(11) DEFAULT '2',
+  `clinical_current_complaints` varchar(255) DEFAULT NULL,
+  `clinical_bloodtest_date` date DEFAULT NULL,
+  `clinical_bloodtest_cd4` int(10) DEFAULT NULL,
+  `clinical_bloodtest_cd4_percentage` int(10) DEFAULT NULL,
+  `clinical_bloodtest_viral` varchar(150) DEFAULT NULL,
+  `clinical_bloodtest_hb` varchar(150) DEFAULT NULL,
+  `clinical_weight` int(10) DEFAULT NULL,
+  `clinical_height` int(10) DEFAULT NULL,
+  `clinical_zscore` varchar(150) DEFAULT NULL,
+  `clinical_muac` varchar(150) DEFAULT NULL,
+  `clinical_hc` varchar(150) DEFAULT NULL,
+  `clinical_child_unwell` int(11) DEFAULT '2',
+  `clinical_temp` varchar(150) DEFAULT NULL,
+  `clinical_resp_rate` varchar(150) DEFAULT NULL,
+  `clinical_heart_rate` varchar(150) DEFAULT NULL,
+  `clinical_general` varchar(150) DEFAULT NULL,
+  `clinical_mouth` varchar(150) DEFAULT NULL,
+  `clinical_ears` varchar(150) DEFAULT NULL,
+  `clinical_clubbing` varchar(150) DEFAULT NULL,
+  `clinical_chest` varchar(150) DEFAULT NULL,
+  `clinical_cardiovascular` varchar(150) DEFAULT NULL,
+  `clinical_skin` varchar(150) DEFAULT NULL,
+  `clinical_abdomen` varchar(150) DEFAULT NULL,
+  `clinical_neurodevt` varchar(150) DEFAULT NULL,
+  `clinical_oedema` int(11) DEFAULT NULL,
+  `clinical_adherence` int(11) DEFAULT NULL,
+  `clinical_adherence_notes` varchar(255) DEFAULT NULL,
+  `clinical_diarrhoea_type` int(11) DEFAULT '0',
+  `clinical_diarrhoea_desc` varchar(255) DEFAULT NULL,
+  `clinical_dehydration` int(11) DEFAULT '0',
+  `clinical_pneumonia` int(11) DEFAULT '0',
+  `clinical_tb` int(11) DEFAULT '0',
+  `clinical_tb_treatment_date` date DEFAULT NULL,
+  `clinical_pulmonary` varchar(150) DEFAULT NULL,
+  `clinical_discharging_ears` int(11) DEFAULT '0',
+  `clinical_other_diagnoses` varchar(255) DEFAULT NULL,
+  `clinical_malnutrition` int(11) DEFAULT '0',
+  `clinical_growth` int(11) DEFAULT '1',
+  `clinical_assessment_notes` varchar(255) DEFAULT NULL,
+  `clinical_investigations` int(11) DEFAULT '1',
+  `clinical_investigations_notes` varchar(255) DEFAULT NULL,
+  `clinical_arv` int(11) DEFAULT '1',
+  `clinical_arv_notes` varchar(255) DEFAULT NULL,
+  `clinical_arv_start` varchar(150) DEFAULT NULL,
+  `clinical_arv_reason` varchar(255) DEFAULT NULL,
+  `clinical_tb_drugs` int(11) DEFAULT NULL,
+  `clinical_tb_drugs_notes` varchar(255) DEFAULT NULL,
+  `clinical_septrin` int(11) DEFAULT '0',
+  `clinical_vitamins` int(11) DEFAULT '0',
+  `clinical_drugs` varchar(255) DEFAULT NULL,
+  `clinical_nutritional_support` int(11) DEFAULT '0',
+  `clinical_nutritional_notes` varchar(255) DEFAULT NULL,
+  `clinical_referral` varchar(150) DEFAULT NULL,
+  `clinical_next_date` date DEFAULT NULL,
+  `clinical_notes` text,
+  `clinical_custom` longtext,
+  PRIMARY KEY (`clinical_id`),
+  UNIQUE KEY `clinical_id` (`clinical_id`),
+  KEY `clinical_client_id` (`clinical_id`,`clinical_client_id`),
+  KEY `clinical_clinic_id` (`clinical_id`,`clinical_clinic_id`),
+  KEY `client_clinic_id` (`clinical_client_id`,`clinical_clinic_id`),
+  KEY `clinical_caregiver_id` (`clinical_id`,`clinical_caregiver_id`),
+  KEY `client_caregiver_id` (`clinical_client_id`,`clinical_caregiver_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clinical_visits`
+--
+
+CREATE TABLE IF NOT EXISTS `clinical_visits` (
+  `clinical_id` int(10) NOT NULL AUTO_INCREMENT,
+  `clinical_client_id` int(10) NOT NULL,
+  `clinical_entry_date` date DEFAULT NULL,
+  `clinical_clinic_id` int(10) DEFAULT NULL,
+  `clinical_staff_id` int(11) DEFAULT NULL,
+  `clinical_age_yrs` double DEFAULT NULL,
+  `clinical_age_months` double DEFAULT NULL,
+  `clinical_child_attending` int(11) DEFAULT NULL,
+  `clinical_caregiver_attending` int(11) DEFAULT NULL,
+  `clinical_caregiver` varchar(150) DEFAULT NULL,
+  `clinical_illness` int(11) DEFAULT NULL,
+  `clinical_illness_notes` varchar(150) DEFAULT NULL,
+  `clinical_diarrhoea` int(11) DEFAULT NULL,
+  `clinical_vomiting` int(11) DEFAULT NULL,
+  `clinical_current_complaints` text,
+  `clinical_bloodtest_date` date DEFAULT NULL,
+  `clinical_bloodtest_cd4` varchar(100) DEFAULT '',
+  `clinical_bloodtest_cd4_percentage` varchar(100) DEFAULT '',
+  `clinical_bloodtest_viral` varchar(100) DEFAULT '',
+  `clinical_bloodtest_hb` varchar(100) DEFAULT '',
+  `clinical_xray_results` varchar(150) DEFAULT NULL,
+  `clinical_other_results` varchar(150) DEFAULT NULL,
+  `clinical_weight` double DEFAULT NULL,
+  `clinical_height` double DEFAULT NULL,
+  `clinical_zscore` varchar(150) DEFAULT NULL,
+  `clinical_muac` double DEFAULT NULL,
+  `clinical_hc` double DEFAULT NULL,
+  `clinical_child_unwell` int(11) DEFAULT NULL,
+  `clinical_temp` varchar(100) DEFAULT '',
+  `clinical_resp_rate` varchar(100) DEFAULT '',
+  `clinical_heart_rate` varchar(100) DEFAULT '',
+  `clinical_general` varchar(100) DEFAULT '',
+  `clinical_pallor` int(11) DEFAULT NULL,
+  `clinical_jaundice` int(11) DEFAULT NULL,
+  `clinical_examination_dehydration` int(11) DEFAULT NULL,
+  `clinical_examination_lymph` int(11) DEFAULT NULL,
+  `clinical_mouth` varchar(100) DEFAULT '',
+  `clinical_teeth` varchar(150) DEFAULT NULL,
+  `clinical_ears` varchar(100) DEFAULT '',
+  `clinical_chest` varchar(100) DEFAULT '',
+  `clinical_chest_clear` int(11) DEFAULT NULL,
+  `clinical_skin_clear` int(11) DEFAULT NULL,
+  `clinical_cardiovascular` varchar(100) DEFAULT '',
+  `clinical_skin` varchar(100) DEFAULT '',
+  `clinical_clubbing` varchar(100) DEFAULT '',
+  `clinical_abdomen` varchar(100) DEFAULT '',
+  `clinical_neurodevt` varchar(100) DEFAULT '',
+  `clinical_musculoskeletal` varchar(150) DEFAULT NULL,
+  `clinical_oedema` int(11) DEFAULT NULL,
+  `clinical_adherence` int(11) DEFAULT NULL,
+  `clinical_adherence_notes` text,
+  `clinical_diarrhoea_type` int(11) DEFAULT NULL,
+  `clinical_dehydration` int(11) DEFAULT NULL,
+  `clinical_pneumonia` int(11) DEFAULT NULL,
+  `clinical_chronic_lung` int(11) DEFAULT NULL,
+  `clinical_lung_disease` varchar(100) DEFAULT '',
+  `clinical_tb` int(11) DEFAULT NULL,
+  `clinical_tb_treatment_date` date DEFAULT NULL,
+  `clinical_pulmonary` varchar(100) DEFAULT '',
+  `clinical_discharging_ears` int(11) DEFAULT NULL,
+  `clinical_other_diagnoses` varchar(100) DEFAULT '',
+  `clinical_malnutrition` int(11) DEFAULT NULL,
+  `clinical_growth` int(11) DEFAULT NULL,
+  `clinical_assessment_notes` text,
+  `clinical_investigations` int(11) DEFAULT NULL,
+  `clinical_investigations_notes` text,
+  `clinical_other_drugs` varchar(150) DEFAULT NULL,
+  `clinical_new_drugs` varchar(150) DEFAULT NULL,
+  `clinical_on_arvs` int(11) DEFAULT NULL,
+  `clinical_arv_drugs` varchar(50) DEFAULT NULL,
+  `clinical_tb_treatment` int(11) DEFAULT NULL,
+  `clinical_arv_notes` text,
+  `clinical_who_stage` varchar(100) DEFAULT '',
+  `clinical_who_current` int(11) DEFAULT NULL,
+  `clinical_who_reason` varchar(100) DEFAULT '',
+  `clinical_tb_drugs` varchar(50) DEFAULT NULL,
+  `clinical_tb_drugs_notes` text,
+  `clinical_septrin` int(11) DEFAULT NULL,
+  `clinical_vitamins` varchar(50) DEFAULT NULL,
+  `clinical_treatment_status` int(11) DEFAULT NULL,
+  `clinical_arv_reason` varchar(150) DEFAULT NULL,
+  `clinical_nutritional_support` varchar(15) DEFAULT NULL,
+  `clinical_nutritional_notes` text,
+  `clinical_referral_old` int(11) DEFAULT NULL,
+  `clinical_next_date` date DEFAULT NULL,
+  `clinical_notes` text,
+  `clinical_custom` longtext,
+  `clinical_arv_drugs_other` varchar(150) DEFAULT NULL,
+  `clinical_complaints` tinyint(2) DEFAULT NULL,
+  `clinical_ctscan` varchar(200) NOT NULL,
+  `clinical_astal` varchar(200) NOT NULL,
+  `clinical_mouth_thrush` tinyint(1) DEFAULT NULL,
+  `clinical_mouth_ulcer` tinyint(1) DEFAULT NULL,
+  `clinical_teeth_opt` tinyint(1) DEFAULT NULL,
+  `clinical_ears_opt` tinyint(1) DEFAULT NULL,
+  `clinical_throat` tinyint(1) DEFAULT NULL,
+  `clinical_chest_creps` tinyint(1) DEFAULT NULL,
+  `clinical_skin_opts` tinyint(1) DEFAULT NULL,
+  `clinical_cns` tinyint(4) DEFAULT NULL,
+  `clinical_eyes` tinyint(1) DEFAULT NULL,
+  `clinical_eyes_opt` varchar(200) DEFAULT NULL,
+  `clinical_muscle` tinyint(4) DEFAULT NULL,
+  `clinical_tb_treat` tinyint(1) DEFAULT NULL,
+  `clinical_dss` varchar(30) DEFAULT NULL,
+  `clinical_arv_on` tinyint(1) DEFAULT NULL,
+  `clinical_arv_on_adh` tinyint(1) DEFAULT NULL,
+  `clinical_tb_status` tinyint(1) DEFAULT NULL,
+  `clinical_tb_status_notes` varchar(200) DEFAULT NULL,
+  `clinical_stage` tinyint(1) DEFAULT NULL,
+  `clinical_referral` tinyint(2) DEFAULT NULL,
+  `clinical_referral_other` varchar(150) DEFAULT NULL,
+  `clinical_request` tinyint(1) DEFAULT NULL,
+  `clinical_request_list` varchar(50) DEFAULT NULL,
+  `clinical_other` varchar(200) DEFAULT NULL,
+  `clinical_therapy_stage` tinyint(2) DEFAULT NULL,
+  `clinical_arv_recomends` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`clinical_id`),
+  UNIQUE KEY `clinical_id` (`clinical_id`),
+  KEY `clinical_client_id` (`clinical_id`,`clinical_client_id`),
+  KEY `clinical_clinic_id` (`clinical_id`,`clinical_clinic_id`),
+  KEY `clinical_staff_id` (`clinical_id`,`clinical_staff_id`),
+  KEY `client_clinic_id` (`clinical_client_id`,`clinical_clinic_id`),
+  KEY `client_staff_id` (`clinical_client_id`,`clinical_staff_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12722 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clinical_visits_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `clinical_visits_staging` (
+  `clinical_id` int(10) DEFAULT NULL,
+  `clinical_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `clinical_entry_date` date DEFAULT NULL,
+  `clinical_clinic_id` int(10) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `clinical_staff_id` int(11) DEFAULT NULL,
+  `clinical_staff_name` varchar(150) DEFAULT NULL,
+  `contact_first_name` varchar(30) DEFAULT NULL,
+  `contact_other_name` varchar(255) DEFAULT NULL,
+  `contact_last_name` varchar(30) DEFAULT NULL,
+  `clinical_age_yrs` double DEFAULT NULL,
+  `clinical_age_months` double DEFAULT NULL,
+  `clinical_child_attending` int(11) DEFAULT NULL,
+  `clinical_caregiver_attending` int(11) DEFAULT NULL,
+  `clinical_caregiver` varchar(150) DEFAULT NULL,
+  `clinical_illness` int(11) DEFAULT NULL,
+  `clinical_illness_notes` varchar(150) DEFAULT NULL,
+  `clinical_diarrhoea` int(11) DEFAULT NULL,
+  `clinical_vomiting` int(11) DEFAULT NULL,
+  `clinical_current_complaints` text,
+  `clinical_bloodtest_date` date DEFAULT NULL,
+  `clinical_bloodtest_cd4` varchar(100) DEFAULT '',
+  `clinical_bloodtest_cd4_percentage` varchar(100) DEFAULT '',
+  `clinical_bloodtest_viral` varchar(100) DEFAULT '',
+  `clinical_bloodtest_hb` varchar(100) DEFAULT '',
+  `clinical_xray_results` varchar(150) DEFAULT NULL,
+  `clinical_other_results` varchar(150) DEFAULT NULL,
+  `clinical_weight` double DEFAULT NULL,
+  `clinical_height` double DEFAULT NULL,
+  `clinical_zscore` varchar(150) DEFAULT NULL,
+  `clinical_muac` double DEFAULT NULL,
+  `clinical_hc` double DEFAULT NULL,
+  `clinical_child_unwell` int(11) DEFAULT NULL,
+  `clinical_temp` varchar(100) DEFAULT '',
+  `clinical_resp_rate` varchar(100) DEFAULT '',
+  `clinical_heart_rate` varchar(100) DEFAULT '',
+  `clinical_general` varchar(100) DEFAULT '',
+  `clinical_pallor` int(11) DEFAULT NULL,
+  `clinical_jaundice` int(11) DEFAULT NULL,
+  `clinical_examination_dehydration` int(11) DEFAULT NULL,
+  `clinical_examination_lymph` int(11) DEFAULT NULL,
+  `clinical_mouth` varchar(100) DEFAULT '',
+  `clinical_teeth` varchar(150) DEFAULT NULL,
+  `clinical_ears` varchar(100) DEFAULT '',
+  `clinical_chest` varchar(100) DEFAULT '',
+  `clinical_chest_clear` int(11) DEFAULT NULL,
+  `clinical_skin_clear` int(11) DEFAULT NULL,
+  `clinical_cardiovascular` varchar(100) DEFAULT '',
+  `clinical_skin` varchar(100) DEFAULT '',
+  `clinical_clubbing` varchar(100) DEFAULT '',
+  `clinical_abdomen` varchar(100) DEFAULT '',
+  `clinical_neurodevt` varchar(100) DEFAULT '',
+  `clinical_musculoskeletal` varchar(150) DEFAULT NULL,
+  `clinical_oedema` int(11) DEFAULT NULL,
+  `clinical_adherence` int(11) DEFAULT NULL,
+  `clinical_adherence_notes` text,
+  `clinical_diarrhoea_type` int(11) DEFAULT NULL,
+  `clinical_referral_old` int(11) DEFAULT NULL,
+  `clinical_dehydration` int(11) DEFAULT NULL,
+  `clinical_pneumonia` int(11) DEFAULT NULL,
+  `clinical_chronic_lung` int(11) DEFAULT NULL,
+  `clinical_lung_disease` varchar(100) DEFAULT '',
+  `clinical_tb` int(11) DEFAULT NULL,
+  `clinical_tb_treatment_date` date DEFAULT NULL,
+  `clinical_pulmonary` varchar(100) DEFAULT '',
+  `clinical_discharging_ears` int(11) DEFAULT NULL,
+  `clinical_other_diagnoses` varchar(100) DEFAULT '',
+  `clinical_malnutrition` int(11) DEFAULT NULL,
+  `clinical_growth` int(11) DEFAULT NULL,
+  `clinical_assessment_notes` text,
+  `clinical_investigations` int(11) DEFAULT NULL,
+  `clinical_investigations_notes` text,
+  `clinical_other_drugs` varchar(150) DEFAULT NULL,
+  `clinical_new_drugs` varchar(150) DEFAULT NULL,
+  `clinical_on_arvs` int(11) DEFAULT NULL,
+  `clinical_arv_drugs` varchar(50) DEFAULT NULL,
+  `clinical_tb_treatment` int(11) DEFAULT NULL,
+  `clinical_arv_notes` text,
+  `clinical_who_stage` varchar(100) DEFAULT '',
+  `clinical_who_current` int(11) DEFAULT NULL,
+  `clinical_who_reason` varchar(100) DEFAULT '',
+  `clinical_tb_drugs` varchar(150) DEFAULT NULL,
+  `clinical_tb_drugs_notes` text,
+  `clinical_septrin` int(11) DEFAULT NULL,
+  `clinical_vitamins` varchar(50) DEFAULT NULL,
+  `clinical_treatment_status` int(11) DEFAULT NULL,
+  `clinical_arv_reason` varchar(150) DEFAULT NULL,
+  `clinical_nutritional_support` varchar(15) DEFAULT NULL,
+  `clinical_nutritional_notes` text,
+  `clinical_referral_name` varchar(150) DEFAULT NULL,
+  `clinical_next_date` date DEFAULT NULL,
+  `clinical_notes` text,
+  `clinical_custom` longtext,
+  `clinical_arv_drugs_other` varchar(150) DEFAULT NULL,
+  `clinical_complaints` tinyint(2) DEFAULT NULL,
+  `clinical_ctscan` varchar(200) NOT NULL,
+  `clinical_astal` varchar(200) NOT NULL,
+  `clinical_mouth_thrush` tinyint(1) DEFAULT NULL,
+  `clinical_mouth_ulcer` tinyint(1) DEFAULT NULL,
+  `clinical_teeth_opt` tinyint(1) DEFAULT NULL,
+  `clinical_ears_opt` tinyint(1) DEFAULT NULL,
+  `clinical_throat` tinyint(1) DEFAULT NULL,
+  `clinical_chest_creps` tinyint(1) DEFAULT NULL,
+  `clinical_skin_opts` tinyint(1) DEFAULT NULL,
+  `clinical_cns` tinyint(4) DEFAULT NULL,
+  `clinical_eyes` tinyint(1) DEFAULT NULL,
+  `clinical_eyes_opt` varchar(200) DEFAULT NULL,
+  `clinical_muscle` tinyint(4) DEFAULT NULL,
+  `clinical_tb_treat` tinyint(1) DEFAULT NULL,
+  `clinical_dss` varchar(30) DEFAULT NULL,
+  `clinical_arv_on` tinyint(1) DEFAULT NULL,
+  `clinical_arv_on_adh` tinyint(1) DEFAULT NULL,
+  `clinical_tb_status` tinyint(1) DEFAULT NULL,
+  `clinical_tb_status_notes` varchar(200) DEFAULT NULL,
+  `clinical_stage` tinyint(1) DEFAULT NULL,
+  `clinical_referral` tinyint(2) DEFAULT NULL,
+  `clinical_referral_other` varchar(150) DEFAULT NULL,
+  `clinical_request` tinyint(1) DEFAULT NULL,
+  `clinical_request_list` varchar(50) DEFAULT NULL,
+  `clinical_other` varchar(200) DEFAULT NULL,
+  `clinical_therapy_stage` tinyint(2) DEFAULT NULL,
+  `clinical_arv_recomends` tinyint(1) DEFAULT NULL,
+  KEY `clinical_client_id` (`clinical_id`,`clinical_client_id`),
+  KEY `client_adm_no` (`clinical_client_id`,`client_adm_no`),
+  KEY `clinical_clinic_id` (`clinical_id`,`clinical_clinic_id`),
+  KEY `clinical_staff_id` (`clinical_id`,`clinical_staff_id`),
+  KEY `clinical_staff_name` (`clinical_id`,`clinical_staff_name`),
+  KEY `clinical_referral_name` (`clinical_id`,`clinical_referral_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clinics`
+--
+
+CREATE TABLE IF NOT EXISTS `clinics` (
+  `clinic_id` int(10) NOT NULL AUTO_INCREMENT,
+  `clinic_module` int(10) NOT NULL DEFAULT '0',
+  `clinic_name` varchar(100) DEFAULT '',
+  `clinic_phone1` varchar(30) DEFAULT '',
+  `clinic_phone2` varchar(30) DEFAULT '',
+  `clinic_fax` varchar(30) DEFAULT '',
+  `clinic_address1` varchar(50) DEFAULT '',
+  `clinic_address2` varchar(50) DEFAULT '',
+  `clinic_city` varchar(30) DEFAULT '',
+  `clinic_state` varchar(30) DEFAULT '',
+  `clinic_zip` varchar(11) DEFAULT '',
+  `clinic_primary_url` varchar(255) DEFAULT '',
+  `clinic_owner` int(11) NOT NULL DEFAULT '0',
+  `clinic_description` text,
+  `clinic_type` int(3) NOT NULL DEFAULT '0',
+  `clinic_email` varchar(255) DEFAULT NULL,
+  `clinic_custom` longtext,
+  PRIMARY KEY (`clinic_id`),
+  KEY `idx_cpy1` (`clinic_owner`),
+  KEY `clinic_name` (`clinic_name`),
+  KEY `clinic_id` (`clinic_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=114 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clinics_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `clinics_staging` (
+  `clinic_id` int(10) DEFAULT NULL,
+  `clinic_module` int(10) DEFAULT '0',
+  `clinic_name` varchar(100) DEFAULT '',
+  `clinic_phone1` varchar(30) DEFAULT '',
+  `clinic_phone2` varchar(30) DEFAULT '',
+  `clinic_fax` varchar(30) DEFAULT '',
+  `clinic_address1` varchar(50) DEFAULT '',
+  `clinic_address2` varchar(50) DEFAULT '',
+  `clinic_city` varchar(30) DEFAULT '',
+  `clinic_state` varchar(30) DEFAULT '',
+  `clinic_zip` varchar(11) DEFAULT '',
+  `clinic_primary_url` varchar(255) DEFAULT '',
+  `clinic_owner` int(11) DEFAULT '0',
+  `clinic_description` text,
+  `clinic_type` int(3) DEFAULT '0',
+  `clinic_email` varchar(255) DEFAULT NULL,
+  `clinic_custom` longtext,
+  KEY `clinic_id` (`clinic_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clinic_location`
+--
+
+CREATE TABLE IF NOT EXISTS `clinic_location` (
+  `clinic_location_id` int(10) NOT NULL AUTO_INCREMENT,
+  `clinic_location_clinic_id` int(10) NOT NULL,
+  `clinic_location` varchar(150) DEFAULT NULL,
+  `clinic_location_notes` text,
+  `clinic_location_custom` longtext,
+  PRIMARY KEY (`clinic_location_id`),
+  KEY `clinic_location_id` (`clinic_location_id`,`clinic_location_clinic_id`),
+  KEY `location_name` (`clinic_location`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clinic_location_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `clinic_location_staging` (
+  `clinic_location_id` int(10) DEFAULT NULL,
+  `clinic_location_clinic_id` int(10) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `clinic_location` varchar(150) DEFAULT NULL,
+  `clinic_location_notes` text,
+  `clinic_location_custom` longtext,
+  KEY `clinic_location_id` (`clinic_location_id`,`clinic_location_clinic_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `common_notes`
+--
+
+CREATE TABLE IF NOT EXISTS `common_notes` (
+  `note_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `note_author` int(10) unsigned NOT NULL DEFAULT '0',
+  `note_module` int(10) unsigned NOT NULL DEFAULT '0',
+  `note_record_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `note_category` int(3) unsigned NOT NULL DEFAULT '0',
+  `note_title` varchar(100) NOT NULL DEFAULT '',
+  `note_body` text NOT NULL,
+  `note_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `note_hours` float NOT NULL DEFAULT '0',
+  `note_code` varchar(8) NOT NULL DEFAULT '',
+  `note_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `note_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `note_modified_by` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`note_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companies`
+--
+
+CREATE TABLE IF NOT EXISTS `companies` (
+  `company_id` int(10) NOT NULL AUTO_INCREMENT,
+  `company_module` int(10) NOT NULL DEFAULT '0',
+  `company_name` varchar(100) DEFAULT '',
+  `company_phone1` varchar(30) DEFAULT '',
+  `company_phone2` varchar(30) DEFAULT '',
+  `company_fax` varchar(30) DEFAULT '',
+  `company_address1` varchar(50) DEFAULT '',
+  `company_address2` varchar(50) DEFAULT '',
+  `company_city` varchar(30) DEFAULT '',
+  `company_state` varchar(30) DEFAULT '',
+  `company_zip` varchar(11) DEFAULT '',
+  `company_primary_url` varchar(255) DEFAULT '',
+  `company_owner` int(11) NOT NULL DEFAULT '0',
+  `company_description` text NOT NULL,
+  `company_type` int(3) NOT NULL DEFAULT '0',
+  `company_email` varchar(255) DEFAULT NULL,
+  `company_custom` longtext,
+  PRIMARY KEY (`company_id`),
+  KEY `idx_cpy1` (`company_owner`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `company_contacts` (
+  `company_contacts_contact_id` int(10) NOT NULL AUTO_INCREMENT,
+  `company_contacts_company_id` int(10) NOT NULL DEFAULT '0',
+  `company_contacts_contact_type` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`company_contacts_contact_id`,`company_contacts_company_id`,`company_contacts_contact_type`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `config`
+--
+
+CREATE TABLE IF NOT EXISTS `config` (
+  `config_id` int(11) NOT NULL AUTO_INCREMENT,
+  `config_name` varchar(255) NOT NULL DEFAULT '',
+  `config_value` varchar(2048) NOT NULL DEFAULT '',
+  `config_group` varchar(255) NOT NULL DEFAULT '',
+  `config_type` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`config_id`),
+  UNIQUE KEY `config_name` (`config_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=121 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `config_list`
+--
+
+CREATE TABLE IF NOT EXISTS `config_list` (
+  `config_list_id` int(11) NOT NULL AUTO_INCREMENT,
+  `config_id` int(11) NOT NULL DEFAULT '0',
+  `config_list_name` varchar(30) NOT NULL DEFAULT '',
+  PRIMARY KEY (`config_list_id`),
+  KEY `config_id` (`config_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `contacts` (
+  `contact_id` int(11) NOT NULL AUTO_INCREMENT,
+  `contact_first_name` varchar(30) DEFAULT NULL,
+  `contact_other_name` varchar(255) DEFAULT NULL,
+  `contact_last_name` varchar(30) DEFAULT NULL,
+  `contact_order_by` varchar(30) NOT NULL DEFAULT '',
+  `contact_title` varchar(50) DEFAULT NULL,
+  `contact_birthday` date DEFAULT NULL,
+  `contact_job` varchar(255) DEFAULT NULL,
+  `contact_client` varchar(100) DEFAULT NULL,
+  `contact_department` tinytext,
+  `contact_type` varchar(20) DEFAULT NULL,
+  `contact_email` varchar(255) DEFAULT NULL,
+  `contact_email2` varchar(255) DEFAULT NULL,
+  `contact_url` varchar(255) DEFAULT NULL,
+  `contact_phone` varchar(30) DEFAULT NULL,
+  `contact_phone2` varchar(30) DEFAULT NULL,
+  `contact_fax` varchar(30) DEFAULT NULL,
+  `contact_mobile` varchar(30) DEFAULT NULL,
+  `contact_address1` varchar(60) DEFAULT NULL,
+  `contact_address2` varchar(60) DEFAULT NULL,
+  `contact_city` varchar(30) DEFAULT NULL,
+  `contact_state` varchar(30) DEFAULT NULL,
+  `contact_zip` varchar(11) DEFAULT NULL,
+  `contact_country` varchar(30) DEFAULT NULL,
+  `contact_jabber` varchar(255) DEFAULT NULL,
+  `contact_icq` varchar(20) DEFAULT NULL,
+  `contact_msn` varchar(255) DEFAULT NULL,
+  `contact_yahoo` varchar(255) DEFAULT NULL,
+  `contact_aol` varchar(30) DEFAULT NULL,
+  `contact_notes` text,
+  `contact_project` int(11) NOT NULL DEFAULT '0',
+  `contact_icon` varchar(20) DEFAULT 'obj/contact',
+  `contact_owner` int(10) unsigned DEFAULT '0',
+  `contact_private` tinyint(3) unsigned DEFAULT '0',
+  `contact_active` enum('0','1') NOT NULL DEFAULT '1',
+  PRIMARY KEY (`contact_id`),
+  KEY `idx_oby` (`contact_order_by`),
+  KEY `idx_co` (`contact_client`),
+  KEY `idx_prp` (`contact_project`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=132 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `contacts_staging` (
+  `contact_id` int(11) DEFAULT NULL,
+  `contact_first_name` varchar(30) DEFAULT NULL,
+  `contact_other_name` varchar(255) DEFAULT NULL,
+  `contact_last_name` varchar(30) DEFAULT NULL,
+  `contact_order_by` varchar(30) DEFAULT '',
+  `contact_title` varchar(50) DEFAULT NULL,
+  `contact_birthday` date DEFAULT NULL,
+  `contact_job` varchar(255) DEFAULT NULL,
+  `contact_client` varchar(100) DEFAULT NULL,
+  `contact_department` tinytext,
+  `contact_type` varchar(20) DEFAULT NULL,
+  `contact_email` varchar(255) DEFAULT NULL,
+  `contact_email2` varchar(255) DEFAULT NULL,
+  `contact_url` varchar(255) DEFAULT NULL,
+  `contact_phone` varchar(30) DEFAULT NULL,
+  `contact_phone2` varchar(30) DEFAULT NULL,
+  `contact_fax` varchar(30) DEFAULT NULL,
+  `contact_mobile` varchar(30) DEFAULT NULL,
+  `contact_address1` varchar(60) DEFAULT NULL,
+  `contact_address2` varchar(60) DEFAULT NULL,
+  `contact_city` varchar(30) DEFAULT NULL,
+  `contact_state` varchar(30) DEFAULT NULL,
+  `contact_zip` varchar(11) DEFAULT NULL,
+  `contact_country` varchar(30) DEFAULT NULL,
+  `contact_jabber` varchar(255) DEFAULT NULL,
+  `contact_icq` varchar(20) DEFAULT NULL,
+  `contact_msn` varchar(255) DEFAULT NULL,
+  `contact_yahoo` varchar(255) DEFAULT NULL,
+  `contact_aol` varchar(30) DEFAULT NULL,
+  `contact_notes` text,
+  `contact_project` int(11) DEFAULT '0',
+  `contact_icon` varchar(20) DEFAULT 'obj/contact',
+  `contact_owner` int(10) unsigned DEFAULT '0',
+  `contact_private` tinyint(3) unsigned DEFAULT '0',
+  `contact_active` enum('0','1') NOT NULL DEFAULT '1',
+  KEY `contact_oby` (`contact_order_by`),
+  KEY `contact_id` (`contact_id`),
+  KEY `contact_client` (`contact_client`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_types`
+--
+
+CREATE TABLE IF NOT EXISTS `contact_types` (
+  `typ_id` int(10) NOT NULL AUTO_INCREMENT,
+  `typ_desc` varchar(100) DEFAULT '',
+  `type_ui_active` int(1) unsigned DEFAULT NULL,
+  `typ_title` varchar(48) DEFAULT NULL,
+  PRIMARY KEY (`typ_id`),
+  KEY `idx_cpy1` (`typ_desc`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `counselling_info`
+--
+
+CREATE TABLE IF NOT EXISTS `counselling_info` (
+  `counselling_id` int(10) NOT NULL AUTO_INCREMENT,
+  `counselling_client_id` int(10) NOT NULL,
+  `counselling_entry_date` date DEFAULT NULL,
+  `counselling_clinic` int(11) DEFAULT NULL,
+  `counselling_staff_id` int(11) DEFAULT NULL,
+  `counselling_referral_source` varchar(100) DEFAULT '',
+  `counselling_total_orphan` int(11) DEFAULT NULL,
+  `counselling_dob` date DEFAULT NULL,
+  `counselling_age_yrs` double DEFAULT NULL,
+  `counselling_age_months` double DEFAULT NULL,
+  `counselling_age_status` int(11) DEFAULT NULL,
+  `counselling_place_of_birth` int(11) DEFAULT NULL,
+  `counselling_birth_area` varchar(100) DEFAULT '',
+  `counselling_mode_birth` int(11) DEFAULT NULL,
+  `counselling_gestation_period` double DEFAULT NULL,
+  `counselling_birth_weight` double DEFAULT NULL,
+  `counselling_mothers_status_known` int(11) DEFAULT NULL,
+  `counselling_mother_antenatal` int(11) DEFAULT NULL,
+  `counselling_mother_pmtct` int(11) DEFAULT NULL,
+  `counselling_mother_illness_pregnancy` int(11) DEFAULT NULL,
+  `counselling_mother_illness_pregnancy_notes` varchar(255) DEFAULT NULL,
+  `counselling_breastfeeding` int(11) DEFAULT NULL,
+  `counselling_breastfeeding_duration` double DEFAULT NULL,
+  `counselling_other_breastfeeding_duration` double DEFAULT NULL,
+  `counselling_child_prenatal` int(11) DEFAULT NULL,
+  `counselling_child_single_nvp` int(11) DEFAULT NULL,
+  `counselling_child_nvp_date` date DEFAULT NULL,
+  `counselling_child_nvp_notes` varchar(255) DEFAULT NULL,
+  `counselling_child_azt` int(11) DEFAULT NULL,
+  `counselling_child_azt_date` date DEFAULT NULL,
+  `counselling_no_doses` double DEFAULT NULL,
+  `counselling_mother_treatment` int(11) DEFAULT NULL,
+  `counselling_mother_art_pregnancy` int(11) DEFAULT NULL,
+  `counselling_mother_date_art` date DEFAULT NULL,
+  `counselling_mother_cd4` varchar(100) DEFAULT NULL,
+  `counselling_mother_date_cd4` date DEFAULT NULL,
+  `counselling_determine_date` date DEFAULT NULL,
+  `counselling_determine` int(11) DEFAULT NULL,
+  `counselling_bioline_date` date DEFAULT NULL,
+  `counselling_bioline` int(11) DEFAULT NULL,
+  `counselling_unigold_date` date DEFAULT NULL,
+  `counselling_unigold` int(11) DEFAULT NULL,
+  `counselling_elisa_date` date DEFAULT NULL,
+  `counselling_elisa` int(11) DEFAULT NULL,
+  `counselling_pcr1_date` date DEFAULT NULL,
+  `counselling_pcr1` int(11) DEFAULT NULL,
+  `counselling_pcr2_date` date DEFAULT NULL,
+  `counselling_pcr2` int(11) DEFAULT NULL,
+  `counselling_rapid12_date` date DEFAULT NULL,
+  `counselling_rapid12` int(11) DEFAULT NULL,
+  `counselling_rapid18_date` date DEFAULT NULL,
+  `counselling_rapid18` varchar(100) DEFAULT '',
+  `counselling_other_date` date DEFAULT NULL,
+  `counselling_other` varchar(150) DEFAULT '',
+  `counselling_notes` text,
+  `counselling_custom` longtext,
+  `counselling_other_notes` varchar(150) DEFAULT NULL,
+  `counselling_vct_camp` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_vct_camp_site` varchar(100) DEFAULT NULL,
+  `counselling_return` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_client_code` varchar(100) DEFAULT NULL,
+  `counselling_partner_code` varchar(100) DEFAULT NULL,
+  `counselling_area` varchar(100) DEFAULT NULL,
+  `counselling_gender` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_marital` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_client_seen` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_final` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_dis_couple` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_mother_treatment_where` varchar(100) DEFAULT NULL,
+  `counselling_mother_pmtct_where` varchar(100) DEFAULT NULL,
+  `counselling_mother_antenatal_where` varchar(100) DEFAULT NULL,
+  `counselling_mother_cd4_note` varchar(50) DEFAULT NULL,
+  `counselling_positive_ref` tinyint(4) DEFAULT NULL,
+  `counselling_positive_ref_notes` varchar(100) DEFAULT NULL,
+  `counselling_admission_date` date DEFAULT NULL,
+  `counselling_referral_source_notes` varchar(100) DEFAULT NULL,
+  `counselling_referral_source_old` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`counselling_id`),
+  UNIQUE KEY `counselling_id` (`counselling_id`),
+  KEY `counselling_client_id` (`counselling_id`,`counselling_client_id`),
+  KEY `counselling_clinic_id` (`counselling_id`,`counselling_clinic`),
+  KEY `client_clinic_id` (`counselling_client_id`,`counselling_clinic`),
+  KEY `client_staff_id` (`counselling_client_id`,`counselling_staff_id`),
+  KEY `counselling_staff_id` (`counselling_id`,`counselling_staff_id`),
+  KEY `counselling_dob` (`counselling_dob`),
+  KEY `counselling_entry_date` (`counselling_entry_date`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1876 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `counselling_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `counselling_staging` (
+  `counselling_id` int(10) DEFAULT NULL,
+  `counselling_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `counselling_entry_date` date DEFAULT NULL,
+  `counselling_clinic` int(11) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `counselling_staff_id` int(11) DEFAULT NULL,
+  `counselling_staff_name` varchar(150) DEFAULT NULL,
+  `contact_first_name` varchar(30) DEFAULT NULL,
+  `contact_other_name` varchar(255) DEFAULT NULL,
+  `contact_last_name` varchar(30) DEFAULT NULL,
+  `counselling_referral_source` varchar(100) DEFAULT '',
+  `counselling_total_orphan` int(11) DEFAULT NULL,
+  `counselling_dob` date DEFAULT NULL,
+  `counselling_age_yrs` double DEFAULT NULL,
+  `counselling_age_months` double DEFAULT NULL,
+  `counselling_age_status` int(11) DEFAULT NULL,
+  `counselling_place_of_birth` int(11) DEFAULT NULL,
+  `counselling_birth_area` varchar(100) DEFAULT '',
+  `counselling_mode_birth` int(11) DEFAULT NULL,
+  `counselling_gestation_period` double DEFAULT NULL,
+  `counselling_birth_weight` double DEFAULT NULL,
+  `counselling_mothers_status_known` int(11) DEFAULT NULL,
+  `counselling_mother_antenatal` int(11) DEFAULT NULL,
+  `counselling_mother_pmtct` int(11) DEFAULT NULL,
+  `counselling_mother_illness_pregnancy` int(11) DEFAULT NULL,
+  `counselling_mother_illness_pregnancy_notes` varchar(255) DEFAULT NULL,
+  `counselling_breastfeeding` int(11) DEFAULT NULL,
+  `counselling_breastfeeding_duration` double DEFAULT NULL,
+  `counselling_other_breastfeeding_duration` double DEFAULT NULL,
+  `counselling_child_prenatal` int(11) DEFAULT NULL,
+  `counselling_child_single_nvp` int(11) DEFAULT NULL,
+  `counselling_child_nvp_date` date DEFAULT NULL,
+  `counselling_child_nvp_notes` varchar(255) DEFAULT NULL,
+  `counselling_child_azt` int(11) DEFAULT NULL,
+  `counselling_child_azt_date` date DEFAULT NULL,
+  `counselling_no_doses` double DEFAULT NULL,
+  `counselling_mother_treatment` int(11) DEFAULT NULL,
+  `counselling_mother_art_pregnancy` int(11) DEFAULT NULL,
+  `counselling_mother_date_art` date DEFAULT NULL,
+  `counselling_mother_cd4` varchar(100) DEFAULT NULL,
+  `counselling_mother_date_cd4` date DEFAULT NULL,
+  `counselling_determine_date` date DEFAULT NULL,
+  `counselling_determine` int(11) DEFAULT NULL,
+  `counselling_bioline_date` date DEFAULT NULL,
+  `counselling_bioline` int(11) DEFAULT NULL,
+  `counselling_unigold_date` date DEFAULT NULL,
+  `counselling_unigold` int(11) DEFAULT NULL,
+  `counselling_elisa_date` date DEFAULT NULL,
+  `counselling_elisa` int(11) DEFAULT NULL,
+  `counselling_pcr1_date` date DEFAULT NULL,
+  `counselling_pcr1` int(11) DEFAULT NULL,
+  `counselling_pcr2_date` date DEFAULT NULL,
+  `counselling_pcr2` int(11) DEFAULT NULL,
+  `counselling_rapid12_date` date DEFAULT NULL,
+  `counselling_rapid12` int(11) DEFAULT NULL,
+  `counselling_rapid18_date` date DEFAULT NULL,
+  `counselling_rapid18` varchar(100) DEFAULT '',
+  `counselling_other_date` date DEFAULT NULL,
+  `counselling_other` varchar(150) DEFAULT '',
+  `counselling_other_notes` varchar(50) DEFAULT NULL,
+  `counselling_notes` text,
+  `counselling_custom` longtext,
+  `counselling_vct_camp` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_vct_camp_site` varchar(100) DEFAULT NULL,
+  `counselling_return` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_client_code` varchar(100) DEFAULT NULL,
+  `counselling_partner_code` varchar(100) DEFAULT NULL,
+  `counselling_area` varchar(100) DEFAULT NULL,
+  `counselling_gender` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_marital` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_client_seen` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_final` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_dis_couple` tinyint(1) unsigned DEFAULT NULL,
+  `counselling_mother_treatment_where` varchar(100) DEFAULT NULL,
+  `counselling_mother_pmtct_where` varchar(100) DEFAULT NULL,
+  `counselling_mother_antenatal_where` varchar(100) DEFAULT NULL,
+  `counselling_mother_cd4_note` varchar(50) DEFAULT NULL,
+  `counselling_positive_ref` tinyint(4) DEFAULT NULL,
+  `counselling_positive_ref_notes` varchar(100) DEFAULT NULL,
+  `counselling_admission_date` date DEFAULT NULL,
+  `counselling_referral_source_notes` varchar(100) DEFAULT NULL,
+  `counselling_referral_source_old` varchar(100) DEFAULT NULL,
+  KEY `counselling_client` (`counselling_id`,`counselling_client_id`),
+  KEY `counselling_adm_no` (`counselling_id`,`client_adm_no`),
+  KEY `counselling_clinic` (`counselling_id`,`counselling_clinic`),
+  KEY `counselling_staff_id` (`counselling_id`,`counselling_staff_id`),
+  KEY `counselling_name` (`counselling_id`,`counselling_staff_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `counselling_visit`
+--
+
+CREATE TABLE IF NOT EXISTS `counselling_visit` (
+  `counselling_id` int(10) NOT NULL AUTO_INCREMENT,
+  `counselling_client_id` int(10) NOT NULL,
+  `counselling_staff_id` int(10) DEFAULT NULL,
+  `counselling_center_id` int(10) DEFAULT NULL,
+  `counselling_entry_date` date DEFAULT NULL,
+  `counselling_visit_type` int(10) DEFAULT NULL,
+  `counselling_caregiver_fname` varchar(100) DEFAULT '',
+  `counselling_caregiver_lname` varchar(100) DEFAULT '',
+  `counselling_caregiver_age` double DEFAULT NULL,
+  `counselling_caregiver_relationship` varchar(100) DEFAULT '',
+  `counselling_caregiver_marital_status` int(10) DEFAULT NULL,
+  `counselling_caregiver_educ_level` int(10) DEFAULT NULL,
+  `counselling_caregiver_employment` int(11) DEFAULT NULL,
+  `counselling_caregiver_income_level` int(10) DEFAULT NULL,
+  `counselling_caregiver_idno` varchar(100) DEFAULT '',
+  `counselling_caregiver_mobile` varchar(100) DEFAULT '',
+  `counselling_caregiver_residence` varchar(100) DEFAULT '',
+  `counselling_child_issues` varchar(100) DEFAULT '',
+  `counselling_other_issues` varchar(100) DEFAULT '',
+  `counselling_caregiver_issues` varchar(100) DEFAULT '',
+  `counselling_caregiver_other_issues` varchar(100) DEFAULT '',
+  `counselling_caregiver_issues2` varchar(100) DEFAULT '',
+  `counselling_caregiver_other_issues2` varchar(100) DEFAULT '',
+  `counselling_child_knows_status_old` int(10) DEFAULT NULL,
+  `counselling_otheradult_knows_status` int(10) DEFAULT NULL,
+  `counselling_disclosure_response` int(10) DEFAULT NULL,
+  `counselling_disclosure_state` int(10) DEFAULT NULL,
+  `counselling_secondary_caregiver_knows` int(10) DEFAULT NULL,
+  `counselling_primary_caregiver_tested` int(10) DEFAULT NULL,
+  `counselling_father_status` varchar(150) DEFAULT NULL,
+  `counselling_mother_status` varchar(150) DEFAULT NULL,
+  `counselling_caregiver_status` varchar(150) DEFAULT NULL,
+  `counselling_father_treatment` int(10) DEFAULT NULL,
+  `counselling_mother_treatment` int(10) DEFAULT NULL,
+  `counselling_caregiver_treatment` int(10) DEFAULT NULL,
+  `counselling_stigmatization_concern` int(10) DEFAULT NULL,
+  `counselling_counselling_services` varchar(100) DEFAULT '',
+  `counselling_other_services` varchar(150) DEFAULT NULL,
+  `counselling_notes` text,
+  `counselling_custom` longtext,
+  `counselling_child_knows_status` tinyint(2) DEFAULT NULL,
+  `counselling_second_ident` tinyint(1) DEFAULT NULL,
+  `counselling_referer` tinyint(1) DEFAULT NULL,
+  `counselling_referer_other` varchar(150) DEFAULT NULL,
+  `counselling_next_visit` date DEFAULT NULL,
+  PRIMARY KEY (`counselling_id`),
+  KEY `counselling_client_id` (`counselling_id`,`counselling_client_id`),
+  KEY `counselling_staff` (`counselling_id`,`counselling_staff_id`),
+  KEY `counselling_center` (`counselling_id`,`counselling_center_id`),
+  KEY `client_center` (`counselling_client_id`,`counselling_center_id`),
+  KEY `client_staff` (`counselling_client_id`,`counselling_staff_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=546 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `counselling_visit_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `counselling_visit_staging` (
+  `counselling_id` int(10) DEFAULT NULL,
+  `counselling_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `counselling_staff_id` int(10) DEFAULT NULL,
+  `counselling_visit_staff_name` varchar(150) DEFAULT NULL,
+  `contact_first_name` varchar(30) DEFAULT NULL,
+  `contact_other_name` varchar(255) DEFAULT NULL,
+  `contact_last_name` varchar(30) DEFAULT NULL,
+  `counselling_center_id` int(10) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `counselling_entry_date` date DEFAULT NULL,
+  `counselling_visit_type` int(10) DEFAULT NULL,
+  `counselling_caregiver_fname` varchar(100) DEFAULT '',
+  `counselling_caregiver_lname` varchar(100) DEFAULT '',
+  `counselling_caregiver_age` double DEFAULT NULL,
+  `counselling_caregiver_relationship` varchar(100) DEFAULT '',
+  `counselling_caregiver_marital_status` int(10) DEFAULT NULL,
+  `counselling_caregiver_educ_level` int(10) DEFAULT NULL,
+  `counselling_caregiver_employment` int(11) DEFAULT NULL,
+  `counselling_caregiver_income_level` int(10) DEFAULT NULL,
+  `counselling_caregiver_idno` varchar(100) DEFAULT '',
+  `counselling_caregiver_mobile` varchar(100) DEFAULT '',
+  `counselling_caregiver_residence` varchar(100) DEFAULT '',
+  `counselling_child_issues` varchar(100) DEFAULT '',
+  `counselling_other_issues` varchar(100) DEFAULT '',
+  `counselling_caregiver_issues` varchar(100) DEFAULT '',
+  `counselling_caregiver_other_issues` varchar(100) DEFAULT '',
+  `counselling_caregiver_issues2` varchar(100) DEFAULT '',
+  `counselling_caregiver_other_issues2` varchar(100) DEFAULT '',
+  `counselling_child_knows_status_old` int(10) DEFAULT NULL,
+  `counselling_otheradult_knows_status` int(10) DEFAULT NULL,
+  `counselling_disclosure_response` int(10) DEFAULT NULL,
+  `counselling_disclosure_state` int(10) DEFAULT NULL,
+  `counselling_secondary_caregiver_knows` int(10) DEFAULT NULL,
+  `counselling_primary_caregiver_tested` int(10) DEFAULT NULL,
+  `counselling_father_status` varchar(150) DEFAULT NULL,
+  `counselling_mother_status` varchar(150) DEFAULT NULL,
+  `counselling_caregiver_status` varchar(150) DEFAULT NULL,
+  `counselling_father_treatment` int(10) DEFAULT NULL,
+  `counselling_mother_treatment` int(10) DEFAULT NULL,
+  `counselling_caregiver_treatment` int(10) DEFAULT NULL,
+  `counselling_stigmatization_concern` int(10) DEFAULT NULL,
+  `counselling_counselling_services` varchar(100) DEFAULT '',
+  `counselling_other_services` varchar(150) DEFAULT NULL,
+  `counselling_notes` text,
+  `counselling_custom` longtext,
+  `counselling_second_ident` tinyint(1) DEFAULT NULL,
+  `counselling_referer` tinyint(1) DEFAULT NULL,
+  `counselling_referer_other` varchar(150) DEFAULT NULL,
+  `counselling_next_visit` date DEFAULT NULL,
+  `counselling_child_knows_status` tinyint(2) unsigned DEFAULT NULL,
+  KEY `counselling_client_id` (`counselling_id`,`counselling_client_id`),
+  KEY `counselling_adm_no` (`counselling_id`,`client_adm_no`),
+  KEY `counselling_staff_id` (`counselling_id`,`counselling_staff_id`),
+  KEY `counselling_center_id` (`counselling_id`,`counselling_center_id`),
+  KEY `client_adm_no` (`counselling_client_id`,`client_adm_no`),
+  KEY `client_staff_id` (`counselling_client_id`,`counselling_staff_id`),
+  KEY `client_center_id` (`counselling_client_id`,`counselling_center_id`),
+  KEY `staff_center_id` (`counselling_staff_id`,`counselling_center_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `counselling_work`
+--
+
+CREATE TABLE IF NOT EXISTS `counselling_work` (
+  `counselling_id` int(10) NOT NULL AUTO_INCREMENT,
+  `counselling_client_id` int(10) NOT NULL,
+  `counselling_date` date DEFAULT NULL,
+  `counselling_counsellor_id` int(10) DEFAULT '0',
+  `counselling_provider_type` int(10) DEFAULT NULL,
+  `counselling_support_counselling` int(11) DEFAULT '2',
+  `counselling_child_counselling` int(11) DEFAULT '2',
+  `counselling_ind_prev_educ` int(11) DEFAULT '2',
+  `counselling_adherence_counselling` int(11) DEFAULT '2',
+  `counselling_ind_disc_counselling` int(11) DEFAULT '2',
+  `counselling_lifeskiss_training` int(11) DEFAULT '2',
+  `counselling_rec_therapy` int(11) DEFAULT '2',
+  `counselling_hospital_visit` int(11) DEFAULT '2',
+  `counselling_home_visit` int(11) DEFAULT '2',
+  `counselling_entry_date` date DEFAULT NULL,
+  `counselling_notes` text,
+  `counselling_custom` longtext,
+  PRIMARY KEY (`counselling_id`),
+  KEY `counselling_client_id` (`counselling_id`,`counselling_client_id`),
+  KEY `counselling_counsellor_id` (`counselling_id`,`counselling_counsellor_id`),
+  KEY `client_counsellor` (`counselling_client_id`,`counselling_counsellor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `custom_fields_lists`
+--
+
+CREATE TABLE IF NOT EXISTS `custom_fields_lists` (
+  `field_id` int(11) DEFAULT NULL,
+  `list_option_id` int(11) DEFAULT NULL,
+  `list_value` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `custom_fields_struct`
+--
+
+CREATE TABLE IF NOT EXISTS `custom_fields_struct` (
+  `field_id` int(11) NOT NULL,
+  `field_module` varchar(30) DEFAULT NULL,
+  `field_page` varchar(30) DEFAULT NULL,
+  `field_htmltype` varchar(20) DEFAULT NULL,
+  `field_datatype` varchar(20) DEFAULT NULL,
+  `field_order` int(11) DEFAULT NULL,
+  `field_name` varchar(100) DEFAULT NULL,
+  `field_extratags` varchar(250) DEFAULT NULL,
+  `field_description` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`field_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `custom_fields_values`
+--
+
+CREATE TABLE IF NOT EXISTS `custom_fields_values` (
+  `value_id` int(11) DEFAULT NULL,
+  `value_module` varchar(30) DEFAULT NULL,
+  `value_object_id` int(11) DEFAULT NULL,
+  `value_field_id` int(11) DEFAULT NULL,
+  `value_charvalue` varchar(250) DEFAULT NULL,
+  `value_intvalue` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departments`
+--
+
+CREATE TABLE IF NOT EXISTS `departments` (
+  `dept_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `dept_parent` int(10) unsigned NOT NULL DEFAULT '0',
+  `dept_company` int(10) unsigned NOT NULL DEFAULT '0',
+  `dept_name` tinytext NOT NULL,
+  `dept_phone` varchar(30) DEFAULT NULL,
+  `dept_fax` varchar(30) DEFAULT NULL,
+  `dept_address1` varchar(30) DEFAULT NULL,
+  `dept_address2` varchar(30) DEFAULT NULL,
+  `dept_city` varchar(30) DEFAULT NULL,
+  `dept_state` varchar(30) DEFAULT NULL,
+  `dept_zip` varchar(11) DEFAULT NULL,
+  `dept_url` varchar(25) DEFAULT NULL,
+  `dept_desc` text,
+  `dept_owner` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`dept_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Department heirarchy under a company' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discharge_info`
+--
+
+CREATE TABLE IF NOT EXISTS `discharge_info` (
+  `dis_id` int(11) NOT NULL AUTO_INCREMENT,
+  `dis_client_id` int(11) NOT NULL,
+  `dis_client_adm_no` varchar(50) NOT NULL,
+  `dis_center` tinyint(3) NOT NULL,
+  `dis_entry_date` date NOT NULL,
+  `dis_time_in` varchar(10) DEFAULT NULL,
+  `dis_age_years` int(3) DEFAULT NULL,
+  `dis_age_months` int(3) DEFAULT NULL,
+  `dis_age_exact` enum('1','2') DEFAULT NULL,
+  `dis_client_status` tinyint(2) DEFAULT NULL,
+  `dis_status_delta_date` date DEFAULT NULL,
+  `dis_status_mdt_date` date DEFAULT NULL,
+  `dis_status_next_date` date DEFAULT NULL,
+  `dis_phys_address` varchar(100) DEFAULT NULL,
+  `dis_landmarks` varchar(200) DEFAULT NULL,
+  `dis_contact` varchar(100) DEFAULT NULL,
+  `dis_caregiver` int(11) DEFAULT NULL,
+  `dis_caregiver_relship` varchar(100) DEFAULT NULL,
+  `dis_client_health` text,
+  `dis_client_health_staff` int(10) DEFAULT NULL,
+  `dis_client_health_date` date DEFAULT NULL,
+  `dis_client_psy` text,
+  `dis_client_psy_staff` int(10) DEFAULT NULL,
+  `dis_client_psy_date` date DEFAULT NULL,
+  `dis_client_social` text,
+  `dis_client_social_staff` int(10) DEFAULT NULL,
+  `dis_client_social_date` date DEFAULT NULL,
+  `dis_form_type` enum('dis','ltp') DEFAULT NULL,
+  PRIMARY KEY (`dis_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dpversion`
+--
+
+CREATE TABLE IF NOT EXISTS `dpversion` (
+  `code_version` varchar(10) NOT NULL DEFAULT '',
+  `db_version` int(11) NOT NULL DEFAULT '0',
+  `last_db_update` date NOT NULL DEFAULT '0000-00-00',
+  `last_code_update` date NOT NULL DEFAULT '0000-00-00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE IF NOT EXISTS `events` (
+  `event_id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_title` varchar(255) NOT NULL DEFAULT '',
+  `event_start_date` datetime DEFAULT NULL,
+  `event_end_date` datetime DEFAULT NULL,
+  `event_parent` int(11) unsigned NOT NULL DEFAULT '0',
+  `event_description` text,
+  `event_times_recuring` int(11) unsigned NOT NULL DEFAULT '0',
+  `event_recurs` int(11) unsigned NOT NULL DEFAULT '0',
+  `event_remind` int(10) unsigned NOT NULL DEFAULT '0',
+  `event_icon` varchar(20) DEFAULT 'obj/event',
+  `event_owner` int(11) DEFAULT '0',
+  `event_project` int(11) DEFAULT '0',
+  `event_private` tinyint(3) DEFAULT '0',
+  `event_type` tinyint(3) DEFAULT '0',
+  `event_cwd` tinyint(3) DEFAULT '0',
+  `event_notify` tinyint(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`event_id`),
+  KEY `id_esd` (`event_start_date`),
+  KEY `id_eed` (`event_end_date`),
+  KEY `id_evp` (`event_parent`),
+  KEY `idx_ev1` (`event_owner`),
+  KEY `idx_ev2` (`event_project`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_queue`
+--
+
+CREATE TABLE IF NOT EXISTS `event_queue` (
+  `queue_id` int(11) NOT NULL AUTO_INCREMENT,
+  `queue_start` int(11) NOT NULL DEFAULT '0',
+  `queue_type` varchar(40) NOT NULL DEFAULT '',
+  `queue_repeat_interval` int(11) NOT NULL DEFAULT '0',
+  `queue_repeat_count` int(11) NOT NULL DEFAULT '0',
+  `queue_data` longblob NOT NULL,
+  `queue_callback` varchar(127) NOT NULL DEFAULT '',
+  `queue_owner` int(11) NOT NULL DEFAULT '0',
+  `queue_origin_id` int(11) NOT NULL DEFAULT '0',
+  `queue_module` varchar(40) NOT NULL DEFAULT '',
+  `queue_module_type` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`queue_id`),
+  KEY `queue_start` (`queue_start`),
+  KEY `queue_module` (`queue_module`),
+  KEY `queue_type` (`queue_type`),
+  KEY `queue_origin_id` (`queue_origin_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `files`
+--
+
+CREATE TABLE IF NOT EXISTS `files` (
+  `file_id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_real_filename` varchar(255) NOT NULL DEFAULT '',
+  `file_project` int(11) NOT NULL DEFAULT '0',
+  `file_task` int(11) NOT NULL DEFAULT '0',
+  `file_name` varchar(255) NOT NULL DEFAULT '',
+  `file_parent` int(11) DEFAULT '0',
+  `file_description` text,
+  `file_upload` int(11) DEFAULT NULL,
+  `file_type` varchar(100) DEFAULT NULL,
+  `file_owner` int(11) DEFAULT '0',
+  `file_date` datetime DEFAULT NULL,
+  `file_size` int(11) DEFAULT '0',
+  `file_version` float NOT NULL DEFAULT '0',
+  `file_icon` varchar(20) DEFAULT 'obj/',
+  `file_category` int(11) DEFAULT '0',
+  `file_checkout` varchar(255) NOT NULL DEFAULT '',
+  `file_co_reason` text,
+  `file_version_id` int(11) NOT NULL DEFAULT '0',
+  `file_imported` enum('0','1') NOT NULL,
+  `file_mode` enum('export','import') NOT NULL DEFAULT 'import',
+  PRIMARY KEY (`file_id`),
+  KEY `idx_file_task` (`file_task`),
+  KEY `idx_file_project` (`file_project`),
+  KEY `idx_file_parent` (`file_parent`),
+  KEY `idx_file_vid` (`file_version_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `files_index`
+--
+
+CREATE TABLE IF NOT EXISTS `files_index` (
+  `file_id` int(11) NOT NULL DEFAULT '0',
+  `word` varchar(50) NOT NULL DEFAULT '',
+  `word_placement` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`file_id`,`word`,`word_placement`),
+  KEY `idx_fwrd` (`word`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followup_info`
+--
+
+CREATE TABLE IF NOT EXISTS `followup_info` (
+  `followup_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `followup_client_id` int(11) DEFAULT NULL,
+  `followup_adm_no` varchar(20) NOT NULL,
+  `followup_client_type` tinyint(1) DEFAULT NULL,
+  `followup_object` varchar(100) DEFAULT NULL,
+  `followup_visit_type` tinyint(1) DEFAULT NULL,
+  `followup_issues` varchar(150) DEFAULT NULL,
+  `followup_issues_notes` varchar(150) DEFAULT NULL,
+  `followup_service` varchar(50) DEFAULT NULL,
+  `followup_service_notes` varchar(150) DEFAULT NULL,
+  `followup_date` date DEFAULT NULL,
+  `followup_center_id` int(11) DEFAULT NULL,
+  `followup_officer_id` int(11) DEFAULT NULL,
+  `followup_visit_mode` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`followup_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followup_info_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `followup_info_staging` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `followup_client_id` int(11) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `followup_adm_no` varchar(20) NOT NULL,
+  `followup_client_type` tinyint(1) DEFAULT NULL,
+  `followup_object` varchar(100) DEFAULT NULL,
+  `followup_visit_type` tinyint(1) DEFAULT NULL,
+  `followup_issues` varchar(150) DEFAULT NULL,
+  `followup_issues_notes` varchar(150) DEFAULT NULL,
+  `followup_service` varchar(50) DEFAULT NULL,
+  `followup_service_notes` varchar(150) DEFAULT NULL,
+  `followup_date` date DEFAULT NULL,
+  `followup_center_id` int(11) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `followup_officer_id` int(11) DEFAULT NULL,
+  `followup_staff_name` varchar(100) DEFAULT NULL,
+  `followup_visit_mode` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `form_master`
+--
+
+CREATE TABLE IF NOT EXISTS `form_master` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `fields` text,
+  `digest` varchar(255) DEFAULT NULL,
+  `registry` tinyint(1) NOT NULL DEFAULT '0',
+  `action` text,
+  `valid` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `valid_change` date DEFAULT NULL,
+  `subs` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forums`
+--
+
+CREATE TABLE IF NOT EXISTS `forums` (
+  `forum_id` int(11) NOT NULL AUTO_INCREMENT,
+  `forum_project` int(11) NOT NULL DEFAULT '0',
+  `forum_status` tinyint(4) NOT NULL DEFAULT '-1',
+  `forum_owner` int(11) NOT NULL DEFAULT '0',
+  `forum_name` varchar(50) NOT NULL DEFAULT '',
+  `forum_create_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `forum_last_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `forum_last_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `forum_message_count` int(11) NOT NULL DEFAULT '0',
+  `forum_description` varchar(255) DEFAULT NULL,
+  `forum_moderated` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`forum_id`),
+  KEY `idx_fproject` (`forum_project`),
+  KEY `idx_fowner` (`forum_owner`),
+  KEY `forum_status` (`forum_status`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_messages`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_messages` (
+  `message_id` int(11) NOT NULL AUTO_INCREMENT,
+  `message_forum` int(11) NOT NULL DEFAULT '0',
+  `message_parent` int(11) NOT NULL DEFAULT '0',
+  `message_author` int(11) NOT NULL DEFAULT '0',
+  `message_editor` int(11) NOT NULL DEFAULT '0',
+  `message_title` varchar(255) NOT NULL DEFAULT '',
+  `message_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `message_body` text,
+  `message_published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`message_id`),
+  KEY `idx_mparent` (`message_parent`),
+  KEY `idx_mdate` (`message_date`),
+  KEY `idx_mforum` (`message_forum`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_visits`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_visits` (
+  `visit_user` int(10) NOT NULL DEFAULT '0',
+  `visit_forum` int(10) NOT NULL DEFAULT '0',
+  `visit_message` int(10) NOT NULL DEFAULT '0',
+  `visit_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `idx_fv` (`visit_user`,`visit_forum`,`visit_message`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_watch`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_watch` (
+  `watch_user` int(10) unsigned NOT NULL DEFAULT '0',
+  `watch_forum` int(10) unsigned DEFAULT NULL,
+  `watch_topic` int(10) unsigned DEFAULT NULL,
+  KEY `idx_fw1` (`watch_user`,`watch_forum`),
+  KEY `idx_fw2` (`watch_user`,`watch_topic`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Links users to the forums/messages they are watching';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_acl`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_acl` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(80) NOT NULL DEFAULT 'system',
+  `allow` int(11) NOT NULL DEFAULT '0',
+  `enabled` int(11) NOT NULL DEFAULT '0',
+  `return_value` longtext,
+  `note` longtext,
+  `updated_date` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `gacl_enabled_acl` (`enabled`),
+  KEY `gacl_section_value_acl` (`section_value`),
+  KEY `gacl_updated_date_acl` (`updated_date`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_acl_sections`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_acl_sections` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(230) NOT NULL DEFAULT '',
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `gacl_value_acl_sections` (`value`),
+  KEY `gacl_hidden_acl_sections` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_acl_seq`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_acl_seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aco`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aco` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(80) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `gacl_section_value_value_aco` (`section_value`,`value`),
+  KEY `gacl_hidden_aco` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aco_map`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aco_map` (
+  `acl_id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(80) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  PRIMARY KEY (`acl_id`,`section_value`,`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aco_sections`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aco_sections` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(230) NOT NULL DEFAULT '',
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `gacl_value_aco_sections` (`value`),
+  KEY `gacl_hidden_aco_sections` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aco_sections_seq`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aco_sections_seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aco_seq`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aco_seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aro`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aro` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(80) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `gacl_section_value_value_aro` (`section_value`,`value`),
+  KEY `gacl_hidden_aro` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aro_groups`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aro_groups` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `lft` int(11) NOT NULL DEFAULT '0',
+  `rgt` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`,`value`),
+  KEY `gacl_parent_id_aro_groups` (`parent_id`),
+  KEY `gacl_value_aro_groups` (`value`),
+  KEY `gacl_lft_rgt_aro_groups` (`lft`,`rgt`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aro_groups_id_seq`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aro_groups_id_seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aro_groups_map`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aro_groups_map` (
+  `acl_id` int(11) NOT NULL DEFAULT '0',
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`acl_id`,`group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aro_map`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aro_map` (
+  `acl_id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(80) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  PRIMARY KEY (`acl_id`,`section_value`,`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aro_sections`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aro_sections` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(230) NOT NULL DEFAULT '',
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `gacl_value_aro_sections` (`value`),
+  KEY `gacl_hidden_aro_sections` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aro_sections_seq`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aro_sections_seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_aro_seq`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_aro_seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_axo`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_axo` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(80) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `gacl_section_value_value_axo` (`section_value`,`value`),
+  KEY `gacl_hidden_axo` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_axo_groups`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_axo_groups` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `lft` int(11) NOT NULL DEFAULT '0',
+  `rgt` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`,`value`),
+  KEY `gacl_parent_id_axo_groups` (`parent_id`),
+  KEY `gacl_value_axo_groups` (`value`),
+  KEY `gacl_lft_rgt_axo_groups` (`lft`,`rgt`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_axo_groups_id_seq`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_axo_groups_id_seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_axo_groups_map`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_axo_groups_map` (
+  `acl_id` int(11) NOT NULL DEFAULT '0',
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`acl_id`,`group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_axo_map`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_axo_map` (
+  `acl_id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(80) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  PRIMARY KEY (`acl_id`,`section_value`,`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_axo_sections`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_axo_sections` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `value` varchar(80) NOT NULL DEFAULT '',
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(230) NOT NULL DEFAULT '',
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `gacl_value_axo_sections` (`value`),
+  KEY `gacl_hidden_axo_sections` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_axo_sections_seq`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_axo_sections_seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_axo_seq`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_axo_seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_groups_aro_map`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_groups_aro_map` (
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  `aro_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`group_id`,`aro_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_groups_axo_map`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_groups_axo_map` (
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  `axo_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`group_id`,`axo_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gacl_phpgacl`
+--
+
+CREATE TABLE IF NOT EXISTS `gacl_phpgacl` (
+  `name` varchar(230) NOT NULL DEFAULT '',
+  `value` varchar(230) NOT NULL DEFAULT '',
+  PRIMARY KEY (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `household_info`
+--
+
+CREATE TABLE IF NOT EXISTS `household_info` (
+  `household_id` int(10) NOT NULL AUTO_INCREMENT,
+  `household_client_id` int(10) NOT NULL,
+  `household_admission_id` int(11) DEFAULT '0',
+  `household_social_id` int(11) DEFAULT NULL,
+  `household_name` varchar(150) DEFAULT NULL,
+  `household_yob` varchar(150) DEFAULT NULL,
+  `household_relationship` varchar(150) DEFAULT NULL,
+  `household_gender` int(11) DEFAULT NULL,
+  `household_notes` text,
+  `household_custom` longtext,
+  PRIMARY KEY (`household_id`),
+  UNIQUE KEY `household_id` (`household_id`),
+  KEY `household_client_id` (`household_id`,`household_client_id`),
+  KEY `household_admission_id` (`household_id`,`household_admission_id`),
+  KEY `household_social_id` (`household_id`,`household_social_id`),
+  KEY `client_admission_id` (`household_client_id`,`household_admission_id`),
+  KEY `client_social_id` (`household_client_id`,`household_social_id`),
+  KEY `admission_social_id` (`household_admission_id`,`household_social_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8398 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `household_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `household_staging` (
+  `household_id` int(10) DEFAULT NULL,
+  `household_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `household_admission_id` int(11) DEFAULT '0',
+  `household_social_id` int(11) DEFAULT NULL,
+  `household_name` varchar(150) DEFAULT NULL,
+  `household_yob` varchar(150) DEFAULT NULL,
+  `household_relationship` varchar(150) DEFAULT NULL,
+  `household_gender` int(11) DEFAULT NULL,
+  `household_notes` text,
+  `household_custom` longtext,
+  KEY `household_client_id` (`household_id`,`household_client_id`),
+  KEY `household_adm_no` (`household_id`,`client_adm_no`),
+  KEY `household_adm_id` (`household_id`,`household_admission_id`),
+  KEY `household_social_id` (`household_id`,`household_social_id`),
+  KEY `client_adm_no` (`household_client_id`,`client_adm_no`),
+  KEY `client_adm_id` (`household_client_id`,`household_admission_id`),
+  KEY `client_social_id` (`household_client_id`,`household_social_id`),
+  KEY `client_adm_adm_id` (`client_adm_no`,`household_admission_id`),
+  KEY `client_adm_social_id` (`client_adm_no`,`household_social_id`),
+  KEY `household_adm_id_social_id` (`household_admission_id`,`household_social_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `importstaging`
+--
+
+CREATE TABLE IF NOT EXISTS `importstaging` (
+  `client_id` int(11) DEFAULT NULL,
+  `client_adm_no` varchar(100) DEFAULT '',
+  `client_entry_date` varchar(100) DEFAULT '',
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_dob` varchar(100) DEFAULT '',
+  `client_gender` varchar(100) DEFAULT '',
+  `client_center` varchar(100) DEFAULT '',
+  `admission_location` varchar(100) DEFAULT '',
+  `admission_community_health_worker` varchar(100) DEFAULT '',
+  `admission_current_residence` varchar(100) DEFAULT '',
+  `admission_province` varchar(100) DEFAULT '',
+  `admission_district` varchar(100) DEFAULT '',
+  `admission_village` varchar(100) DEFAULT '',
+  `admission_father_fname` varchar(100) DEFAULT '',
+  `admission_father_lname` varchar(100) DEFAULT '',
+  `admission_mother_fname` varchar(100) DEFAULT '',
+  `admission_mother_lname` varchar(100) DEFAULT '',
+  `admission_caregiver_fname` varchar(100) DEFAULT '',
+  `admission_caregiver_lname` varchar(100) DEFAULT '',
+  `admission_father_raisingchild` varchar(100) DEFAULT '',
+  `admission_mother_raisingchild` varchar(100) DEFAULT '',
+  `admission_caregiver_reln_tochild` varchar(100) DEFAULT '',
+  `admission_father_age` varchar(100) DEFAULT '',
+  `admission_mother_age` varchar(100) DEFAULT '',
+  `admission_caregiver_age` varchar(100) DEFAULT '',
+  `admission_father_idno` varchar(100) DEFAULT '',
+  `admission_mother_idno` varchar(100) DEFAULT '',
+  `admission_caregiver_idno` varchar(100) DEFAULT '',
+  `admission_caregiver_mobile` varchar(100) DEFAULT '',
+  `admission_mother_status` varchar(100) DEFAULT '',
+  `admission_father_status` varchar(100) DEFAULT '',
+  `counselling_total_orphan` varchar(100) DEFAULT '',
+  `client_status` varchar(100) DEFAULT '',
+  `social_visit_date` varchar(100) DEFAULT '',
+  `operator` varchar(100) DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ltp_inbox`
+--
+
+CREATE TABLE IF NOT EXISTS `ltp_inbox` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `client_adm_no` varchar(20) NOT NULL,
+  `client_name` varchar(200) NOT NULL,
+  `client_arrived` date NOT NULL,
+  `center_origin` varchar(30) NOT NULL,
+  `ltp_status` enum('accepted','pending') NOT NULL DEFAULT 'pending',
+  `client_real_data` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ltp_transfers`
+--
+
+CREATE TABLE IF NOT EXISTS `ltp_transfers` (
+  `id` bigint(12) NOT NULL AUTO_INCREMENT,
+  `client_id` bigint(12) unsigned NOT NULL,
+  `clinic_id` int(10) DEFAULT NULL,
+  `ondate` date DEFAULT NULL,
+  `status` enum('1','0') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medical_assessment`
+--
+
+CREATE TABLE IF NOT EXISTS `medical_assessment` (
+  `medical_id` int(10) NOT NULL AUTO_INCREMENT,
+  `medical_client_id` int(10) NOT NULL,
+  `medical_staff_id` int(10) DEFAULT '0',
+  `medical_clinic_id` int(11) DEFAULT NULL,
+  `medical_gender` int(11) DEFAULT NULL,
+  `medical_age_yrs` double DEFAULT NULL,
+  `medical_age_months` double DEFAULT NULL,
+  `medical_entry_date` date DEFAULT NULL,
+  `medical_birth_location` int(11) DEFAULT NULL,
+  `medical_delivery` varchar(150) DEFAULT NULL,
+  `medical_birth_problems` varchar(150) DEFAULT NULL,
+  `medical_transferred` int(10) DEFAULT NULL,
+  `medical_other_programme` varchar(100) DEFAULT '',
+  `medical_birth_weight` double DEFAULT NULL,
+  `medical_pmtct` int(11) DEFAULT NULL,
+  `medical_mother_arv_given` int(10) DEFAULT NULL,
+  `medical_child_arv_given` int(10) DEFAULT NULL,
+  `medical_immunization_status` int(10) DEFAULT NULL,
+  `medical_card_seen` int(10) DEFAULT NULL,
+  `medical_breastfeeding` int(10) DEFAULT NULL,
+  `medical_exclusive_breastfeeding` double DEFAULT NULL,
+  `medical_bf_duration` double DEFAULT NULL,
+  `medical_father_hiv_status` int(10) DEFAULT NULL,
+  `medical_father_arv` int(10) DEFAULT NULL,
+  `medical_mother_hiv_status` int(10) DEFAULT NULL,
+  `medical_mother_arv` int(10) DEFAULT NULL,
+  `medical_no_siblings_alive` double DEFAULT NULL,
+  `medical_no_siblings_deceased` double DEFAULT NULL,
+  `medical_tb_contact` int(10) DEFAULT NULL,
+  `medical_tb_contact_person` varchar(100) DEFAULT '',
+  `medical_tb_date_diagnosed` date DEFAULT NULL,
+  `medical_tb_pulmonary` int(10) DEFAULT NULL,
+  `medical_tb_type` int(11) DEFAULT NULL,
+  `medical_tb_type_desc` varchar(150) DEFAULT NULL,
+  `medical_tb_bodysite` varchar(100) DEFAULT '',
+  `medical_tb_date1` date DEFAULT NULL,
+  `medical_tb_date2` date DEFAULT NULL,
+  `medical_tb_date3` date DEFAULT NULL,
+  `medical_history_pneumonia` int(10) DEFAULT NULL,
+  `medical_history_diarrhoea` int(10) DEFAULT NULL,
+  `medical_history_skin_rash` int(10) DEFAULT NULL,
+  `medical_history_ear_discharge` int(10) DEFAULT NULL,
+  `medical_history_fever` int(10) DEFAULT NULL,
+  `medical_history_oral_rush` int(10) DEFAULT NULL,
+  `medical_history_mouth_ulcers` int(10) DEFAULT NULL,
+  `medical_history_malnutrition` int(10) DEFAULT NULL,
+  `medical_history_prev_nutrition` int(10) DEFAULT NULL,
+  `medical_history_notes` text,
+  `medical_arv_status` int(10) DEFAULT NULL,
+  `medical_arv1` varchar(100) DEFAULT '',
+  `medical_arv1_startdate` date DEFAULT NULL,
+  `medical_arv1_enddate` date DEFAULT NULL,
+  `medical_arv2` varchar(100) DEFAULT '',
+  `medical_arv2_startdate` date DEFAULT NULL,
+  `medical_arv2_enddate` date DEFAULT NULL,
+  `medical_arv_side_effects` varchar(100) DEFAULT '',
+  `medical_arv_adherence` varchar(100) DEFAULT '',
+  `medical_school_attendance` int(10) DEFAULT NULL,
+  `medical_school_class` varchar(100) DEFAULT '',
+  `medical_educ_progress` int(10) DEFAULT NULL,
+  `medical_sensory_hearing` int(10) DEFAULT NULL,
+  `medical_sensory_vision` int(10) DEFAULT NULL,
+  `medical_sensory_motor_ability` varchar(150) DEFAULT NULL,
+  `medical_sensory_speech_language` int(10) DEFAULT NULL,
+  `medical_sensory_social_skills` int(10) DEFAULT NULL,
+  `medical_meals_per_day` varchar(100) DEFAULT '',
+  `medical_food_types` varchar(100) DEFAULT '',
+  `medical_current_complaints` varchar(255) DEFAULT NULL,
+  `medical_weight` double DEFAULT NULL,
+  `medical_height` double DEFAULT NULL,
+  `medical_zscore` varchar(150) DEFAULT NULL,
+  `medical_muac` double DEFAULT NULL,
+  `medical_hc` double DEFAULT NULL,
+  `medical_condition` int(10) DEFAULT NULL,
+  `medical_temp` int(10) DEFAULT NULL,
+  `medical_conditions` varchar(100) DEFAULT '',
+  `medical_dehydration` int(10) DEFAULT NULL,
+  `medical_parotids` int(10) DEFAULT NULL,
+  `medical_lymph` varchar(150) DEFAULT NULL,
+  `medical_eyes` int(10) DEFAULT NULL,
+  `medical_eyes_notes` varchar(100) DEFAULT '',
+  `medical_ear_discharge` int(11) DEFAULT NULL,
+  `medical_ear_discharge_location` int(10) DEFAULT NULL,
+  `medical_throat` int(10) DEFAULT NULL,
+  `medical_mouth_thrush` int(10) DEFAULT NULL,
+  `medical_mouth_ulcers` int(10) DEFAULT NULL,
+  `medical_mouth_teeth` int(10) DEFAULT NULL,
+  `medical_oldlesions` varchar(100) DEFAULT '',
+  `medical_currentlesions` varchar(100) DEFAULT '',
+  `medical_heartrate` int(10) DEFAULT NULL,
+  `medical_recession` int(10) DEFAULT NULL,
+  `medical_percussion` int(10) DEFAULT NULL,
+  `medical_location` varchar(100) DEFAULT '',
+  `medical_breath_sounds` int(10) DEFAULT NULL,
+  `medical_breathlocation` varchar(100) DEFAULT '',
+  `medical_other_sounds` int(10) DEFAULT NULL,
+  `medical_soundlocation` varchar(100) DEFAULT '',
+  `medical_pulserate` double DEFAULT NULL,
+  `medical_apex_beat` int(10) DEFAULT NULL,
+  `medical_precordial` int(10) DEFAULT NULL,
+  `medical_femoral` int(10) DEFAULT NULL,
+  `medical_heart_sound` int(10) DEFAULT NULL,
+  `medical_heart_type` varchar(100) DEFAULT '',
+  `medical_abdomen_distended` int(10) DEFAULT NULL,
+  `medical_adbomen_feel` int(10) DEFAULT NULL,
+  `medical_abdomen_tender` int(10) DEFAULT NULL,
+  `medical_abdomen_fluid` int(10) DEFAULT NULL,
+  `medical_liver_costal` double DEFAULT NULL,
+  `medical_spleen_costal` double DEFAULT NULL,
+  `medical_masses` varchar(100) DEFAULT '',
+  `medical_umbilical_hernia` int(10) DEFAULT NULL,
+  `medical_testes` int(10) DEFAULT NULL,
+  `medical_which_testes` int(11) DEFAULT NULL,
+  `medical_genitals_female_notes` varchar(150) DEFAULT NULL,
+  `medical_genitals_feel` int(10) DEFAULT NULL,
+  `medical_penis` int(10) DEFAULT NULL,
+  `medical_genitals_female` int(10) DEFAULT NULL,
+  `medical_pubertal` int(10) DEFAULT NULL,
+  `medical_gait` varchar(100) DEFAULT '',
+  `medical_handuse` varchar(100) DEFAULT '',
+  `medical_weakness` varchar(100) DEFAULT '',
+  `medical_tone` int(10) DEFAULT NULL,
+  `medical_tendon_legs` int(10) DEFAULT NULL,
+  `medical_tendon_arms` int(10) DEFAULT NULL,
+  `medical_abnormal_movts` varchar(100) DEFAULT '',
+  `medical_movts_impaired` int(10) DEFAULT NULL,
+  `medical_movts_impaired_desc` varchar(100) DEFAULT '',
+  `medical_joints_swelling` int(10) DEFAULT NULL,
+  `medical_joints_swelling_desc` varchar(100) DEFAULT '',
+  `medical_motor` varchar(100) DEFAULT '',
+  `medical_musc_notes` text,
+  `medical_hiv_status` int(10) DEFAULT NULL,
+  `medical_cd4` varchar(100) DEFAULT '',
+  `medical_cd4_percentage` varchar(100) DEFAULT '',
+  `medical_who_clinical_stage` varchar(100) DEFAULT '',
+  `medical_immuno_stage` varchar(100) DEFAULT '',
+  `medical_tests` varchar(100) DEFAULT '',
+  `medical_referral_old` int(11) DEFAULT NULL,
+  `medical_notes` text,
+  `medical_custom` longtext,
+  `medical_salvage` varchar(150) DEFAULT NULL,
+  `medical_salvage_startdate` date DEFAULT NULL,
+  `medical_salvage_enddate` date DEFAULT NULL,
+  `medical_gait_opt` tinyint(1) DEFAULT NULL,
+  `medical_handuse_opt` tinyint(1) DEFAULT NULL,
+  `medical_referral` tinyint(2) DEFAULT NULL,
+  `medical_heart_rate` tinyint(5) DEFAULT NULL,
+  `medical_resp_rate` tinyint(5) DEFAULT NULL,
+  `medical_skin_type` tinyint(1) DEFAULT NULL,
+  `medical_skin_note` varchar(200) DEFAULT NULL,
+  `medical_chest_shape` tinyint(1) DEFAULT NULL,
+  `medical_cns` tinyint(1) unsigned DEFAULT NULL,
+  `medical_cns_note` varchar(200) DEFAULT NULL,
+  `medical_muscle` tinyint(1) unsigned DEFAULT NULL,
+  `medical_muscle_note` varchar(200) DEFAULT NULL,
+  `medical_request` tinyint(1) DEFAULT NULL,
+  `medical_request_opts` varchar(50) DEFAULT NULL,
+  `medical_request_note` varchar(200) DEFAULT NULL,
+  `medical_next_visit` date DEFAULT NULL,
+  PRIMARY KEY (`medical_id`),
+  UNIQUE KEY `medical_id` (`medical_id`),
+  KEY `medical_id_client_id` (`medical_id`,`medical_client_id`),
+  KEY `medical_id_staff_if` (`medical_id`,`medical_staff_id`),
+  KEY `medical_id_clinic_id` (`medical_id`,`medical_clinic_id`),
+  KEY `client_id_staff_id` (`medical_client_id`,`medical_staff_id`),
+  KEY `client_id_clinic_id` (`medical_client_id`,`medical_clinic_id`),
+  KEY `staff_id_clinic_id` (`medical_staff_id`,`medical_clinic_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=636 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medical_history`
+--
+
+CREATE TABLE IF NOT EXISTS `medical_history` (
+  `medical_history_id` int(10) NOT NULL AUTO_INCREMENT,
+  `medical_history_medical_id` int(10) DEFAULT NULL,
+  `medical_history_client_id` int(11) DEFAULT NULL,
+  `medical_history_hospital` varchar(150) DEFAULT NULL,
+  `medical_history_date` date DEFAULT NULL,
+  `medical_history_diagnosis` varchar(100) DEFAULT '',
+  `medical_history_notes` text,
+  `medical_history_custom` longtext,
+  PRIMARY KEY (`medical_history_id`),
+  UNIQUE KEY `med_history_id` (`medical_history_id`),
+  KEY `med_hist_medical_id` (`medical_history_id`,`medical_history_medical_id`),
+  KEY `med_hist_client_id` (`medical_history_id`,`medical_history_client_id`),
+  KEY `medical_id_client_id` (`medical_history_medical_id`,`medical_history_client_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=235 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medical_history_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `medical_history_staging` (
+  `medical_history_id` int(10) DEFAULT NULL,
+  `medical_history_medical_id` int(10) DEFAULT NULL,
+  `medical_history_client_id` int(11) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `medical_history_hospital` varchar(150) DEFAULT NULL,
+  `medical_history_date` date DEFAULT NULL,
+  `medical_history_diagnosis` varchar(100) DEFAULT '',
+  `medical_history_notes` text,
+  `medical_history_custom` longtext,
+  KEY `med_hist_medical_id` (`medical_history_id`,`medical_history_medical_id`),
+  KEY `med_hist_client_id` (`medical_history_id`,`medical_history_client_id`),
+  KEY `med_hist_adm_no` (`medical_history_id`,`client_adm_no`),
+  KEY `medical_id_client_id` (`medical_history_medical_id`,`medical_history_client_id`),
+  KEY `medical_id_adm_no` (`medical_history_medical_id`,`client_adm_no`),
+  KEY `client_id_adm_no` (`medical_history_client_id`,`client_adm_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medical_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `medical_staging` (
+  `medical_id` int(10) DEFAULT NULL,
+  `new_medical_id` int(11) DEFAULT NULL,
+  `medical_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `medical_staff_id` int(10) DEFAULT '0',
+  `medical_staff_name` varchar(150) DEFAULT NULL,
+  `contact_first_name` varchar(30) DEFAULT NULL,
+  `contact_other_name` varchar(255) DEFAULT NULL,
+  `contact_last_name` varchar(30) DEFAULT NULL,
+  `medical_clinic_id` int(11) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `medical_gender` int(11) DEFAULT NULL,
+  `medical_age_yrs` double DEFAULT NULL,
+  `medical_age_months` double DEFAULT NULL,
+  `medical_entry_date` date DEFAULT NULL,
+  `medical_birth_location` int(11) DEFAULT NULL,
+  `medical_delivery` varchar(150) DEFAULT NULL,
+  `medical_birth_problems` varchar(150) DEFAULT NULL,
+  `medical_transferred` int(10) DEFAULT NULL,
+  `medical_other_programme` varchar(100) DEFAULT '',
+  `medical_birth_weight` double DEFAULT NULL,
+  `medical_pmtct` int(11) DEFAULT NULL,
+  `medical_mother_arv_given` int(10) DEFAULT NULL,
+  `medical_child_arv_given` int(10) DEFAULT NULL,
+  `medical_immunization_status` int(10) DEFAULT NULL,
+  `medical_card_seen` int(10) DEFAULT NULL,
+  `medical_breastfeeding` int(10) DEFAULT NULL,
+  `medical_exclusive_breastfeeding` double DEFAULT NULL,
+  `medical_bf_duration` double DEFAULT NULL,
+  `medical_father_hiv_status` int(10) DEFAULT NULL,
+  `medical_father_arv` int(10) DEFAULT NULL,
+  `medical_mother_hiv_status` int(10) DEFAULT NULL,
+  `medical_mother_arv` int(10) DEFAULT NULL,
+  `medical_no_siblings_alive` double DEFAULT NULL,
+  `medical_no_siblings_deceased` double DEFAULT NULL,
+  `medical_tb_contact` int(10) DEFAULT NULL,
+  `medical_tb_contact_person` varchar(100) DEFAULT '',
+  `medical_tb_date_diagnosed` date DEFAULT NULL,
+  `medical_tb_pulmonary` int(10) DEFAULT NULL,
+  `medical_tb_type` int(11) DEFAULT NULL,
+  `medical_tb_type_desc` varchar(150) DEFAULT NULL,
+  `medical_tb_bodysite` varchar(100) DEFAULT '',
+  `medical_tb_date1` date DEFAULT NULL,
+  `medical_tb_date2` date DEFAULT NULL,
+  `medical_tb_date3` date DEFAULT NULL,
+  `medical_history_pneumonia` int(10) DEFAULT NULL,
+  `medical_history_diarrhoea` int(10) DEFAULT NULL,
+  `medical_history_skin_rash` int(10) DEFAULT NULL,
+  `medical_history_ear_discharge` int(10) DEFAULT NULL,
+  `medical_history_fever` int(10) DEFAULT NULL,
+  `medical_history_oral_rush` int(10) DEFAULT NULL,
+  `medical_history_mouth_ulcers` int(10) DEFAULT NULL,
+  `medical_history_malnutrition` int(10) DEFAULT NULL,
+  `medical_history_prev_nutrition` int(10) DEFAULT NULL,
+  `medical_history_notes` text,
+  `medical_arv_status` int(10) DEFAULT NULL,
+  `medical_arv1` varchar(100) DEFAULT '',
+  `medical_arv1_startdate` date DEFAULT NULL,
+  `medical_arv1_enddate` date DEFAULT NULL,
+  `medical_arv2` varchar(100) DEFAULT '',
+  `medical_arv2_startdate` date DEFAULT NULL,
+  `medical_arv2_enddate` date DEFAULT NULL,
+  `medical_arv_side_effects` varchar(100) DEFAULT '',
+  `medical_arv_adherence` varchar(100) DEFAULT '',
+  `medical_school_attendance` int(10) DEFAULT NULL,
+  `medical_school_class` varchar(100) DEFAULT '',
+  `medical_educ_progress` int(10) DEFAULT NULL,
+  `medical_sensory_hearing` int(10) DEFAULT NULL,
+  `medical_sensory_vision` int(10) DEFAULT NULL,
+  `medical_sensory_motor_ability` varchar(150) DEFAULT NULL,
+  `medical_sensory_speech_language` int(10) DEFAULT NULL,
+  `medical_sensory_social_skills` int(10) DEFAULT NULL,
+  `medical_meals_per_day` varchar(100) DEFAULT '',
+  `medical_food_types` varchar(100) DEFAULT '',
+  `medical_current_complaints` varchar(255) DEFAULT NULL,
+  `medical_weight` double DEFAULT NULL,
+  `medical_height` double DEFAULT NULL,
+  `medical_zscore` varchar(150) DEFAULT NULL,
+  `medical_muac` double DEFAULT NULL,
+  `medical_hc` double DEFAULT NULL,
+  `medical_condition` int(10) DEFAULT NULL,
+  `medical_temp` int(10) DEFAULT NULL,
+  `medical_conditions` varchar(100) DEFAULT '',
+  `medical_dehydration` int(10) DEFAULT NULL,
+  `medical_parotids` int(10) DEFAULT NULL,
+  `medical_lymph` varchar(150) DEFAULT NULL,
+  `medical_eyes` int(10) DEFAULT NULL,
+  `medical_eyes_notes` varchar(100) DEFAULT '',
+  `medical_ear_discharge` int(11) DEFAULT NULL,
+  `medical_ear_discharge_location` int(10) DEFAULT NULL,
+  `medical_throat` int(10) DEFAULT NULL,
+  `medical_mouth_thrush` int(10) DEFAULT NULL,
+  `medical_mouth_ulcers` int(10) DEFAULT NULL,
+  `medical_mouth_teeth` int(10) DEFAULT NULL,
+  `medical_oldlesions` varchar(100) DEFAULT '',
+  `medical_currentlesions` varchar(100) DEFAULT '',
+  `medical_heartrate` int(10) DEFAULT NULL,
+  `medical_recession` int(10) DEFAULT NULL,
+  `medical_percussion` int(10) DEFAULT NULL,
+  `medical_location` varchar(100) DEFAULT '',
+  `medical_breath_sounds` int(10) DEFAULT NULL,
+  `medical_breathlocation` varchar(100) DEFAULT '',
+  `medical_other_sounds` int(10) DEFAULT NULL,
+  `medical_soundlocation` varchar(100) DEFAULT '',
+  `medical_pulserate` double DEFAULT NULL,
+  `medical_apex_beat` int(10) DEFAULT NULL,
+  `medical_precordial` int(10) DEFAULT NULL,
+  `medical_femoral` int(10) DEFAULT NULL,
+  `medical_heart_sound` int(10) DEFAULT NULL,
+  `medical_heart_type` varchar(100) DEFAULT '',
+  `medical_abdomen_distended` int(10) DEFAULT NULL,
+  `medical_adbomen_feel` int(10) DEFAULT NULL,
+  `medical_abdomen_tender` int(10) DEFAULT NULL,
+  `medical_abdomen_fluid` int(10) DEFAULT NULL,
+  `medical_liver_costal` double DEFAULT NULL,
+  `medical_spleen_costal` double DEFAULT NULL,
+  `medical_masses` varchar(100) DEFAULT '',
+  `medical_umbilical_hernia` int(10) DEFAULT NULL,
+  `medical_testes` int(10) DEFAULT NULL,
+  `medical_which_testes` int(11) DEFAULT NULL,
+  `medical_genitals_female_notes` varchar(150) DEFAULT NULL,
+  `medical_genitals_feel` int(10) DEFAULT NULL,
+  `medical_penis` int(10) DEFAULT NULL,
+  `medical_genitals_female` int(10) DEFAULT NULL,
+  `medical_pubertal` int(10) DEFAULT NULL,
+  `medical_gait` varchar(100) DEFAULT '',
+  `medical_handuse` varchar(100) DEFAULT '',
+  `medical_weakness` varchar(100) DEFAULT '',
+  `medical_tone` int(10) DEFAULT NULL,
+  `medical_tendon_legs` int(10) DEFAULT NULL,
+  `medical_tendon_arms` int(10) DEFAULT NULL,
+  `medical_abnormal_movts` varchar(100) DEFAULT '',
+  `medical_movts_impaired` int(10) DEFAULT NULL,
+  `medical_movts_impaired_desc` varchar(100) DEFAULT '',
+  `medical_joints_swelling` int(10) DEFAULT NULL,
+  `medical_joints_swelling_desc` varchar(100) DEFAULT '',
+  `medical_motor` varchar(100) DEFAULT '',
+  `medical_musc_notes` text,
+  `medical_hiv_status` int(10) DEFAULT NULL,
+  `medical_cd4` varchar(100) DEFAULT '',
+  `medical_cd4_percentage` varchar(100) DEFAULT '',
+  `medical_who_clinical_stage` varchar(100) DEFAULT '',
+  `medical_immuno_stage` varchar(100) DEFAULT '',
+  `medical_tests` varchar(100) DEFAULT '',
+  `medical_referral` int(11) DEFAULT NULL,
+  `medical_referral_name` varchar(150) DEFAULT NULL,
+  `medical_notes` text,
+  `medical_custom` longtext,
+  `medical_salvage` varchar(150) DEFAULT NULL,
+  `medical_salvage_startdate` date DEFAULT NULL,
+  `medical_salvage_enddate` date DEFAULT NULL,
+  `medical_gait_opt` tinyint(1) DEFAULT NULL,
+  `medical_handuse_opt` tinyint(1) DEFAULT NULL,
+  `medical_heart_rate` tinyint(5) DEFAULT NULL,
+  `medical_resp_rate` tinyint(5) DEFAULT NULL,
+  `medical_skin_type` tinyint(1) DEFAULT NULL,
+  `medical_skin_note` varchar(200) DEFAULT NULL,
+  `medical_chest_shape` tinyint(1) DEFAULT NULL,
+  `medical_cns` tinyint(1) unsigned DEFAULT NULL,
+  `medical_cns_note` varchar(200) DEFAULT NULL,
+  `medical_muscle` tinyint(1) unsigned DEFAULT NULL,
+  `medical_muscle_note` varchar(200) DEFAULT NULL,
+  `medical_request` tinyint(1) DEFAULT NULL,
+  `medical_request_opts` varchar(50) DEFAULT NULL,
+  `medical_request_note` varchar(200) DEFAULT NULL,
+  `medical_next_visit` date DEFAULT NULL,
+  `medical_referral_old` int(11) DEFAULT NULL,
+  KEY `medical_id_client_id` (`medical_id`,`medical_client_id`),
+  KEY `medical_adm_no` (`medical_id`,`client_adm_no`),
+  KEY `medical_id_staff_id` (`medical_id`,`medical_staff_id`),
+  KEY `medical_clinic_id` (`medical_id`,`medical_clinic_id`),
+  KEY `client_id_adm_no` (`medical_client_id`,`client_adm_no`),
+  KEY `client_id_staff_id` (`medical_client_id`,`medical_staff_id`),
+  KEY `client_id_clinic_id` (`medical_client_id`,`medical_clinic_id`),
+  KEY `staff_id` (`medical_staff_id`,`medical_clinic_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medications_history`
+--
+
+CREATE TABLE IF NOT EXISTS `medications_history` (
+  `medications_history_id` int(10) NOT NULL AUTO_INCREMENT,
+  `medications_history_medical_id` int(10) DEFAULT NULL,
+  `medications_history_client_id` int(11) DEFAULT NULL,
+  `medications_history_drug` varchar(100) DEFAULT '',
+  `medications_history_dose` varchar(100) DEFAULT '',
+  `medications_history_frequency` varchar(100) DEFAULT '',
+  `medications_history_notes` text,
+  `medications_history_custom` longtext,
+  PRIMARY KEY (`medications_history_id`),
+  UNIQUE KEY `medhist_id` (`medications_history_id`),
+  KEY `medhist_medical_id` (`medications_history_id`,`medications_history_medical_id`),
+  KEY `medhist_client_id` (`medications_history_id`,`medications_history_client_id`),
+  KEY `medical_id_client_id` (`medications_history_medical_id`,`medications_history_client_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medications_history_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `medications_history_staging` (
+  `medications_history_id` int(10) DEFAULT NULL,
+  `medications_history_medical_id` int(10) DEFAULT NULL,
+  `medications_history_client_id` int(11) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `medications_history_drug` varchar(100) DEFAULT '',
+  `medications_history_dose` varchar(100) DEFAULT '',
+  `medications_history_frequency` varchar(100) DEFAULT '',
+  `medications_history_notes` text,
+  `medications_history_custom` longtext,
+  KEY `medhist_medical_id` (`medications_history_id`,`medications_history_medical_id`),
+  KEY `medhist_client_id` (`medications_history_id`,`medications_history_client_id`),
+  KEY `medhist_adm_no` (`medications_history_id`,`client_adm_no`),
+  KEY `medical_id_client_id` (`medications_history_medical_id`,`medications_history_client_id`),
+  KEY `medical_id_adm_no` (`medications_history_medical_id`,`client_adm_no`),
+  KEY `client_id_adm_no` (`medications_history_client_id`,`client_adm_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules`
+--
+
+CREATE TABLE IF NOT EXISTS `modules` (
+  `mod_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mod_name` varchar(64) NOT NULL DEFAULT '',
+  `mod_directory` varchar(64) NOT NULL DEFAULT '',
+  `mod_version` varchar(10) NOT NULL DEFAULT '',
+  `mod_setup_class` varchar(64) NOT NULL DEFAULT '',
+  `mod_type` varchar(64) NOT NULL DEFAULT '',
+  `mod_active` int(1) unsigned NOT NULL DEFAULT '0',
+  `mod_ui_name` varchar(20) NOT NULL DEFAULT '',
+  `mod_ui_icon` varchar(64) NOT NULL DEFAULT '',
+  `mod_ui_order` tinyint(3) NOT NULL DEFAULT '0',
+  `mod_ui_active` int(1) unsigned NOT NULL DEFAULT '0',
+  `mod_description` varchar(255) NOT NULL DEFAULT '',
+  `permissions_item_table` char(100) DEFAULT NULL,
+  `permissions_item_field` char(100) DEFAULT NULL,
+  `permissions_item_label` char(100) DEFAULT NULL,
+  PRIMARY KEY (`mod_id`,`mod_directory`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mortality_info`
+--
+
+CREATE TABLE IF NOT EXISTS `mortality_info` (
+  `mortality_id` int(10) NOT NULL AUTO_INCREMENT,
+  `mortality_client_id` int(10) NOT NULL,
+  `mortality_entry_date` date DEFAULT NULL,
+  `mortality_clinic_id` int(10) DEFAULT NULL,
+  `mortality_age_yrs` double DEFAULT NULL,
+  `mortality_age_months` double DEFAULT NULL,
+  `mortality_age_status` int(11) DEFAULT NULL,
+  `mortality_date` date DEFAULT NULL,
+  `mortality_death_type` int(11) DEFAULT NULL,
+  `mortality_death_type_notes` varchar(150) DEFAULT NULL,
+  `mortality_informant` varchar(150) DEFAULT NULL,
+  `mortality_hospital` varchar(150) DEFAULT NULL,
+  `mortality_hospital_adm_date` date DEFAULT NULL,
+  `mortality_relative_report_date` date DEFAULT NULL,
+  `mortality_symptoms` varchar(255) DEFAULT NULL,
+  `mortality_time_course` varchar(255) DEFAULT NULL,
+  `mortality_treatment` varchar(255) DEFAULT NULL,
+  `mortality_referral` varchar(150) DEFAULT NULL,
+  `mortality_hospital_referral` int(11) DEFAULT NULL,
+  `mortality_hospital_adm_notes` varchar(255) DEFAULT NULL,
+  `mortality_cause_given` int(11) DEFAULT NULL,
+  `mortality_cause_desc` varchar(255) DEFAULT NULL,
+  `mortality_clinical_officer_old` varchar(150) DEFAULT NULL,
+  `mortality_clinical_officer_date` date DEFAULT NULL,
+  `mortality_postmortem` int(11) DEFAULT NULL,
+  `mortality_cause_pm` varchar(255) DEFAULT NULL,
+  `mortality_likely_cause` varchar(255) DEFAULT NULL,
+  `mortality_notes` text,
+  `mortality_custom` longtext,
+  `mortality_clinical_course` varchar(150) DEFAULT NULL,
+  `mortality_postmortem_where` varchar(150) DEFAULT NULL,
+  `mortality_recents_a` varchar(100) DEFAULT NULL,
+  `mortality_recents_b` varchar(100) DEFAULT NULL,
+  `mortality_malnutrition` tinyint(1) DEFAULT NULL,
+  `mortality_malnutrition_notes` tinyint(2) DEFAULT NULL,
+  `mortality_cd4` varchar(20) DEFAULT NULL,
+  `mortality_cd4_percentage` varchar(10) DEFAULT NULL,
+  `mortality_viral_load` varchar(20) DEFAULT NULL,
+  `mortality_hb` varchar(10) DEFAULT NULL,
+  `mortality_clinical_date` date DEFAULT NULL,
+  `mortality_arv` tinyint(1) DEFAULT NULL,
+  `mortality_arv_dateon` date DEFAULT NULL,
+  `mortality_arv_period` varchar(20) DEFAULT NULL,
+  `mortality_tb` tinyint(1) DEFAULT NULL,
+  `mortality_tb_start` date DEFAULT NULL,
+  `mortality_weight` varchar(10) DEFAULT NULL,
+  `mortality_height` varchar(10) DEFAULT NULL,
+  `mortality_nutrition_date` date DEFAULT NULL,
+  `mortality_enroll_date` date DEFAULT NULL,
+  `mortality_enrolled_time` varchar(20) DEFAULT NULL,
+  `mortality_clinical_officer` int(10) DEFAULT NULL,
+  `mortality_social_worker` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`mortality_id`),
+  UNIQUE KEY `mortality_id` (`mortality_id`),
+  KEY `motality_client` (`mortality_id`,`mortality_client_id`),
+  KEY `mortality_clinic` (`mortality_id`,`mortality_clinic_id`),
+  KEY `client_clinic` (`mortality_client_id`,`mortality_clinic_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mortality_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `mortality_staging` (
+  `mortality_id` int(10) DEFAULT NULL,
+  `mortality_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `mortality_entry_date` date DEFAULT NULL,
+  `mortality_clinic_id` int(10) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `mortality_age_yrs` double DEFAULT NULL,
+  `mortality_age_months` double DEFAULT NULL,
+  `mortality_age_status` int(11) DEFAULT NULL,
+  `mortality_date` date DEFAULT NULL,
+  `mortality_death_type` int(11) DEFAULT NULL,
+  `mortality_death_type_notes` varchar(150) DEFAULT NULL,
+  `mortality_informant` varchar(150) DEFAULT NULL,
+  `mortality_hospital` varchar(150) DEFAULT NULL,
+  `mortality_hospital_adm_date` date DEFAULT NULL,
+  `mortality_relative_report_date` date DEFAULT NULL,
+  `mortality_symptoms` varchar(255) DEFAULT NULL,
+  `mortality_time_course` varchar(255) DEFAULT NULL,
+  `mortality_treatment` varchar(255) DEFAULT NULL,
+  `mortality_referral` varchar(150) DEFAULT NULL,
+  `mortality_hospital_referral` int(11) DEFAULT NULL,
+  `mortality_hospital_adm_notes` varchar(255) DEFAULT NULL,
+  `mortality_cause_given` int(11) DEFAULT NULL,
+  `mortality_cause_desc` varchar(255) DEFAULT NULL,
+  `mortality_clinical_officer_name` varchar(200) DEFAULT NULL,
+  `mortality_clinical_officer` varchar(150) DEFAULT NULL,
+  `mortality_clinical_officer_date` date DEFAULT NULL,
+  `mortality_postmortem` int(11) DEFAULT NULL,
+  `mortality_cause_pm` varchar(255) DEFAULT NULL,
+  `mortality_likely_cause` varchar(255) DEFAULT NULL,
+  `mortality_notes` text,
+  `mortality_custom` longtext,
+  `mortality_clinical_course` varchar(150) DEFAULT NULL,
+  `mortality_postmortem_where` varchar(150) DEFAULT NULL,
+  `mortality_recents_a` varchar(100) DEFAULT NULL,
+  `mortality_recents_b` varchar(100) DEFAULT NULL,
+  `mortality_malnutrition` tinyint(1) DEFAULT NULL,
+  `mortality_malnutrition_notes` tinyint(2) DEFAULT NULL,
+  `mortality_cd4` varchar(20) DEFAULT NULL,
+  `mortality_cd4_percentage` varchar(10) DEFAULT NULL,
+  `mortality_viral_load` varchar(20) DEFAULT NULL,
+  `mortality_hb` varchar(10) DEFAULT NULL,
+  `mortality_clinical_date` date DEFAULT NULL,
+  `mortality_arv` tinyint(1) DEFAULT NULL,
+  `mortality_arv_dateon` date DEFAULT NULL,
+  `mortality_arv_period` varchar(20) DEFAULT NULL,
+  `mortality_tb` tinyint(1) DEFAULT NULL,
+  `mortality_tb_start` date DEFAULT NULL,
+  `mortality_weight` varchar(10) DEFAULT NULL,
+  `mortality_height` varchar(10) DEFAULT NULL,
+  `mortality_nutrition_date` date DEFAULT NULL,
+  `mortality_enroll_date` date DEFAULT NULL,
+  `mortality_staff_name` varchar(200) DEFAULT NULL,
+  `mortality_enrolled_time` varchar(20) DEFAULT NULL,
+  KEY `mortality_client` (`mortality_id`,`mortality_client_id`),
+  KEY `mortality_adm_no` (`mortality_id`,`client_adm_no`),
+  KEY `mortality_clinic_id` (`mortality_id`,`mortality_clinic_id`),
+  KEY `client_adm_no` (`mortality_client_id`,`client_adm_no`),
+  KEY `client_clinic` (`mortality_client_id`,`mortality_clinic_id`),
+  KEY `adm_no_clinic_id` (`client_adm_no`,`mortality_clinic_id`),
+  KEY `mortality_staff_name` (`mortality_id`,`mortality_staff_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nutrition_service`
+--
+
+CREATE TABLE IF NOT EXISTS `nutrition_service` (
+  `nutrition_service_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `nutrition_service_client_id` int(11) DEFAULT NULL,
+  `nutrition_service_visit_id` int(11) unsigned NOT NULL,
+  `nutrition_service_program` varchar(200) DEFAULT NULL,
+  `nutrition_service_item` varchar(200) DEFAULT NULL,
+  `nutrition_service_qty` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`nutrition_service_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=563 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nutrition_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `nutrition_staging` (
+  `nutrition_id` int(10) DEFAULT NULL,
+  `nutrition_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `nutrition_staff_id` int(10) DEFAULT NULL,
+  `nutrition_staff_name` varchar(150) DEFAULT NULL,
+  `contact_first_name` varchar(30) DEFAULT NULL,
+  `contact_other_name` varchar(255) DEFAULT NULL,
+  `contact_last_name` varchar(30) DEFAULT NULL,
+  `nutrition_entry_date` date DEFAULT NULL,
+  `nutrition_center` int(10) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `nutrition_gender` int(10) DEFAULT NULL,
+  `nutrition_age_yrs` double DEFAULT NULL,
+  `nutrition_age_months` double DEFAULT NULL,
+  `nutrition_age_status` int(10) DEFAULT NULL,
+  `nutrition_caregiver_type` int(10) DEFAULT NULL,
+  `nutrition_caregiver_type_notes` varchar(150) DEFAULT NULL,
+  `nutrition_weight` double DEFAULT NULL,
+  `nutrition_height` double DEFAULT NULL,
+  `nutrition_zscore` varchar(150) DEFAULT NULL,
+  `nutrition_muac` double DEFAULT NULL,
+  `nutrition_wfh` varchar(10) DEFAULT NULL,
+  `nutrition_wfa` varchar(10) DEFAULT NULL,
+  `nutrition_bmi` varchar(10) DEFAULT NULL,
+  `nutrition_blacktea` varchar(50) DEFAULT NULL,
+  `nutrition_whitetea` varchar(50) DEFAULT NULL,
+  `nutrition_bread` varchar(50) DEFAULT NULL,
+  `nutrition_porridge` varchar(50) DEFAULT NULL,
+  `nutrition_breastfeeding` varchar(50) DEFAULT NULL,
+  `nutrition_formula_milk` varchar(50) DEFAULT NULL,
+  `nutrition_carbohydrates` varchar(50) DEFAULT NULL,
+  `nutrition_meat` varchar(50) DEFAULT NULL,
+  `nutrition_pancake` varchar(50) DEFAULT NULL,
+  `nutrition_eggs` varchar(50) DEFAULT NULL,
+  `nutrition_legumes` varchar(50) DEFAULT NULL,
+  `nutrition_milk` varchar(50) DEFAULT NULL,
+  `nutrition_vegetables` varchar(50) DEFAULT NULL,
+  `nutrition_fruit` varchar(50) DEFAULT NULL,
+  `nutrition_diet_history_notes` varchar(50) DEFAULT NULL,
+  `nutrition_diet_history_others` varchar(50) DEFAULT NULL,
+  `nutrition_food_enrichment` varchar(150) DEFAULT NULL,
+  `nutrition_water_access` varchar(150) DEFAULT NULL,
+  `nutrition_water_purification` varchar(150) DEFAULT NULL,
+  `nutrition_water_purification_notes` varchar(150) DEFAULT NULL,
+  `nutrition_food_enrichment_notes` varchar(150) DEFAULT NULL,
+  `nutrition_quantity` int(10) DEFAULT NULL,
+  `nutrition_quality` int(10) DEFAULT NULL,
+  `nutrition_poor_preparation` int(10) DEFAULT NULL,
+  `nutrition_mixed_feeding` int(11) DEFAULT NULL,
+  `nutrition_unclean_drinking_water` int(11) DEFAULT NULL,
+  `nutrition_education` int(10) DEFAULT NULL,
+  `nutrition_counselling` int(10) DEFAULT NULL,
+  `nutrition_demonstration` int(10) DEFAULT NULL,
+  `nutrition_dietary_supplement` int(10) DEFAULT NULL,
+  `nutrition_nan` int(10) DEFAULT NULL,
+  `nutrition_unimix` int(10) DEFAULT NULL,
+  `nutrition_harvest_pro` int(10) DEFAULT NULL,
+  `nutrition_wfp` int(10) DEFAULT NULL,
+  `nutrition_insta` int(10) DEFAULT NULL,
+  `nutrition_rutf` int(10) DEFAULT NULL,
+  `nutrition_other` varchar(150) DEFAULT NULL,
+  `nutrition_other_service` int(10) DEFAULT NULL,
+  `nutrition_notes` text,
+  `nutrition_custom` longtext,
+  `nutrition_water` varchar(50) DEFAULT NULL,
+  `nutrition_oedema` tinyint(1) DEFAULT NULL,
+  `nutrition_beverages_title` varchar(100) DEFAULT NULL,
+  `nutrition_beverages_notes` varchar(50) DEFAULT NULL,
+  `nutrition_ugali` varchar(50) DEFAULT NULL,
+  `nutrition_rice` varchar(50) DEFAULT NULL,
+  `nutrition_banan` varchar(50) DEFAULT NULL,
+  `nutrition_tubers` varchar(50) DEFAULT NULL,
+  `nutrition_wheat` varchar(50) DEFAULT NULL,
+  `nutrition_carbos_title` varchar(50) DEFAULT NULL,
+  `nutrition_carbos_notes` varchar(50) DEFAULT NULL,
+  `nutrition_protein_title` varchar(50) DEFAULT NULL,
+  `nutrition_protein_notes` varchar(50) DEFAULT NULL,
+  `nutrition_fat` varchar(50) DEFAULT NULL,
+  `nutrition_issue_notes` varchar(100) DEFAULT NULL,
+  `nutrition_program` varchar(20) DEFAULT NULL,
+  `nutrition_program_other` varchar(50) DEFAULT NULL,
+  `nutrition_rendered` varchar(20) DEFAULT NULL,
+  `nutrition_next_visit` date DEFAULT NULL,
+  `nutrition_refer` tinyint(2) DEFAULT NULL,
+  `nutrition_refer_other` varchar(100) DEFAULT NULL,
+  `nutrition_service_other` varchar(50) DEFAULT NULL,
+  `nutrition_child_attend` tinyint(1) DEFAULT NULL,
+  `nutrition_care_attend` tinyint(1) DEFAULT NULL,
+  `nutrition_care_who` varchar(100) DEFAULT NULL,
+  UNIQUE KEY `nutrition_id` (`nutrition_id`),
+  KEY `nutrition_client_id` (`nutrition_id`,`nutrition_client_id`),
+  KEY `nutrition_adm_no` (`nutrition_id`,`client_adm_no`),
+  KEY `nutrition_staff_id` (`nutrition_id`,`nutrition_staff_id`),
+  KEY `nutrition_center` (`nutrition_id`,`nutrition_center`),
+  KEY `client_adm_no` (`nutrition_client_id`,`client_adm_no`),
+  KEY `client_staff_id` (`nutrition_client_id`,`nutrition_staff_id`),
+  KEY `client_center` (`nutrition_client_id`,`nutrition_center`),
+  KEY `adm_no_staff_id` (`client_adm_no`,`nutrition_staff_id`),
+  KEY `adm_no_center` (`client_adm_no`,`nutrition_center`),
+  KEY `nutrition_staff_name` (`nutrition_id`,`nutrition_staff_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nutrition_visit`
+--
+
+CREATE TABLE IF NOT EXISTS `nutrition_visit` (
+  `nutrition_id` int(10) NOT NULL AUTO_INCREMENT,
+  `nutrition_client_id` int(10) DEFAULT NULL,
+  `nutrition_staff_id` int(10) DEFAULT NULL,
+  `nutrition_entry_date` date DEFAULT NULL,
+  `nutrition_center` int(10) DEFAULT NULL,
+  `nutrition_gender` int(10) DEFAULT NULL,
+  `nutrition_age_yrs` double DEFAULT NULL,
+  `nutrition_age_months` double DEFAULT NULL,
+  `nutrition_age_status` int(10) DEFAULT NULL,
+  `nutrition_caregiver_type` int(10) DEFAULT NULL,
+  `nutrition_caregiver_type_notes` varchar(150) DEFAULT NULL,
+  `nutrition_weight` double DEFAULT NULL,
+  `nutrition_height` double DEFAULT NULL,
+  `nutrition_zscore` varchar(150) DEFAULT NULL,
+  `nutrition_muac` double DEFAULT NULL,
+  `nutrition_wfh` varchar(10) DEFAULT NULL,
+  `nutrition_wfa` varchar(10) DEFAULT NULL,
+  `nutrition_bmi` varchar(10) DEFAULT NULL,
+  `nutrition_blacktea` varchar(50) DEFAULT NULL,
+  `nutrition_whitetea` varchar(50) DEFAULT NULL,
+  `nutrition_bread` varchar(50) DEFAULT NULL,
+  `nutrition_porridge` varchar(50) DEFAULT NULL,
+  `nutrition_breastfeeding` varchar(50) DEFAULT NULL,
+  `nutrition_formula_milk` varchar(50) DEFAULT NULL,
+  `nutrition_carbohydrates` varchar(50) DEFAULT NULL,
+  `nutrition_meat` varchar(50) DEFAULT NULL,
+  `nutrition_pancake` varchar(50) DEFAULT NULL,
+  `nutrition_eggs` varchar(50) DEFAULT NULL,
+  `nutrition_legumes` varchar(50) DEFAULT NULL,
+  `nutrition_milk` varchar(50) DEFAULT NULL,
+  `nutrition_vegetables` varchar(50) DEFAULT NULL,
+  `nutrition_fruit` varchar(50) DEFAULT NULL,
+  `nutrition_diet_history_notes` varchar(50) DEFAULT NULL,
+  `nutrition_diet_history_others` varchar(50) DEFAULT NULL,
+  `nutrition_food_enrichment` varchar(150) DEFAULT NULL,
+  `nutrition_water_access` varchar(150) DEFAULT NULL,
+  `nutrition_water_purification` varchar(150) DEFAULT NULL,
+  `nutrition_water_purification_notes` varchar(150) DEFAULT NULL,
+  `nutrition_food_enrichment_notes` varchar(150) DEFAULT NULL,
+  `nutrition_quantity` int(10) DEFAULT NULL,
+  `nutrition_quality` int(10) DEFAULT NULL,
+  `nutrition_poor_preparation` int(10) DEFAULT NULL,
+  `nutrition_mixed_feeding` int(11) DEFAULT NULL,
+  `nutrition_unclean_drinking_water` int(11) DEFAULT NULL,
+  `nutrition_education` int(10) DEFAULT NULL,
+  `nutrition_counselling` int(10) DEFAULT NULL,
+  `nutrition_demonstration` int(10) DEFAULT NULL,
+  `nutrition_dietary_supplement` int(10) DEFAULT NULL,
+  `nutrition_nan` int(10) DEFAULT NULL,
+  `nutrition_unimix` int(10) DEFAULT NULL,
+  `nutrition_harvest_pro` int(10) DEFAULT NULL,
+  `nutrition_wfp` int(10) DEFAULT NULL,
+  `nutrition_insta` int(10) DEFAULT NULL,
+  `nutrition_rutf` int(10) DEFAULT NULL,
+  `nutrition_other` varchar(150) DEFAULT NULL,
+  `nutrition_other_service` int(10) DEFAULT NULL,
+  `nutrition_notes` text,
+  `nutrition_custom` longtext,
+  `nutrition_water` varchar(50) DEFAULT NULL,
+  `nutrition_oedema` tinyint(1) DEFAULT NULL,
+  `nutrition_beverages_title` varchar(100) DEFAULT NULL,
+  `nutrition_beverages_notes` varchar(50) DEFAULT NULL,
+  `nutrition_ugali` varchar(50) DEFAULT NULL,
+  `nutrition_rice` varchar(50) DEFAULT NULL,
+  `nutrition_banan` varchar(50) DEFAULT NULL,
+  `nutrition_tubers` varchar(50) DEFAULT NULL,
+  `nutrition_wheat` varchar(50) DEFAULT NULL,
+  `nutrition_carbos_title` varchar(50) DEFAULT NULL,
+  `nutrition_carbos_notes` varchar(50) DEFAULT NULL,
+  `nutrition_protein_title` varchar(50) DEFAULT NULL,
+  `nutrition_protein_notes` varchar(50) DEFAULT NULL,
+  `nutrition_fat` varchar(50) DEFAULT NULL,
+  `nutrition_issue_notes` varchar(100) DEFAULT NULL,
+  `nutrition_program` varchar(20) DEFAULT NULL,
+  `nutrition_program_other` varchar(50) DEFAULT NULL,
+  `nutrition_rendered` varchar(20) DEFAULT NULL,
+  `nutrition_next_visit` date DEFAULT NULL,
+  `nutrition_refer` tinyint(2) DEFAULT NULL,
+  `nutrition_refer_other` varchar(100) DEFAULT NULL,
+  `nutrition_service_other` varchar(50) DEFAULT NULL,
+  `nutrition_child_attend` tinyint(1) DEFAULT NULL,
+  `nutrition_care_attend` tinyint(1) DEFAULT NULL,
+  `nutrition_care_who` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`nutrition_id`),
+  UNIQUE KEY `nutrition_id` (`nutrition_id`),
+  KEY `nutrition_client_id` (`nutrition_id`,`nutrition_client_id`),
+  KEY `nutrition_staff` (`nutrition_id`,`nutrition_staff_id`),
+  KEY `nutrition_center` (`nutrition_id`,`nutrition_center`),
+  KEY `client_staff_id` (`nutrition_client_id`,`nutrition_staff_id`),
+  KEY `client_center` (`nutrition_client_id`,`nutrition_center`),
+  KEY `staff_center` (`nutrition_staff_id`,`nutrition_center`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1187 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `permission_id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission_user` int(11) NOT NULL DEFAULT '0',
+  `permission_grant_on` varchar(12) NOT NULL DEFAULT '',
+  `permission_item` int(11) NOT NULL DEFAULT '0',
+  `permission_value` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`permission_id`),
+  UNIQUE KEY `idx_pgrant_on` (`permission_grant_on`,`permission_item`,`permission_user`),
+  KEY `idx_puser` (`permission_user`),
+  KEY `idx_pvalue` (`permission_value`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profile_filter`
+--
+
+CREATE TABLE IF NOT EXISTS `profile_filter` (
+  `pro_filter_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pro_filter_for` varchar(250) NOT NULL,
+  `pro_filter_name` varchar(200) NOT NULL,
+  `pro_filter_query` longtext NOT NULL,
+  `pro_filter_details` longtext NOT NULL,
+  `pro_filter_date` varchar(100) NOT NULL,
+  PRIMARY KEY (`pro_filter_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projects`
+--
+
+CREATE TABLE IF NOT EXISTS `projects` (
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_company` int(11) NOT NULL DEFAULT '0',
+  `project_department` int(11) NOT NULL DEFAULT '0',
+  `project_name` varchar(255) DEFAULT NULL,
+  `project_short_name` varchar(10) DEFAULT NULL,
+  `project_owner` int(11) DEFAULT '0',
+  `project_url` varchar(255) DEFAULT NULL,
+  `project_demo_url` varchar(255) DEFAULT NULL,
+  `project_start_date` datetime DEFAULT NULL,
+  `project_end_date` datetime DEFAULT NULL,
+  `project_actual_end_date` datetime DEFAULT NULL,
+  `project_status` int(11) DEFAULT '0',
+  `project_percent_complete` tinyint(4) DEFAULT '0',
+  `project_color_identifier` varchar(6) DEFAULT 'eeeeee',
+  `project_description` text,
+  `project_target_budget` decimal(10,2) DEFAULT '0.00',
+  `project_actual_budget` decimal(10,2) DEFAULT '0.00',
+  `project_creator` int(11) DEFAULT '0',
+  `project_active` tinyint(4) DEFAULT '1',
+  `project_private` tinyint(3) unsigned DEFAULT '0',
+  `project_departments` char(100) DEFAULT NULL,
+  `project_contacts` char(100) DEFAULT NULL,
+  `project_priority` tinyint(4) DEFAULT '0',
+  `project_type` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`project_id`),
+  KEY `idx_project_owner` (`project_owner`),
+  KEY `idx_sdate` (`project_start_date`),
+  KEY `idx_edate` (`project_end_date`),
+  KEY `project_short_name` (`project_short_name`),
+  KEY `idx_proj1` (`project_company`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `project_contacts` (
+  `project_id` int(10) NOT NULL,
+  `contact_id` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_departments`
+--
+
+CREATE TABLE IF NOT EXISTS `project_departments` (
+  `project_id` int(10) NOT NULL,
+  `department_id` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `queries`
+--
+
+CREATE TABLE IF NOT EXISTS `queries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qname` varchar(255) NOT NULL,
+  `qdesc` text NOT NULL,
+  `sdate` int(8) NOT NULL DEFAULT '0',
+  `edate` int(8) NOT NULL DEFAULT '0',
+  `visits` enum('all','last','first') NOT NULL DEFAULT 'all',
+  `fils` text NOT NULL,
+  `posts` text NOT NULL,
+  `visible` enum('0','1') NOT NULL DEFAULT '1',
+  `actives` enum('0','1') NOT NULL DEFAULT '0',
+  `dfilter` enum('doa','visit') NOT NULL DEFAULT 'visit',
+  `center` enum('0','1') NOT NULL DEFAULT '0',
+  `lvdopt` varchar(50) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `relatives`
+--
+
+CREATE TABLE IF NOT EXISTS `relatives` (
+  `relative_id` int(10) NOT NULL AUTO_INCREMENT,
+  `relative_module` int(10) NOT NULL DEFAULT '0',
+  `relative_gender` int(10) DEFAULT NULL,
+  `relative_contact` int(10) NOT NULL,
+  `relative_entry_date` date DEFAULT NULL,
+  `relative_status` int(10) DEFAULT NULL,
+  `relative_notes` varchar(255) DEFAULT '',
+  `relative_custom` longtext,
+  PRIMARY KEY (`relative_id`),
+  UNIQUE KEY `relative_id` (`relative_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `relative_client`
+--
+
+CREATE TABLE IF NOT EXISTS `relative_client` (
+  `relative_client_relative_id` int(10) NOT NULL AUTO_INCREMENT,
+  `relative_client_client_id` int(10) NOT NULL DEFAULT '0',
+  `relative_client_relative_type` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`relative_client_relative_id`,`relative_client_client_id`),
+  UNIQUE KEY `relative_client_id` (`relative_client_relative_id`,`relative_client_client_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reports`
+--
+
+CREATE TABLE IF NOT EXISTS `reports` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `entries` blob NOT NULL,
+  `backdoor` blob NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE IF NOT EXISTS `roles` (
+  `role_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(24) NOT NULL DEFAULT '',
+  `role_description` varchar(255) NOT NULL DEFAULT '',
+  `role_type` int(3) unsigned NOT NULL DEFAULT '0',
+  `role_module` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`role_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `session_id` varchar(40) NOT NULL DEFAULT '',
+  `session_data` longblob,
+  `session_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `session_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`session_id`),
+  KEY `session_updated` (`session_updated`),
+  KEY `session_created` (`session_created`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_info`
+--
+
+CREATE TABLE IF NOT EXISTS `social_info` (
+  `social_id` int(10) NOT NULL AUTO_INCREMENT,
+  `social_client_id` int(10) NOT NULL DEFAULT '0',
+  `social_chw_contact` int(11) DEFAULT '0',
+  `social_shw_contact` int(11) DEFAULT '0',
+  `social_entry_date` date DEFAULT NULL,
+  `social_total_orphan` int(10) DEFAULT '0',
+  `social_school_level` int(11) DEFAULT NULL,
+  `social_reason_not_attending` int(11) DEFAULT NULL,
+  `social_reason_not_attending_notes` varchar(255) DEFAULT NULL,
+  `social_rural_province` int(11) DEFAULT NULL,
+  `social_rural_district` varchar(150) DEFAULT NULL,
+  `social_rural_village` varchar(150) DEFAULT NULL,
+  `social_risk_level` int(11) DEFAULT '0',
+  `social_notes` text,
+  `social_custom` longtext,
+  PRIMARY KEY (`social_id`),
+  UNIQUE KEY `social_id` (`social_id`),
+  KEY `social_client` (`social_id`,`social_client_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_services`
+--
+
+CREATE TABLE IF NOT EXISTS `social_services` (
+  `social_services_id` int(10) NOT NULL AUTO_INCREMENT,
+  `social_services_client_id` int(10) NOT NULL,
+  `social_services_social_id` int(11) DEFAULT NULL,
+  `social_services_service_id` int(11) DEFAULT NULL,
+  `social_services_date` date DEFAULT NULL,
+  `social_services_notes` text,
+  `social_services_custom` longtext,
+  `social_services_value` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`social_services_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=468 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_services_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `social_services_staging` (
+  `social_services_id` int(10) DEFAULT NULL,
+  `social_services_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `social_services_social_id` int(11) DEFAULT '0',
+  `social_services_service_id` int(11) DEFAULT NULL,
+  `social_services_date` date DEFAULT NULL,
+  `social_services_notes` text,
+  `social_services_custom` longtext,
+  `social_services_value` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `social_staging` (
+  `social_id` int(10) DEFAULT NULL,
+  `new_social_id` int(11) DEFAULT NULL,
+  `social_client_id` int(10) DEFAULT NULL,
+  `client_adm_no` varchar(50) DEFAULT NULL,
+  `client_first_name` varchar(100) DEFAULT '',
+  `client_other_name` varchar(100) DEFAULT '',
+  `client_last_name` varchar(100) DEFAULT '',
+  `social_staff_id` int(10) DEFAULT NULL,
+  `social_staff_name` varchar(150) DEFAULT NULL,
+  `contact_first_name` varchar(30) DEFAULT NULL,
+  `contact_other_name` varchar(255) DEFAULT NULL,
+  `contact_last_name` varchar(30) DEFAULT NULL,
+  `social_clinic_id` int(10) DEFAULT NULL,
+  `clinic_name` varchar(100) DEFAULT '',
+  `social_entry_date` date DEFAULT NULL,
+  `social_client_status` int(10) DEFAULT NULL,
+  `social_visit_type` int(10) DEFAULT NULL,
+  `social_death` int(10) DEFAULT NULL,
+  `social_death_notes` varchar(100) DEFAULT '',
+  `social_death_date` date DEFAULT NULL,
+  `social_caregiver_pri_change` tinyint(2) DEFAULT NULL,
+  `social_caregiver_pri_change_notes` varchar(100) DEFAULT NULL,
+  `social_caregiver_sec_change` tinyint(2) unsigned DEFAULT NULL,
+  `social_caregiver_sec_change_notes` varchar(100) DEFAULT NULL,
+  `social_caregiver_relationship` varchar(100) DEFAULT '',
+  `social_caregiver_pri_health_child_impact` tinyint(2) unsigned DEFAULT NULL,
+  `social_caregiver_sec_health_child_impact` tinyint(2) unsigned DEFAULT NULL,
+  `social_caregiver_pri_health` tinyint(1) unsigned DEFAULT NULL,
+  `social_caregiver_sec_health` tinyint(1) unsigned DEFAULT NULL,
+  `social_caregiver_change` int(10) DEFAULT NULL,
+  `social_caregiver_change_notes` varchar(100) DEFAULT '',
+  `social_caregiver_fname` varchar(100) DEFAULT '',
+  `social_caregiver_lname` varchar(100) DEFAULT '',
+  `social_caregiver_age` double DEFAULT NULL,
+  `social_caregiver_status` int(10) DEFAULT NULL,
+  `social_caregiver_education` int(10) DEFAULT NULL,
+  `social_caregiver_employment` int(10) DEFAULT NULL,
+  `social_caregiver_idno` varchar(100) DEFAULT '',
+  `social_caregiver_mobile` varchar(100) DEFAULT '',
+  `social_caregiver_health` int(10) DEFAULT NULL,
+  `social_caregiver_health_child_impact` int(10) DEFAULT NULL,
+  `social_residence_mobile` varchar(100) DEFAULT '',
+  `social_residence` varchar(255) DEFAULT NULL,
+  `social_caregiver_pri_employment_change` tinyint(2) DEFAULT NULL,
+  `social_caregiver_pri_new_employment` tinyint(2) DEFAULT NULL,
+  `social_caregiver_pri_new_employment_desc` varchar(100) DEFAULT NULL,
+  `social_caregiver_sec_employment_change` tinyint(2) DEFAULT NULL,
+  `social_caregiver_sec_new_employment` tinyint(2) DEFAULT NULL,
+  `social_caregiver_sec_new_employment_desc` varchar(100) DEFAULT NULL,
+  `social_caregiver_pri_new_income` tinyint(2) DEFAULT NULL,
+  `social_caregiver_new_income` int(10) DEFAULT NULL,
+  `social_school_attendance` int(10) DEFAULT NULL,
+  `social_school` int(10) DEFAULT NULL,
+  `social_reason_not_attending` int(10) DEFAULT NULL,
+  `social_relocation` varchar(150) DEFAULT NULL,
+  `social_iga` varchar(150) DEFAULT NULL,
+  `social_placement` varchar(150) DEFAULT NULL,
+  `social_succession_planning` varchar(150) DEFAULT NULL,
+  `social_legal` varchar(150) DEFAULT NULL,
+  `social_nursing` varchar(150) DEFAULT NULL,
+  `social_transport` varchar(150) DEFAULT NULL,
+  `social_education` varchar(150) DEFAULT NULL,
+  `social_food` varchar(150) DEFAULT NULL,
+  `social_rent` varchar(150) DEFAULT NULL,
+  `social_solidarity` varchar(150) DEFAULT NULL,
+  `social_direct_support` varchar(150) DEFAULT NULL,
+  `social_medical_support` varchar(150) DEFAULT NULL,
+  `social_medical_support_desc` varchar(100) DEFAULT '',
+  `social_other_support` varchar(150) DEFAULT NULL,
+  `social_othersupport_value` double DEFAULT NULL,
+  `social_permanency_value` double DEFAULT NULL,
+  `social_succession_value` double DEFAULT NULL,
+  `social_legal_value` double DEFAULT NULL,
+  `social_nursing_value` double DEFAULT NULL,
+  `social_transport_value` double DEFAULT NULL,
+  `social_education_value` double DEFAULT NULL,
+  `social_food_value` double DEFAULT NULL,
+  `social_rent_value` double DEFAULT NULL,
+  `social_solidarity_value` double DEFAULT NULL,
+  `social_directsupport_value` double DEFAULT NULL,
+  `social_medicalsupport_value` double DEFAULT NULL,
+  `social_risk_level` int(10) DEFAULT NULL,
+  `social_notes` text,
+  `social_custom` longtext,
+  `social_change` int(11) unsigned DEFAULT NULL,
+  `social_training` tinyint(1) unsigned DEFAULT NULL,
+  `social_training_desc` varchar(150) DEFAULT NULL,
+  `social_next_visit` date DEFAULT NULL,
+  `social_referral` tinyint(2) unsigned DEFAULT NULL,
+  `social_caregiver_pri` int(11) unsigned DEFAULT NULL,
+  `social_caregiver_sec` int(11) unsigned DEFAULT NULL,
+  `social_caregiver_pri_type` tinyint(1) DEFAULT NULL,
+  `social_caregiver_sec_type` tinyint(1) DEFAULT NULL,
+  `social_nhf` tinyint(1) DEFAULT NULL,
+  `social_nhf_y` varchar(100) DEFAULT NULL,
+  `social_nhf_n` varchar(100) DEFAULT NULL,
+  `social_immun` tinyint(1) DEFAULT NULL,
+  `social_immun_y` varchar(100) DEFAULT NULL,
+  `social_immun_n` varchar(100) DEFAULT NULL,
+  `social_caregiver_employment_change` tinyint(2) DEFAULT NULL,
+  `social_caregiver_new_employment` tinyint(2) DEFAULT NULL,
+  `social_caregiver_new_employment_desc` varchar(100) DEFAULT NULL,
+  `social_class_form` varchar(150) DEFAULT NULL,
+  `social_caregiver_income` tinyint(1) unsigned DEFAULT NULL,
+  `social_client_health` tinyint(1) unsigned DEFAULT NULL,
+  `social_reason_not_attending_notes` varchar(150) DEFAULT NULL,
+  `social_any_needs` tinyint(1) DEFAULT NULL,
+  KEY `social_staff_name` (`social_id`,`social_staff_name`),
+  KEY `social_client` (`social_id`,`social_client_id`),
+  KEY `social_adm_no` (`social_id`,`client_adm_no`),
+  KEY `social_staff` (`social_id`,`social_staff_id`),
+  KEY `social_clinic` (`social_id`,`social_clinic_id`),
+  KEY `social_client_adm_no` (`social_client_id`,`client_adm_no`),
+  KEY `client_staff_id` (`social_client_id`,`social_staff_id`),
+  KEY `client_clinic` (`social_client_id`,`social_clinic_id`),
+  KEY `adm_no_staff_id` (`client_adm_no`,`social_staff_id`),
+  KEY `adm_no_clinic` (`client_adm_no`,`social_clinic_id`),
+  KEY `staff_id_clinic` (`social_staff_id`,`social_clinic_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_visit`
+--
+
+CREATE TABLE IF NOT EXISTS `social_visit` (
+  `social_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `social_client_id` int(10) unsigned NOT NULL,
+  `social_staff_id` int(10) unsigned DEFAULT NULL,
+  `social_clinic_id` int(10) unsigned DEFAULT NULL,
+  `social_entry_date` date DEFAULT NULL,
+  `social_client_status` int(10) unsigned DEFAULT NULL,
+  `social_client_health` tinyint(1) unsigned DEFAULT NULL,
+  `social_visit_type` int(10) unsigned DEFAULT NULL,
+  `social_death` int(10) DEFAULT NULL,
+  `social_death_notes` varchar(100) DEFAULT '',
+  `social_death_date` date DEFAULT NULL,
+  `social_caregiver_pri_change` tinyint(2) DEFAULT NULL,
+  `social_caregiver_pri_change_notes` varchar(100) DEFAULT NULL,
+  `social_caregiver_sec_change` tinyint(2) unsigned DEFAULT NULL,
+  `social_caregiver_sec_change_notes` varchar(100) DEFAULT NULL,
+  `social_caregiver_relationship` varchar(100) DEFAULT '',
+  `social_caregiver_pri_health_child_impact` tinyint(2) unsigned DEFAULT NULL,
+  `social_caregiver_sec_health_child_impact` tinyint(2) unsigned DEFAULT NULL,
+  `social_caregiver_pri_health` tinyint(1) unsigned DEFAULT NULL,
+  `social_caregiver_sec_health` tinyint(1) unsigned DEFAULT NULL,
+  `social_residence_mobile` varchar(100) DEFAULT NULL,
+  `social_residence` varchar(255) DEFAULT NULL,
+  `social_caregiver_pri_employment_change` tinyint(2) DEFAULT NULL,
+  `social_caregiver_pri_new_employment` tinyint(2) DEFAULT NULL,
+  `social_caregiver_pri_new_employment_desc` varchar(100) DEFAULT NULL,
+  `social_caregiver_sec_employment_change` tinyint(2) DEFAULT NULL,
+  `social_caregiver_sec_new_employment` tinyint(2) DEFAULT NULL,
+  `social_caregiver_sec_new_employment_desc` varchar(100) DEFAULT NULL,
+  `social_caregiver_pri_new_income` tinyint(2) DEFAULT NULL,
+  `social_school_attendance` int(10) DEFAULT NULL,
+  `social_school` int(10) DEFAULT NULL,
+  `social_reason_not_attending` int(10) DEFAULT NULL,
+  `social_reason_not_attending_notes` varchar(150) DEFAULT NULL,
+  `social_relocation` varchar(150) DEFAULT NULL,
+  `social_iga` varchar(150) DEFAULT NULL,
+  `social_placement` varchar(150) DEFAULT NULL,
+  `social_succession_planning` varchar(150) DEFAULT NULL,
+  `social_legal` varchar(150) DEFAULT NULL,
+  `social_nursing` varchar(150) DEFAULT NULL,
+  `social_transport` varchar(150) DEFAULT NULL,
+  `social_education` varchar(150) DEFAULT NULL,
+  `social_food` varchar(150) DEFAULT NULL,
+  `social_rent` varchar(150) DEFAULT NULL,
+  `social_solidarity` varchar(150) DEFAULT NULL,
+  `social_direct_support` varchar(150) DEFAULT NULL,
+  `social_medical_support` varchar(150) DEFAULT NULL,
+  `social_medical_support_desc` varchar(100) DEFAULT '',
+  `social_other_support` varchar(150) DEFAULT NULL,
+  `social_othersupport_value` double DEFAULT NULL,
+  `social_permanency_value` double DEFAULT NULL,
+  `social_succession_value` double DEFAULT NULL,
+  `social_legal_value` double DEFAULT NULL,
+  `social_nursing_value` double DEFAULT NULL,
+  `social_transport_value` double DEFAULT NULL,
+  `social_education_value` double DEFAULT NULL,
+  `social_food_value` double DEFAULT NULL,
+  `social_rent_value` double DEFAULT NULL,
+  `social_solidarity_value` double DEFAULT NULL,
+  `social_directsupport_value` double DEFAULT NULL,
+  `social_medicalsupport_value` double DEFAULT NULL,
+  `social_risk_level` int(10) DEFAULT NULL,
+  `social_notes` text,
+  `social_custom` longtext,
+  `social_change` int(11) unsigned DEFAULT NULL,
+  `social_training` tinyint(1) unsigned DEFAULT NULL,
+  `social_training_desc` varchar(150) DEFAULT NULL,
+  `social_next_visit` date DEFAULT NULL,
+  `social_referral` tinyint(2) unsigned DEFAULT NULL,
+  `social_caregiver_pri` int(11) unsigned DEFAULT NULL,
+  `social_caregiver_sec` int(11) unsigned DEFAULT NULL,
+  `social_caregiver_pri_type` tinyint(1) DEFAULT NULL,
+  `social_caregiver_sec_type` tinyint(1) DEFAULT NULL,
+  `social_nhf` tinyint(1) DEFAULT NULL,
+  `social_nhf_y` varchar(100) DEFAULT NULL,
+  `social_nhf_n` varchar(100) DEFAULT NULL,
+  `social_immun` tinyint(1) DEFAULT NULL,
+  `social_immun_y` varchar(100) DEFAULT NULL,
+  `social_immun_n` varchar(100) DEFAULT NULL,
+  `social_caregiver_employment_change` tinyint(2) DEFAULT NULL,
+  `social_caregiver_new_employment` tinyint(2) DEFAULT NULL,
+  `social_caregiver_new_employment_desc` varchar(100) DEFAULT NULL,
+  `social_class_form` varchar(150) DEFAULT NULL,
+  `social_caregiver_income` tinyint(1) unsigned DEFAULT NULL,
+  `social_any_needs` tinyint(1) DEFAULT NULL,
+  `social_direct_support_desc` varchar(100) DEFAULT NULL,
+  `social_training_value` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`social_id`),
+  UNIQUE KEY `social_id` (`social_id`),
+  KEY `social_client` (`social_id`,`social_client_id`),
+  KEY `social_clinic` (`social_id`,`social_clinic_id`),
+  KEY `client_staff_id` (`social_client_id`,`social_staff_id`),
+  KEY `client_clinic` (`social_client_id`,`social_clinic_id`),
+  KEY `staff_clinic` (`social_staff_id`,`social_clinic_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4561 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_visit_backup_mig`
+--
+
+CREATE TABLE IF NOT EXISTS `social_visit_backup_mig` (
+  `social_id` int(10) NOT NULL DEFAULT '0',
+  `social_client_id` int(10) NOT NULL,
+  `social_staff_id` int(10) DEFAULT NULL,
+  `social_clinic_id` int(10) DEFAULT NULL,
+  `social_entry_date` date DEFAULT NULL,
+  `social_client_status` int(10) DEFAULT NULL,
+  `social_visit_type` int(10) DEFAULT NULL,
+  `social_death` int(10) DEFAULT NULL,
+  `social_death_notes` varchar(100) DEFAULT '',
+  `social_death_date` date DEFAULT NULL,
+  `social_caregiver_change` int(10) DEFAULT NULL,
+  `social_caregiver_change_notes` varchar(100) DEFAULT '',
+  `social_caregiver_fname` varchar(100) DEFAULT '',
+  `social_caregiver_lname` varchar(100) DEFAULT '',
+  `social_caregiver_age` double DEFAULT NULL,
+  `social_caregiver_status` int(10) DEFAULT NULL,
+  `social_caregiver_relationship` varchar(100) DEFAULT '',
+  `social_caregiver_education` int(10) DEFAULT NULL,
+  `social_caregiver_employment` int(10) DEFAULT NULL,
+  `social_caregiver_income` int(10) DEFAULT NULL,
+  `social_caregiver_idno` varchar(100) DEFAULT '',
+  `social_caregiver_mobile` varchar(100) DEFAULT '',
+  `social_caregiver_health` int(10) DEFAULT NULL,
+  `social_caregiver_health_child_impact` int(10) DEFAULT NULL,
+  `social_residence_mobile` varchar(100) DEFAULT '',
+  `social_residence` varchar(255) DEFAULT NULL,
+  `social_caregiver_employment_change` int(10) DEFAULT NULL,
+  `social_caregiver_new_employment` int(10) DEFAULT NULL,
+  `social_caregiver_new_employment_desc` varchar(100) DEFAULT '',
+  `social_caregiver_new_income` int(10) DEFAULT NULL,
+  `social_school_attendance` int(10) DEFAULT NULL,
+  `social_school` int(10) DEFAULT NULL,
+  `social_reason_not_attending` int(10) DEFAULT NULL,
+  `social_relocation` varchar(150) DEFAULT NULL,
+  `social_iga` varchar(150) DEFAULT NULL,
+  `social_placement` varchar(150) DEFAULT NULL,
+  `social_succession_planning` varchar(150) DEFAULT NULL,
+  `social_legal` varchar(150) DEFAULT NULL,
+  `social_nursing` varchar(150) DEFAULT NULL,
+  `social_transport` varchar(150) DEFAULT NULL,
+  `social_education` varchar(150) DEFAULT NULL,
+  `social_food` varchar(150) DEFAULT NULL,
+  `social_rent` varchar(150) DEFAULT NULL,
+  `social_solidarity` varchar(150) DEFAULT NULL,
+  `social_direct_support` varchar(150) DEFAULT NULL,
+  `social_medical_support` varchar(150) DEFAULT NULL,
+  `social_medical_support_desc` varchar(100) DEFAULT '',
+  `social_other_support` varchar(150) DEFAULT NULL,
+  `social_othersupport_value` double DEFAULT NULL,
+  `social_permanency_value` double DEFAULT NULL,
+  `social_succession_value` double DEFAULT NULL,
+  `social_legal_value` double DEFAULT NULL,
+  `social_nursing_value` double DEFAULT NULL,
+  `social_transport_value` double DEFAULT NULL,
+  `social_education_value` double DEFAULT NULL,
+  `social_food_value` double DEFAULT NULL,
+  `social_rent_value` double DEFAULT NULL,
+  `social_solidarity_value` double DEFAULT NULL,
+  `social_directsupport_value` double DEFAULT NULL,
+  `social_medicalsupport_value` double DEFAULT NULL,
+  `social_risk_level` int(10) DEFAULT NULL,
+  `social_notes` text,
+  `social_custom` longtext,
+  `social_change` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_visit_old`
+--
+
+CREATE TABLE IF NOT EXISTS `social_visit_old` (
+  `social_id` int(10) NOT NULL AUTO_INCREMENT,
+  `social_client_id` int(10) NOT NULL,
+  `social_staff_id` int(10) DEFAULT NULL,
+  `social_clinic_id` int(10) DEFAULT NULL,
+  `social_entry_date` date DEFAULT NULL,
+  `social_client_status` int(10) DEFAULT NULL,
+  `social_visit_type` int(10) DEFAULT NULL,
+  `social_death` int(10) DEFAULT NULL,
+  `social_death_notes` varchar(100) DEFAULT '',
+  `social_death_date` date DEFAULT NULL,
+  `social_caregiver_change` int(10) DEFAULT NULL,
+  `social_caregiver_change_notes` varchar(100) DEFAULT '',
+  `social_caregiver_fname` varchar(100) DEFAULT '',
+  `social_caregiver_lname` varchar(100) DEFAULT '',
+  `social_caregiver_age` double DEFAULT NULL,
+  `social_caregiver_status` int(10) DEFAULT NULL,
+  `social_caregiver_relationship` varchar(100) DEFAULT '',
+  `social_caregiver_education` int(10) DEFAULT NULL,
+  `social_caregiver_employment` int(10) DEFAULT NULL,
+  `social_caregiver_income` int(10) DEFAULT NULL,
+  `social_caregiver_idno` varchar(100) DEFAULT '',
+  `social_caregiver_mobile` varchar(100) DEFAULT '',
+  `social_caregiver_health` int(10) DEFAULT NULL,
+  `social_caregiver_health_child_impact` int(10) DEFAULT NULL,
+  `social_residence_mobile` varchar(100) DEFAULT '',
+  `social_residence` varchar(255) DEFAULT NULL,
+  `social_caregiver_employment_change` int(10) DEFAULT NULL,
+  `social_caregiver_new_employment` int(10) DEFAULT NULL,
+  `social_caregiver_new_employment_desc` varchar(100) DEFAULT '',
+  `social_caregiver_new_income` int(10) DEFAULT NULL,
+  `social_school_attendance` int(10) DEFAULT NULL,
+  `social_school` int(10) DEFAULT NULL,
+  `social_reason_not_attending` int(10) DEFAULT NULL,
+  `social_relocation` varchar(150) DEFAULT NULL,
+  `social_iga` varchar(150) DEFAULT NULL,
+  `social_placement` varchar(150) DEFAULT NULL,
+  `social_succession_planning` varchar(150) DEFAULT NULL,
+  `social_legal` varchar(150) DEFAULT NULL,
+  `social_nursing` varchar(150) DEFAULT NULL,
+  `social_transport` varchar(150) DEFAULT NULL,
+  `social_education` varchar(150) DEFAULT NULL,
+  `social_food` varchar(150) DEFAULT NULL,
+  `social_rent` varchar(150) DEFAULT NULL,
+  `social_solidarity` varchar(150) DEFAULT NULL,
+  `social_direct_support` varchar(150) DEFAULT NULL,
+  `social_medical_support` varchar(150) DEFAULT NULL,
+  `social_medical_support_desc` varchar(100) DEFAULT '',
+  `social_other_support` varchar(150) DEFAULT NULL,
+  `social_othersupport_value` double DEFAULT NULL,
+  `social_permanency_value` double DEFAULT NULL,
+  `social_succession_value` double DEFAULT NULL,
+  `social_legal_value` double DEFAULT NULL,
+  `social_nursing_value` double DEFAULT NULL,
+  `social_transport_value` double DEFAULT NULL,
+  `social_education_value` double DEFAULT NULL,
+  `social_food_value` double DEFAULT NULL,
+  `social_rent_value` double DEFAULT NULL,
+  `social_solidarity_value` double DEFAULT NULL,
+  `social_directsupport_value` double DEFAULT NULL,
+  `social_medicalsupport_value` double DEFAULT NULL,
+  `social_risk_level` int(10) DEFAULT NULL,
+  `social_notes` text,
+  `social_custom` longtext,
+  `social_change` int(11) DEFAULT NULL,
+  PRIMARY KEY (`social_id`),
+  UNIQUE KEY `social_id` (`social_id`),
+  KEY `social_client` (`social_id`,`social_client_id`),
+  KEY `social_clinic` (`social_id`,`social_clinic_id`),
+  KEY `client_staff_id` (`social_client_id`,`social_staff_id`),
+  KEY `client_clinic` (`social_client_id`,`social_clinic_id`),
+  KEY `staff_clinic` (`social_staff_id`,`social_clinic_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3392 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_work`
+--
+
+CREATE TABLE IF NOT EXISTS `social_work` (
+  `social_id` int(10) NOT NULL AUTO_INCREMENT,
+  `social_client_id` int(10) NOT NULL,
+  `social_date` date DEFAULT NULL,
+  `social_counsellor_id` int(10) NOT NULL,
+  `social_needs_assessment` int(10) DEFAULT '2',
+  `social_supported_needs` int(11) DEFAULT '2',
+  `social_food_support` int(11) DEFAULT '2',
+  `social_permanency_plan` int(11) DEFAULT '2',
+  `social_nurse_care` int(11) DEFAULT '2',
+  `social_hospital_visit` int(11) DEFAULT '2',
+  `social_home_visit` int(11) DEFAULT '2',
+  `social_microfin` int(11) DEFAULT '2',
+  `social_medical_support` int(11) DEFAULT '2',
+  `social_transport_support` int(11) DEFAULT '2',
+  `social_education_support` int(11) DEFAULT '2',
+  `social_clothing` int(11) DEFAULT '2',
+  `social_solidarity_support` int(11) DEFAULT '2',
+  `social_rent_support` int(11) DEFAULT '2',
+  `social_other_support` int(11) DEFAULT '2',
+  `social_no_support` int(11) DEFAULT '0',
+  `social_gender` int(11) DEFAULT '2',
+  `social_entry_date` date DEFAULT NULL,
+  `social_notes` text,
+  `social_custom` longtext,
+  PRIMARY KEY (`social_id`),
+  KEY `social_client_counsellor` (`social_id`,`social_client_id`,`social_counsellor_id`),
+  KEY `social_client` (`social_id`,`social_client_id`),
+  KEY `client_counsellor` (`social_client_id`,`social_counsellor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_client`
+--
+
+CREATE TABLE IF NOT EXISTS `status_client` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `social_client_id` int(10) NOT NULL,
+  `social_client_status` int(10) DEFAULT NULL,
+  `social_entry_date` date DEFAULT NULL,
+  `mode` enum('status','center') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2004 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_client_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `status_client_staging` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `social_client_id` int(10) NOT NULL,
+  `client_adm_no` varchar(20) NOT NULL,
+  `social_client_status` int(10) DEFAULT NULL,
+  `social_entry_date` date DEFAULT NULL,
+  `mode` enum('status','center') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stat_queries`
+--
+
+CREATE TABLE IF NOT EXISTS `stat_queries` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `qname` varchar(255) NOT NULL DEFAULT '',
+  `qdesc` text NOT NULL,
+  `rows` text NOT NULL,
+  `cols` text NOT NULL,
+  `ranges` text NOT NULL,
+  `turns` varchar(250) NOT NULL,
+  `sdate` int(8) NOT NULL,
+  `edate` int(8) NOT NULL,
+  `show_result` enum('0','1') NOT NULL DEFAULT '1',
+  `query_id` int(12) NOT NULL DEFAULT '0',
+  `created` datetime NOT NULL,
+  `chart_data` text NOT NULL,
+  `qmode` enum('stat','graph') NOT NULL DEFAULT 'stat',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `syskeys`
+--
+
+CREATE TABLE IF NOT EXISTS `syskeys` (
+  `syskey_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `syskey_name` varchar(48) NOT NULL DEFAULT '',
+  `syskey_label` varchar(255) NOT NULL DEFAULT '',
+  `syskey_type` int(1) unsigned NOT NULL DEFAULT '0',
+  `syskey_sep1` char(2) DEFAULT '\n',
+  `syskey_sep2` char(2) NOT NULL DEFAULT '|',
+  PRIMARY KEY (`syskey_id`),
+  UNIQUE KEY `syskey_name` (`syskey_name`),
+  UNIQUE KEY `idx_syskey_name` (`syskey_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sysvals`
+--
+
+CREATE TABLE IF NOT EXISTS `sysvals` (
+  `sysval_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sysval_key_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `sysval_title` varchar(48) NOT NULL DEFAULT '',
+  `sysval_value` text NOT NULL,
+  PRIMARY KEY (`sysval_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=181 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE IF NOT EXISTS `tasks` (
+  `task_id` int(11) NOT NULL AUTO_INCREMENT,
+  `task_name` varchar(255) DEFAULT NULL,
+  `task_parent` int(11) DEFAULT '0',
+  `task_milestone` tinyint(1) DEFAULT '0',
+  `task_project` int(11) NOT NULL DEFAULT '0',
+  `task_owner` int(11) NOT NULL DEFAULT '0',
+  `task_start_date` datetime DEFAULT NULL,
+  `task_duration` float unsigned DEFAULT '0',
+  `task_duration_type` int(11) NOT NULL DEFAULT '1',
+  `task_hours_worked` float unsigned DEFAULT '0',
+  `task_end_date` datetime DEFAULT NULL,
+  `task_status` int(11) DEFAULT '0',
+  `task_priority` tinyint(4) DEFAULT '0',
+  `task_percent_complete` tinyint(4) DEFAULT '0',
+  `task_description` text,
+  `task_target_budget` decimal(10,2) DEFAULT '0.00',
+  `task_related_url` varchar(255) DEFAULT NULL,
+  `task_creator` int(11) NOT NULL DEFAULT '0',
+  `task_order` int(11) NOT NULL DEFAULT '0',
+  `task_client_publish` tinyint(1) NOT NULL DEFAULT '0',
+  `task_dynamic` tinyint(1) NOT NULL DEFAULT '0',
+  `task_access` int(11) NOT NULL DEFAULT '0',
+  `task_notify` int(11) NOT NULL DEFAULT '0',
+  `task_departments` char(100) DEFAULT NULL,
+  `task_contacts` char(100) DEFAULT NULL,
+  `task_custom` longtext,
+  `task_type` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`task_id`),
+  KEY `idx_task_parent` (`task_parent`),
+  KEY `idx_task_project` (`task_project`),
+  KEY `idx_task_owner` (`task_owner`),
+  KEY `idx_task_order` (`task_order`),
+  KEY `idx_task1` (`task_start_date`),
+  KEY `idx_task2` (`task_end_date`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `task_contacts` (
+  `task_id` int(10) NOT NULL,
+  `contact_id` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_departments`
+--
+
+CREATE TABLE IF NOT EXISTS `task_departments` (
+  `task_id` int(10) NOT NULL,
+  `department_id` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_dependencies`
+--
+
+CREATE TABLE IF NOT EXISTS `task_dependencies` (
+  `dependencies_task_id` int(11) NOT NULL,
+  `dependencies_req_task_id` int(11) NOT NULL,
+  PRIMARY KEY (`dependencies_task_id`,`dependencies_req_task_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_log`
+--
+
+CREATE TABLE IF NOT EXISTS `task_log` (
+  `task_log_id` int(11) NOT NULL AUTO_INCREMENT,
+  `task_log_task` int(11) NOT NULL DEFAULT '0',
+  `task_log_name` varchar(255) DEFAULT NULL,
+  `task_log_description` text,
+  `task_log_creator` int(11) NOT NULL DEFAULT '0',
+  `task_log_hours` float NOT NULL DEFAULT '0',
+  `task_log_date` datetime DEFAULT NULL,
+  `task_log_costcode` varchar(8) NOT NULL DEFAULT '',
+  `task_log_problem` tinyint(1) DEFAULT '0',
+  `task_log_reference` tinyint(4) DEFAULT '0',
+  `task_log_related_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`task_log_id`),
+  KEY `idx_log_task` (`task_log_task`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_boolean`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_boolean` (
+  `bool_id` int(10) NOT NULL AUTO_INCREMENT,
+  `bool_desc` varchar(100) DEFAULT '',
+  PRIMARY KEY (`bool_id`),
+  KEY `idx_cpy1` (`bool_desc`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tickets`
+--
+
+CREATE TABLE IF NOT EXISTS `tickets` (
+  `ticket` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `author` varchar(100) NOT NULL DEFAULT '',
+  `recipient` varchar(100) NOT NULL DEFAULT '',
+  `subject` varchar(100) NOT NULL DEFAULT '',
+  `attachment` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
+  `type` varchar(15) NOT NULL DEFAULT '',
+  `assignment` int(10) unsigned NOT NULL DEFAULT '0',
+  `parent` int(10) unsigned NOT NULL DEFAULT '0',
+  `activity` int(10) unsigned NOT NULL DEFAULT '0',
+  `priority` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `cc` varchar(255) NOT NULL DEFAULT '',
+  `body` text NOT NULL,
+  `signature` text,
+  PRIMARY KEY (`ticket`),
+  KEY `parent` (`parent`),
+  KEY `type` (`type`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training`
+--
+
+CREATE TABLE IF NOT EXISTS `training` (
+  `training_id` int(10) NOT NULL AUTO_INCREMENT,
+  `training_date` date DEFAULT NULL,
+  `training_entry_date` date DEFAULT NULL,
+  `training_name` varchar(150) DEFAULT NULL,
+  `training_clinic` int(11) DEFAULT NULL,
+  `training_male_count` double DEFAULT NULL,
+  `training_female_count` double DEFAULT NULL,
+  `training_notes` text,
+  `training_custom` longtext,
+  PRIMARY KEY (`training_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trainings`
+--
+
+CREATE TABLE IF NOT EXISTS `trainings` (
+  `training_id` int(10) NOT NULL AUTO_INCREMENT,
+  `training_date` date DEFAULT NULL,
+  `training_entry_date` date DEFAULT NULL,
+  `training_name` varchar(150) DEFAULT NULL,
+  `training_clinic` int(11) DEFAULT NULL,
+  `training_curriculum` int(11) DEFAULT NULL,
+  `training_curriculum_desc` varchar(150) DEFAULT NULL,
+  `training_notes` text,
+  `training_custom` longtext,
+  PRIMARY KEY (`training_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training_clients`
+--
+
+CREATE TABLE IF NOT EXISTS `training_clients` (
+  `training_clients_training_id` int(10) NOT NULL,
+  `training_clients_client_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`training_clients_training_id`,`training_clients_client_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training_facilitator`
+--
+
+CREATE TABLE IF NOT EXISTS `training_facilitator` (
+  `facilitator_id` int(10) NOT NULL AUTO_INCREMENT,
+  `facilitator_training_id` int(11) NOT NULL,
+  `facilitator_activity_id` int(10) NOT NULL,
+  `facilitator_activity` varchar(150) DEFAULT NULL,
+  `facilitator_name` varchar(150) DEFAULT NULL,
+  `facilitator_custom` longtext,
+  PRIMARY KEY (`facilitator_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training_staging`
+--
+
+CREATE TABLE IF NOT EXISTS `training_staging` (
+  `training_date` date DEFAULT NULL,
+  `training_entry_date` date DEFAULT NULL,
+  `training_name` varchar(150) DEFAULT NULL,
+  `training_clinic` int(11) DEFAULT NULL,
+  `clinic_name` varchar(150) DEFAULT NULL,
+  `training_notes` text,
+  `training_custom` longtext,
+  `training_curriculum` int(11) DEFAULT NULL,
+  `training_curriculum_desc` varchar(150) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_contact` int(11) NOT NULL DEFAULT '0',
+  `user_username` varchar(255) NOT NULL DEFAULT '',
+  `user_password` varchar(32) NOT NULL DEFAULT '',
+  `user_parent` int(11) NOT NULL DEFAULT '0',
+  `user_type` tinyint(3) NOT NULL DEFAULT '0',
+  `user_clinics` varchar(150) DEFAULT NULL,
+  `user_company` int(11) DEFAULT '0',
+  `user_department` int(11) DEFAULT '0',
+  `user_owner` int(11) NOT NULL DEFAULT '0',
+  `user_signature` text,
+  PRIMARY KEY (`user_id`),
+  KEY `idx_uid` (`user_username`),
+  KEY `idx_pwd` (`user_password`),
+  KEY `idx_user_parent` (`user_parent`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_access_log`
+--
+
+CREATE TABLE IF NOT EXISTS `user_access_log` (
+  `user_access_log_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `user_ip` varchar(15) NOT NULL,
+  `date_time_in` datetime DEFAULT '0000-00-00 00:00:00',
+  `date_time_out` datetime DEFAULT '0000-00-00 00:00:00',
+  `date_time_last_action` datetime DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`user_access_log_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=903 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_events`
+--
+
+CREATE TABLE IF NOT EXISTS `user_events` (
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `event_id` int(11) NOT NULL DEFAULT '0',
+  KEY `uek1` (`user_id`,`event_id`),
+  KEY `uek2` (`event_id`,`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_preferences`
+--
+
+CREATE TABLE IF NOT EXISTS `user_preferences` (
+  `pref_user` varchar(12) NOT NULL DEFAULT '',
+  `pref_name` varchar(72) NOT NULL DEFAULT '',
+  `pref_value` varchar(32) NOT NULL DEFAULT '',
+  KEY `pref_user` (`pref_user`,`pref_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+CREATE TABLE IF NOT EXISTS `user_roles` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `role_id` int(10) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_tasks`
+--
+
+CREATE TABLE IF NOT EXISTS `user_tasks` (
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `user_type` tinyint(4) NOT NULL DEFAULT '0',
+  `task_id` int(11) NOT NULL DEFAULT '0',
+  `perc_assignment` int(11) NOT NULL DEFAULT '100',
+  `user_task_priority` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`user_id`,`task_id`),
+  KEY `user_type` (`user_type`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_task_pin`
+--
+
+CREATE TABLE IF NOT EXISTS `user_task_pin` (
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `task_id` int(10) NOT NULL DEFAULT '0',
+  `task_pinned` tinyint(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`user_id`,`task_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

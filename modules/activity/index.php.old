@@ -1,0 +1,178 @@
+<?php 
+$AppUI->savePlace();
+
+// retrieve any state parameters
+if (isset( $_GET['orderby'] )) {
+    $orderdir = $AppUI->getState( 'ActivityIdxOrderDir' ) ? ($AppUI->getState( 'ActivityIdxOrderDir' )== 'asc' ? 'desc' : 'asc' ) : 'desc';
+	$AppUI->setState( 'ActivityIdxOrderBy', $_GET['orderby'] );
+    $AppUI->setState( 'ActivityIdxOrderDir', $orderdir);
+}
+$orderby  = $AppUI->getState( 'ActivityIdxOrderBy' ) ? $AppUI->getState( 'ActivityIdxOrderBy' ) : 'activity_description';
+$orderdir = $AppUI->getState( 'ActivityIdxOrderDir' ) ? $AppUI->getState( 'ActivityIdxOrderDir' ) : 'asc';
+// retrieve any state parameters
+
+if (isset($_GET['where']))
+{
+  $AppUI->setState('ActivityIdxWhere', $_GET['where']);
+}
+
+if ($AppUI->user_type <> 1) //not admin user type
+{
+	//get allowed clinics if user is not an admin
+	$q = new DBQuery();
+	$q->addTable("users");
+	$q->addQuery("users.user_clinics");
+	$q->addWhere("users.user_id = " . $AppUI->user_id);
+	$allowedClinics = $q->loadResult();
+
+}
+
+// load the centers
+$q = new DBQuery();
+$q->addTable('clinics');
+$q->addQuery('clinic_id, clinic_name');
+if (!empty($allowedClinics))
+	$q->addWhere('clinic_id IN ('  . $allowedClinics . ')');
+$q->addOrder('clinic_name');
+
+//$types = dPgetSysVal('CurriculumTypes');
+$types = array();
+// get any records denied from viewing
+$obj = new CActivity();
+$deny = $obj->getDeniedRecords( $AppUI->user_id );
+
+$canEdit = !getDenyEdit( $m );
+// retrieve list of records
+
+$perms =& $AppUI->acl();
+
+if (isset( $_GET['tab'] )) 
+{
+	$AppUI->setState( 'ActivityIdxTab', $_GET['tab'] );
+}
+$activityTypeTab = defVal( $AppUI->getState( 'ActivityIdxTab' ),  0 );
+
+// $tabTypes = array(getCompanyTypeID('Client'), getCompanyTypeID('Supplier'), 0);
+$activityType = $activityTypeTab;
+
+$let = ':';
+
+$q = new DBQuery;
+$q->addTable('activity');
+$q->innerJoin('activity_clients', 'ac', 'ac.activity_clients_activity_id = activity.activity_id');
+$q->addQuery("DISTINCT UPPER(SUBSTRING(activity_description,1,1)) as L");
+/*
+if ($activityType > 0)
+{
+	if ($types[$activityType] == NULL) 
+	{
+		$q->addWhere("activity_status <> 1");
+	}
+	else
+	{
+		$q->addWhere("ci.counselling_clinic = $activityType");
+	}
+}
+*/
+$arr = $q->loadList();
+
+foreach ($arr as $L)
+{
+  $let .= $L['L'];
+}
+
+$a2z = "\n<table cellpadding=\"2\" cellspacing=\"1\" border=\"0\">";
+$a2z .= "\n<tr>";
+$a2z .= "<td width='100%' align='right'>" . $AppUI->_('Show'). ": </td>";
+$a2z .= '<td><a href="./index.php?m=activity&where=0">' . $AppUI->_('All') . '</a></td>';
+
+for ($c=65; $c < 91; $c++) 
+{
+	
+	$cu = chr( $c );
+	$cell = strpos($let, "$cu") > 0 ?
+		"<a href=\"?m=activity&where=$cu\">$cu</a>" :
+		"<font color=\"#999999\">$cu</font>";
+	
+	if ($cu == $where)
+		$a2z .= "\n\t<td class=\"selected\">$cell</td>";
+	else
+		$a2z .= "\n\t<td>$cell</td>";
+}
+
+$a2z .= "\n</tr>\n<tr><td colspan='28'>$form</td></tr></table>";
+
+// setup the title block
+$titleBlock = new CTitleBlock( 'Activities', NULL, $m, "$m.$a" );
+$titleBlock->addCell ($a2z);
+
+$titleBlock->addCell ("<form name='searchform' action='?m=search' method='post'>
+                        <table>
+                         <tr>
+                          <td>						   
+                              <input class = 'text' type='text' name ='search_string' value='$search_string' />
+						   </td>
+						   <td>
+							  <input type='submit' value='" .$AppUI->_( 'search' )."' class='button' />
+						   </td>
+						  </tr>
+                         </table>
+                        </form>"
+);
+if ($canEdit )
+{
+	$titleBlock->addCell(
+		'<input type="submit" class="button" value="'.$AppUI->_("new activity").'">', '',
+		'<form action="?m=activity&a=add" method="post">', '</form>'
+	);
+}
+/*$titleBlock->addCell("<form name='searchform' action='?m=search&amp;search_string=$search_string' method='post'>
+						<table>
+							<tr>
+                      			<td>
+                                    <strong>".$AppUI->_('Search')."</strong>
+                                    <input class='text' type='text' name='search_string' value='$search_string' /><br />
+							</tr>
+						</table>
+                      </form>");
+*/
+$search_string = addslashes($search_string);
+$titleBlock->show();
+
+$tabBox = new CTabBox( "?m=activity", dPgetConfig('root_dir')."/modules/activity/", $activityTypeTab );
+
+if ($tabbed = $tabBox->isTabbed()) 
+{
+	$add_na = false;
+	if (isset($types[0])) 
+	{ // They have a Not Applicable entry.
+		$add_na = false;
+		$types[] = $types[0];
+	}
+	$types = arrayMerge(array(0=>"All Activities"), $types);
+	//$types = array(0=>"All Activities");
+	if ($add_na)
+	{
+		$types[] = "Not Applicable";
+	}	
+}
+
+//pager settings
+$page = dPgetParam($_GET, 'page', 1);
+$limit = intval($dPconfig['max_limit']);
+
+$type_filter = array();
+foreach($types as $type => $type_name)
+{
+	$type_filter[] = $type;
+	
+	if (strncmp($type_name, "Not Applicable", strlen("Not Applicable")) == 0) 
+		$type = NULL;
+	if (strncmp($type_name, "Not Active", strlen("Not Active")) == 0) 
+		$type = 99;
+	
+	$tabBox->add("vw_activities", $type_name . " (" . $obj->getCount($type) . ") ");
+}
+
+$tabBox->show();
+?>

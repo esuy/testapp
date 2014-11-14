@@ -1,0 +1,37 @@
+Clinical visit form
+-Clinician name (picked)
+Client Information
+-Adm no (for patient)
+-Center (picked)
+-Date of visit (filled)
+-First name
+-Last name
+-Other names
+-Age : Years (text
+-Age: Months (text)
+-Child attending (Y/N)
+-Caregiver attending (Y/N) 
+-Name of caregiver attending (picked)
+-Admission or illness since last visit (Y/N)
+-If yes, specify (memo)
+-Diarrhoea (Y/N)
+-Vomiting (Y/N)
+-Current Complaints(memo field)
+-Last blood test:
+-Last blood test: Date (picked)
+-Last blood test: CD4 (text)
+-Last blood test: CD4% (txt)
+-Last blood test: Viral Load (txt)
+-Last blood test: Hb (txt)
+Examination
+-Weight  (kg)
+-Height   (cm)
+-z-score
+-MUAC (mm)
+-head circumference (cm)
+Is the child unwell (Y/N)
+If unwell record temp (oC)
+respiratory rate
+heart rate
+
+

@@ -1,0 +1,546 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<title>Компьютерная сеть AVA.Net</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="author" content="info@stylish.ws">
+<meta name="copyright" content="Copyright (c) 2006 Alexander Matsyuk">
+<meta name="description" content="Официальный сайт компьютерной сети AVA.Net">
+<meta name="keywords" content="сети коммуникации он-лайн игры internet provider ISP network Симферопольская компьютерная сеть низкие цены подключение траффик">
+<style type="text/css">
+body {
+	margin : 0px;
+	padding : 0px;
+}
+img {
+	border-style: none;
+	behavior : url(UserFiles/Themes/ava0906/_art/iepngfix.htc);
+}
+body,td,th {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	color : #000000;
+}
+a:link, a:visited, a:active {
+	color : #3366DD;
+	text-decoration : none;
+}
+a:hover {
+	text-decoration : underline;
+	color : #3366DD;
+}
+.bg_left_shade {
+	background-image : url(UserFiles/Themes/ava0906/_art/bg_grey_v.gif);
+	background-position : right;
+	background-repeat : repeat-y;
+}
+.bg_right_shade {
+	background-image : url(UserFiles/Themes/ava0906/_art/bg_grey_v.gif);
+	background-position : left;
+	background-repeat : repeat-y;
+}
+#menu, #menu td, #menu a {
+	font-weight : bold;
+	text-transform: uppercase;
+}
+.bg_left_menu {
+	background-image : url(UserFiles/Themes/ava0906/_art/bg_top_left.gif);
+	background-position : left;
+	background-repeat : no-repeat;
+	color : #FFFFFF;
+	padding-left : 22px;
+}
+.bg_right_menu {
+	background-image : url(UserFiles/Themes/ava0906/_art/bg_top_right.gif);
+	background-position : right;
+	background-repeat : no-repeat;
+	color : #FFFFFF;
+	padding-right : 22px;
+}
+.loginel {
+	border: 1px solid #BCBFC9;
+	color: #000000;
+	font-size: 10px;
+	font-family: Verdana;
+	font-weight: bold;
+	padding : 2px;
+}
+input.submitbtn {
+	border: 1px solid #BCBFC9;
+	background-image: url(UserFiles/Themes/ava0906/_art/bg_btn.gif);
+	color: #000000;
+	font-size: 10px;
+	font-family: Verdana;
+	font-weight: normal;
+	height: 16px;
+}
+input.submitbtn:hover {
+	border: 1px solid #909090;
+	background-image: url(UserFiles/Themes/ava0906/_art/bg_btn.gif);
+	color: #000000;
+	font-size: 10px;
+	font-family: Verdana;
+	font-weight: normal;
+	height: 16px;
+}
+input.submitbtn:active {
+	border: 1px solid #BCBFC9;
+	background-image: url(UserFiles/Themes/ava0906/_art/bg_btn_.gif);
+	color: #000000;
+	font-size: 10px;
+	font-family: Verdana;
+	font-weight: normal;
+	height: 16px;
+}
+a.menu {
+	color : #FFFFFF;
+}
+a.black_menu:link, a.black_menu:hover, a.black_menu:visited, a.black_menu:active {
+	color : #000000;
+}
+.title {
+	color : #3366DD;
+	font-weight : bold;
+	margin-top : 0px;
+	text-decoration : underline;
+	text-transform: uppercase;
+}
+.small_grey {
+	border : 1px solid #EFEFEF;
+}
+.red {
+	color : #FF0000;
+}
+.table_brdr {
+	border: 1px solid #000000;
+}
+td.table_brdr {
+	padding: 4px;
+}
+th.table_brdr {
+	background-color : #eeeae8;
+	padding: 4px;
+}
+.testing-finish-message{
+	display: none;
+}
+div.operations-refill {
+	clear: both;
+	margin: 5px 0;
+}
+div.operations-refill img {
+	margin: 0 10px 15px 0;
+}
+#wm-pay {
+	clear: both;
+}
+</style>
+
+<script type="text/javascript" src="ava-vpn-setup_files/jquery.js"></script>
+<script type="text/javascript" src="ava-vpn-setup_files/jquery_002.js"></script>
+<link type="text/css" media="screen" rel="stylesheet" href="ava-vpn-setup_files/colorbox.css">
+
+<link type="text/css" media="screen" rel="stylesheet" href="ava-vpn-setup_files/simplemodal.css">
+<script type="text/javascript" src="ava-vpn-setup_files/jquery_003.js"></script>
+<!-- IE6 "fix" for the close png image -->
+<!--[if lt IE 7]>
+<link type='text/css' href='/css/simplemodal_ie.css' rel='stylesheet' media='screen' />
+<![endif]-->
+
+<script type="text/javascript">
+
+	function trace(text,clear){text+='<br />';if(typeof this.inited=='undefined'){this.inited=true;var div=document.createElement("DIV");div.id="trace";div.style.cssText='max-width:600px;font-size:12px;white-space:pre;position:absolute;z-index:1000;font-family:monospace;top:3px;right:3px;border:solid 5px #B7BEC4;background-color:#E7ECF0;padding:5px;';document.body.insertBefore(div,document.body.firstChild);}if(clear)document.getElementById("trace").innerHTML=text;else document.getElementById("trace").innerHTML+=text;}
+	function print_r(trg,ret){var data='';for(i in trg){data+=i+' => '+trg[i]+'<br />';}if(ret){return data;}else{trace(data,1);}}
+	
+	$(function(){
+		
+		$(".colorbox").colorbox();
+		
+		$('a.modal-link').click(function(){
+			var content = $('<iframe id="modal-iframe" src="' + $(this).attr('href') + '" style="width: 500px; border: none;"></iframe>')
+				.load(function(){
+					$(this).css('height', $(this.contentWindow.document).height());
+					$.modal.updatePosition();
+				});
+			$.modal(content);
+			return false;
+		});
+	});
+</script>
+
+
+
+<script language="javascript">
+     function chat_open_gallery (name){
+     ChatSupportWindow = window.open(name, "Chat", "scrollbars=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes");
+   ChatSupportWindow.focus();
+     }
+</script>
+<link rel="stylesheet" href="ava-vpn-setup_files/lightbox.css" type="text/css" media="screen">
+</head>
+
+<body topmargin="0" rightmargin="0" bottommargin="0"><div style="display: none;" id="cboxOverlay"></div><div style="padding-bottom: 50px; padding-right: 50px; display: none;" id="colorbox"><div id="cboxWrapper"><div><div style="float: left;" id="cboxTopLeft"></div><div style="float: left;" id="cboxTopCenter"></div><div style="float: left;" id="cboxTopRight"></div></div><div><div style="float: left;" id="cboxMiddleLeft"></div><div style="float: left;" id="cboxContent"><div class="" style="width: 0px; height: 0px; display: none;" id="cboxLoadedContent"></div><div style="display: none;" class="" id="cboxLoadingOverlay"></div><div style="display: none;" class="" id="cboxLoadingGraphic"></div><div style="display: none;" class="" id="cboxTitle"></div><div style="display: none;" class="" id="cboxCurrent"></div><div style="display: none;" class="" id="cboxSlideshow"></div><div style="display: none;" class="" id="cboxNext"></div><div style="display: none;" class="" id="cboxPrevious"></div><div style="display: none;" class="" id="cboxClose"></div></div><div style="float: left;" id="cboxMiddleRight"></div></div><div><div style="float: left;" id="cboxBottomLeft"></div><div style="float: left;" id="cboxBottomCenter"></div><div style="float: left;" id="cboxBottomRight"></div></div></div></div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <td><img src="ava-vpn-setup_files/bg_sh_top_left.jpg" height="129" width="37"></td>
+    <td background="ava-vpn-setup_files/bg_top_mid.gif" height="129" valign="top"><table border="0" cellpadding="0" cellspacing="0" height="129" width="100%">
+      <tbody><tr>
+        <td rowspan="2" height="129" width="3"><img src="ava-vpn-setup_files/bg_brdr_left.gif" height="129" width="3"></td>
+        <td height="101"><table border="0" cellpadding="0" cellspacing="20" width="100%">
+          <tbody><tr>
+            <td align="left"><a href="http://www.ava.net.ua/"><img src="ava-vpn-setup_files/ava_logo.png" alt="Компьютерная сеть AVA.Net" border="0" height="54" width="238"></a></td>
+            <td align="right"><a href="http://www.ava.net.ua//ads/adclick.php?n=ab1c0a20" target="_blank"><img class=" lipmqeutotwaejetmkgs" src="ava-vpn-setup_files/adview.gif" alt="" border="0"></a></td>
+          </tr>
+        </tbody></table></td>
+        <td rowspan="2" align="right" height="129" width="3"><img src="ava-vpn-setup_files/bg_brdr_right.gif" height="129" width="3"></td>
+      </tr>
+      <tr>
+        <td height="28">
+		  <table id="menu" background="ava-vpn-setup_files/bg_top_mid_.gif" border="0" cellpadding="0" cellspacing="0" height="28" width="100%">
+          <tbody><tr>
+            <td class="bg_left_menu" style="font-size : 11px; width: 340px;" valign="middle"><a href="http://www.ava.net.ua//index.php?page=news" class="menu">Новости</a> &nbsp; <a href="http://www.ava.net.ua//index.php?page=Uslugi" class="menu">Услуги</a> &nbsp; <a href="http://www.ava.net.ua//index.php?page=Zona_pokritiya" class="menu">Зона покрытия</a> &nbsp; <a href="http://www.ava.net.ua//index.php?page=O_nas" class="menu">О нас</a> &nbsp; <a href="http://www.ava.net.ua//index.php?page=Kontakt" class="menu">Контакт</a> &nbsp;   </td>
+            <td align="left" valign="middle"></td>
+			<td style="text-align: center;"><a href="http://www.ava.net.ua//modal.php?name=kyivstar" class="menu modal-link" style="font-size: 12px;">Сообщить АВАНЕТ о телефонном звонке от Київстар (667)</a></td>
+            <td style="width: 120px;" align="right" valign="middle">
+
+	<script type="text/javascript">
+	$(function(){
+		$(".gigabit-checker").live("click", (function(){
+			$.modal(''
+				+ '<p>Вы зашли на сайт www.ava.net.ua не из сети ИП AVANet, поэтому информация по возможности подключения к оборудованию ИП AVANet в режиме 1&nbsp;Гигабит не может быть выдана.</p><p>ИП AVANet бесплатно предоставляет своим абонентам возможность подключения к своему оборудованию в режиме 1&nbsp;Гигабит. <a href="http://www.ava.net.ua//index.php?page=Podklyuchenie_na_skorosti_1_Gigabi">Подробней</a>.</p>'
+				+ '<p align="right"><a href="" title="close" onclick="$.modal.close(); return false;" style="text-decoration: underline;">закрыть</a></p>'
+			,{width: 490});
+			return false;
+		}));
+	});
+	</script>
+	
+	<a href="#" class="gigabit-checker" style="display: inline-block;">
+		<img style="border-style: none;" src="ava-vpn-setup_files/not_active.png" align="middle">
+	</a>
+</td>
+            <td class="bg_right_menu" style="font-size: 11px; width: 95px;" align="right" valign="middle">IP: 178.137.181.148</td>
+          </tr>
+          </tbody></table>
+		</td>
+        </tr>
+    </tbody></table></td>
+    <td><img src="ava-vpn-setup_files/bg_sh_top_right.jpg" height="129" width="37"></td>
+  </tr>
+  <tr>
+    <td class="bg_left_shade" align="right" valign="top" width="37"><img src="ava-vpn-setup_files/bg_sh_mid_left.jpg" height="415" width="37"></td>
+    <td valign="top"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody><tr>
+        <td style="padding : 20px;" valign="top"><p class="title">Как настроить AVANETVPN ?</p>
+          <p><font size="2"><a href="#what_is_avanetvpn">1. Что такое AVANETVPN и зачем он нужен.</a></font> <font size="2"><br>
+<a href="#configure_avanetvpn_winxp">2. Настройка AVANETVPN соединения для Windows XP.</a></font>  <font size="2"><br>
+<a href="#configure_avanetvpn_win9x">3. Настройка AVANETVPN соединения для Windows 98.</a></font>  <font size="2"><br>
+<a href="#vista">4. Настройка AVANETVPN соединения для Windows Vista</a><br>
+</font><font size="2"><a href="#windows7">5. Настройка AVANETVPN соединения для Windows 7</a></font><br>
+<br>
+</p><p><strong>1.</strong> <a name="what_is_avanetvpn"></a><strong>Что такое AVANETVPN и зачем он нужен </strong> </p>
+<p align="justify"><strong>VPN</strong> ( <strong>V</strong>irtual <strong>P</strong>rivate <strong>N</strong>etwork
+ “Виртуальная Частная Сеть” ) Служит для установки авторизированного 
+соединения и обеспечение безопасности передачи данных между двумя 
+компьютерами. <br>
+В КС AVANet <strong>VPN</strong> используется для обеспечения безопасности соединения с интернет внутри сети AVANet. Если вы подключены через систему <strong>AVANETVPN</strong>, то вы можете пользоваться всеми ресурсами локальной сети без установления <strong>VPN</strong> соединения, а ресурсами сети интернет, только с установленным <strong>VPN</strong> соединением. </p>
+<p><strong>2.</strong> <a name="configure_avanetvpn_winxp"></a><strong>Настройка AVANETVPN соединения для Windows-XP </strong></p>
+<div align="justify">
+<p>Описание последовательности действий (с исходного положения “рабочий стол”):</p>
+<ul>
+    <li> Пуск-&gt;Все программы-&gt;стандартные-&gt;связь-&gt;мастер новых подключений.              </li>
+</ul>
+</div>
+<div align="center"><img alt="" src="ava-vpn-setup_files/vpn_new_conn.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/vpn_new_conn.jpg" height="245" width="320"></div>
+<table width="98%">
+    <tbody>
+        <tr>
+            <td>
+            <li>Нажмите "Далее &gt;"</li>
+            <li>Выберите<strong> "Подключение к сети на рабочем месте"</strong> -&gt; далее -&gt; выбрать <strong>"Подключение к виртуальной частной сети"</strong>
+            <div align="center">        <img alt="" src="ava-vpn-setup_files/vpn_2.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/vpn_2.jpg" height="245" width="320">        <img alt="" src="ava-vpn-setup_files/vpn_3.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/vpn_3.jpg" height="245" width="320"> 	  </div>
+            <strong></strong></li>
+            <li>далее -&gt; в поле "<strong>Организация</strong>" введите "AVANet"</li>
+            <li>далее -&gt; выбрать "<strong>не набирать номер для предварительного подключения</strong>"</li>
+            <li>далее -&gt; в поле "<strong>Имя компьютера или ip адрес</strong>" ввести "<strong>vpn.ava.net.ua</strong>" (без кавычек)<br>
+            </li>
+            <li>далее -&gt; готово!</li>
+            <li>Пуск -&gt; Панель управления -&gt; Сетевые подключения -&gt; два раза кликнуть на ярлык сетевого подключения "AVANet"
+            <ul>
+                <li>выбрать свойства.</li>
+                <li>перейти в закладку "безопасность".</li>
+                <li>убрать галочку на "требуется шифрование данных".</li>
+                <li>нажать "OK".</li>
+                <li>в поле "пользователь" введите ваш системный логин сети AVANet</li>
+                <li>в  поле "пароль" введите ваш vpn-пароль сети AVANet</li>
+                <li>выберите галочку "сохранять имя пользователя и пароль"</li>
+                <li>нажмите "Подключение". Всё должно соединиться, <strong>AVANETVPN</strong> установлен.</li>
+            </ul>
+            </li>
+            <p><strong>3.</strong> <a name="configure_avanetvpn_win9x"></a><strong>Настройка AVANETVPN соединения для Windows 98 </strong></p>
+            1.Нажимаете <strong>Пуск-&gt;Настройка-&gt;Панель Управления</strong>
+            <ul>
+                <li>установка и удаление программ-&gt;выбираете закладку "установка windows"</li>
+                <li>В ней выбираете "состав" параметра "связь" ставите галочку на "виртуальная частная сеть"-нажимаете везде ОК.</li>
+                <li>Перезагрузите компьютер.</li>
+            </ul>
+            2.Нажимаете <strong>Пуск-&gt;Программы-&gt;Стандартные-&gt;Связь-&gt;”Удалённый доступ к сети”</strong><br>
+            <center><img alt="" src="ava-vpn-setup_files/s1.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/s1.jpg" height="501" width="560"></center>    <center><img alt="" src="ava-vpn-setup_files/s2.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/s2.jpg" height="487" width="560"></center>
+            <p align="justify">   На этом этапе у вас могло открыться 
+несколько окон.   Если у вас открылось окно, в котором просят ввести 
+параметры набора,   такие как код города и тому подобное, то просто 
+введите код города (0652)   и нажмите закрыть.      В окне с заголовком 
+“Удаленный доступ к сети” нажимаете   двойным кликом на ярлык “Новое 
+соединение”-&gt;откроется новое окно с заголовком   "Новое соединение", в
+ поле названия соединения вводите "VpnAVANet"   </p>
+            <center><img alt="" src="ava-vpn-setup_files/s3.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/s3.jpg" height="323" width="441"></center>    нажимаете "далее",вводите имя компьютера "vpn.ava.net.ua",    <center><img alt="" src="ava-vpn-setup_files/s4.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/s4.jpg" height="323" width="441"></center>    нажимаете "далее"    <center><img alt="" src="ava-vpn-setup_files/s5.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/s5.jpg" height="323" width="441"></center>    нажимаете "готово", окно "новое подключение” закроется и   осталось окно "удаленный доступ к сети"    <center><img alt="" src="ava-vpn-setup_files/s6.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/s6.jpg" height="487" width="560"></center>
+    в котором   появился ярлык только что созданного соединения 
+"VpnAVANet", щелкните по этому ярлыку   двойным кликом и откроется окно с
+ заголовком "установка связи"  <center><img alt="" src="ava-vpn-setup_files/s7.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/s7.jpg" height="487" width="560"></center>
+    в котором введите ваш логин   КСAVANet в поле "Имя пользователя" и в
+ поле "Пароль" введите vpn-пароль КС AVANet, поставьте   галочку 
+напротив "сохранять пароль", нажмите "подключиться"   <center><img alt="" src="ava-vpn-setup_files/s8.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/s8.jpg" height="419" width="560"></center>
+    после нескольких секунд   установки связи произойдет подключение 
+которое будет обозначено отсутствием выдачи каких   либо окон 
+информирующих об ошибке и появлением маленького значка в виде двух 
+связанных   мониторчиков в правой части панели задач (правый нижний угол
+ экрана),   <center><img alt="" src="ava-vpn-setup_files/s9.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/vpn/s9.jpg" height="416" width="560"></center>
+    если все прошло без ошибок то вы правильно все настроили.   Теперь 
+вы можете разорвать vpn соединение щелкнув на   ярлык "VpnAVANet" 
+двойным кликом и в открывшемся окне с заголовком "Подключено к 
+VpnAVANet"   нажмите "отключиться".Теперь вы можете мышкой "перетащить" 
+ярлык "VpnAVANet" из окна   "Удаленный доступ к сети" на рабочий стол 
+для удобства пользования.<br>
+            <br>
+            <br>
+            <font size="3"><strong><a name="vista"></a>Настройка AVANETVPN соединения для Windows Vista</strong></font> <font size="3"><strong> </strong></font>
+            <p style="margin-bottom: 0cm;" align="center"> </p>
+            <table width="98%">
+                <tbody>
+                    <tr>
+                        <td>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">Для того чтобы настроить VPN соединение в <strong><em>Windows Vista</em></strong>, необходимо проделать следующую последовательность действий.</font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">Для начала следует нажать на кнопку «<strong><em>Пуск</em></strong>» в левом нижнем углу экрана <strong>(1)</strong></font> <font style="font-size: 9pt;" size="2">и ввести в строке поиска начальные буквы слова <strong><em>Центр</em></strong> <strong>(2)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img src="ava-vpn-setup_files/1.jpg" alt="" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/1.jpg" align="middle" height="607" width="535">&nbsp;  </p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">Особая технология <strong><em>Windows Vista</em></strong> автоматически найдет все доступные варианты со словом <strong><em>Центр </em></strong>&nbsp;и отобразит их в результатах поиска выше. Вам лишь будет необходимо выбрать там вариант под названием «<strong><em>Центр управления сетями и общим доступом</em></strong>» <strong>(3)</strong></font></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;&nbsp;<font style="font-size: 9pt;" size="2">После этого на экране появится окошко, изображенное на рисунке ниже:</font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><br>
+                        <img src="ava-vpn-setup_files/2.jpg" alt="" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/2.jpg" align="middle" height="514" width="699">  </p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">В нем Вам необходимо выбрать элемент <strong><em>Установка подключения или сети</em></strong></font></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">В следующем окне Вы выбираете пункт <strong><em>Подключение к рабочему месту</em> &nbsp;(1)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><br>
+                        <img src="ava-vpn-setup_files/3.jpg" alt="" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/3.jpg" align="middle" height="490" width="653">  </p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">После чего необходимо нажать на кнопочку <strong><em>Далее</em></strong> <strong>(2)</strong></font></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">Если у Вас до этого уже были созданы какие-либо удаленные или VPN соединения, то появится окно, изображенное на рисунке ниже.</font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img src="ava-vpn-setup_files/4.jpg" alt="" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/4.jpg" align="middle" height="486" width="648"><br>
+                        </p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">В противном случае данное окно не появится, и Вы смело можете переходить к следующему этапу настройки.</font></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> <font style="font-size: 9pt;" size="2">В нем следует отказаться от предложения использовать ранее созданные соединения <strong>(1)</strong></font> <font style="font-size: 9pt;" size="2">и нажать на кнопочку <strong><em>Далее</em>(2)</strong></font></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;&nbsp;<font style="font-size: 9pt;" size="2">В результате появится следующее окно, в котором <strong><em>Windows</em></strong> спросит о способе подключения к <strong><em>Internet</em></strong>. </font> </p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">В данном окне следует выбрать пункт <strong>Использовать мое подключение к Интернету (VPN)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><br>
+                        <img src="ava-vpn-setup_files/5.jpg" alt="" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/5.jpg" align="middle" height="494" width="656">  </p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">После чего появится окошко с предложением настроить подключение к Интернету перед продолжением. В нем следует выбрать вариант «<strong>Отложить настройку подключения к Интернету</strong>»:</font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><br>
+                        <img src="ava-vpn-setup_files/6.jpg" alt="" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/6.jpg" align="middle" height="481" width="645">  </p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">В поле <strong>(1)</strong></font> <font style="font-size: 9pt;" size="2">следует ввести <strong>Адрес в Интернете</strong> <em>(адрес VPN сервера) </em>и <strong>Имя местоназначения</strong> <em>(название соединения)</em>. В обоих случаях следует указать <strong>vpn.ava.net.ua</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">Кроме того, следует проверить, что отмечен галочкой пункт <strong><em>Не подключаться сейчас….</em></strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">После завершения данной процедуры необходимо нажать на кнопочку <strong><em>Далее </em>(2)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><br>
+                        <img src="ava-vpn-setup_files/6a.jpg" alt="" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/6a.jpg" align="middle" height="474" width="641">  </p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">В появившемся следом окне ставите тире в поле <strong><em>Пользователь &nbsp;</em>(1)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><br>
+                        <img src="ava-vpn-setup_files/7.jpg" alt="" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/7.jpg" align="middle" height="493" width="650">  </p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">И нажимаете на кнопку <strong><em>Создать</em></strong> внизу <strong>(2)</strong></font></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">В следующем окне нажимаете на кнопку <strong><em>Закрыть</em></strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/8.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/8.jpg" align="middle" height="478" width="642">  </p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">Затем Вы возвращаетесь в <strong><em>Центр управления сетями и общим доступом</em></strong></font> <strong><font style="font-size: 9pt;" size="2">(1)</font></strong> <font style="font-size: 9pt;" size="2">и выбираете там пункт <strong><em>Управление сетевыми подключениями</em> (2)</strong></font></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> <img alt="" src="ava-vpn-setup_files/9.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/9.jpg" align="middle" height="676" width="704">  </p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;&nbsp;<font style="font-size: 9pt;" size="2">В открывшемся окне Вы нажимаете правой клавишей на значок <strong>vpn.ava.net.ua (1)</strong></font> <font style="font-size: 9pt;" size="2">и выбираете во всплывающем меню пункт <strong>Свойства (2)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/10.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/10.jpg" align="middle" height="453" width="449">  </p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">В открывшемся окне свойств созданного Вами VPN соединения Вы переходите во вкладку <strong><em>Параметры</em> (1)</strong></font> <font style="font-size: 9pt;" size="2">и снимаете галочку с пункта <strong>Включать домен входа в Windows</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">Должны быть отмечены только опции из пункта <strong>(2)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/11.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/11.jpg" align="middle" height="475" width="397"></p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">Затем приводите все поля из пункта <strong>(3)</strong></font> <font style="font-size: 9pt;" size="2">в вид, указанный на рисунке выше, и отмечаете галочкой пункт <strong>(4)</strong></font></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">После этого переходите во вкладку <strong><em>Безопасность</em> (1)</strong></font> <font style="font-size: 9pt;" size="2">и в ней снимаете галочку с пункта <strong><em>Требуется шифрование данных </em>(2)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/12.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/12.jpg" align="middle" height="470" width="392"></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">Затем переходите во вкладку <strong><em>Сеть</em> (1)</strong>, где оставляете отмеченным только компонент <strong>Протокол Интернета версии 4 (TCP/IPv4)</strong>, затем следует нажать на кнопку <strong>OK (2)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/13.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/13.jpg" align="middle" height="475" width="397"></p>
+                        <p style="border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(0, 0, 0); border-width: medium medium 1pt; padding: 0cm 0cm 0.05cm; margin-bottom: 0cm;" align="center"> &nbsp;</p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">Затем Вы возвращаетесь в окно <em>управления сетевыми подключениями</em>, где дважды щелкаете по значку <strong>vpn.ava.net.ua</strong> для появления окошка <strong>Подключение: vpn.ava.net.ua</strong> [см. справа]</font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/141.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/14(1).jpg" align="middle" height="446" width="674"><br>
+                        </p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">В данном окошке следует заполнить поле <strong>Пользователь (1)</strong></font>  </p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2"><em>Именем пользователя является Ваш <u>логин</u>, узнать который Вы можете из карточки абонента</em></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">Затем следует заполнить поле <strong>Пароль (2)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2"><em>Паролем в данном случае будет являться Ваш <u>vpn-пароль</u>, узнать его Вы также можете из карточки абонента</em></font></p>
+                        <p style="border: medium none; padding: 0cm; margin-bottom: 0cm;" align="center"> &nbsp;<font style="font-size: 9pt;" size="2">После чего Вы по необходимости отмечаете галочкой пункт <strong>Сохранять имя пользователя и пароль (3)</strong></font> <font style="font-size: 9pt;" size="2">и нажимаете на кнопочку <strong>Подключение (4)</strong></font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">В случае если все было сделано успешно, Вы увидите окошко, отображающее ход подключения:</font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/15.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/15.jpg" align="middle" height="162" width="372">  </p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">После установки связи с VPN сервером в <em>трее</em> при наведении на значок подключений появится информация о том, что VPN соединение успешно установлено:</font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/16.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/16.jpg" align="middle" height="177" width="280">  </p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">После чего <span lang="en-US">Vista</span></font> <font style="font-size: 9pt;" size="2">предложит выбрать условия сетевого размещения, чтобы задействовать те или иные способы сетевого взаимодействия (<span lang="en-US">sharing</span>, службу обнаружения и пр.)</font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/17.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/17.jpg" align="middle" height="538" width="638">  </p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">Рекомендуется выбрать вариант «<strong>Общественно место</strong>», а в следующем окошке останется лишь нажать на «<strong>Закрыть</strong>» </font> </p>
+                        <p style="margin-bottom: 0cm;" align="center"><img alt="" src="ava-vpn-setup_files/18.jpg" ilo-full-src="https://www.ava.net.ua/UserFiles/Image/howtovistavpn/18.jpg" align="middle" height="535" width="634">  </p>
+                        <p style="margin-bottom: 0cm;" align="center">&nbsp;<font style="font-size: 9pt;" size="2">Поздравляем! Вы успешно прошли все этапы создания VPN соединения.</font></p>
+                        <p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">Теперь Вы можете пользоваться интернетом!</font></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p><font size="3"><strong><a name="windows7"></a>Настройка AVANET VPN соединения для Windows 7</strong></font></p>
+Нажмите кнопку Пуск <img src="ava-vpn-setup_files/start_vista.gif" alt="" height="33" width="39">,  выберите <strong>Панель Управления</strong>
+<div align="center"><img src="ava-vpn-setup_files/win7_01.jpg" alt="" height="476" width="458"><hr>
+</div>
+<p>Выберите категорию <strong>Сеть и Интернет</strong></p>
+<div align="center"><img src="ava-vpn-setup_files/win7_02.jpg" alt="" height="656" width="650"><hr>
+</div>
+<p>Выберите <strong>Центр управления сетями и общим доступом</strong></p>
+<div align="center"><img src="ava-vpn-setup_files/win7_03.jpg" alt="" height="656" width="650"><hr>
+</div>
+<p>Выберите <strong>Создание нового подключения или сети</strong></p>
+<div align="center"><img src="ava-vpn-setup_files/win7_04.jpg" alt="" height="656" width="650"><hr>
+</div>
+<p>Выберите вариант подключения <strong>Подключение к рабочему месту</strong></p>
+<div align="center"><img src="ava-vpn-setup_files/win7_05.jpg" alt="" height="460" width="628"><hr>
+</div>
+<p>На вопрос системы "Использовать существующее подключение?" ответьте <strong>Нет,  создать новое подключение</strong></p>
+<div align="center"><img src="ava-vpn-setup_files/win7_06.jpg" alt="" height="460" width="628"><hr>
+</div>
+<p>В следующем окне выберите <strong>Использовать мое подключение к  Интернету (VPN)</strong></p>
+<div align="center"><img src="ava-vpn-setup_files/win7_07.jpg" alt="" height="460" width="628"><hr>
+</div>
+<p>Выберите <strong>Отложить настройку подключения к Интернету</strong></p>
+<div align="center"><img src="ava-vpn-setup_files/win7_08.jpg" alt="" height="460" width="628"><hr>
+</div>
+<p>Введите адрес VPN-сервера (<strong>vpn.ava.net.ua</strong>) и название для подключения  (например,<strong> AVAnet</strong>)</p>
+<div align="center"><img src="ava-vpn-setup_files/win7_09.jpg" alt="" height="460" width="628"><hr>
+</div>
+<p>Введите учетные данные с карты регистрации. <br>
+</p>
+<div align="center"><img src="ava-vpn-setup_files/win7_10.jpg" alt="" height="460" width="628"><hr>
+</div>
+<p>Нажмите <strong>Закрыть</strong></p>
+<div align="center"><img src="ava-vpn-setup_files/win7_11.jpg" alt="" height="460" width="628"><hr>
+</div>
+<p>Откройте свойства созданного подключения (в примере <strong>AVAnet</strong>)</p>
+<div align="center"><img src="ava-vpn-setup_files/win7_12.jpg" alt="" height="485" width="379"><hr>
+</div>
+<p>Установите параметры соответственно рисунку</p>
+<div align="center"><img src="ava-vpn-setup_files/win7_13.jpg" alt="" height="481" width="377"><hr>
+</div>
+<p>Установите параметры соответственно рисунку</p>
+<div align="center"><img src="ava-vpn-setup_files/win7_14.jpg" alt="" height="481" width="377"><hr>
+</div>
+<p>Нажмите <strong>Да</strong></p>
+<div align="center"><img src="ava-vpn-setup_files/win7_15.jpg" alt="" height="184" width="476"><hr>
+</div>
+<p>Установите параметры соответственно рисунку</p>
+<div align="center"><img src="ava-vpn-setup_files/win7_16.jpg" alt="" height="481" width="377"><br>
+<br>
+<font style="font-size: 9pt;" size="2">Поздравляем! Вы успешно прошли все этапы создания VPN  соединения.</font>
+<p style="margin-bottom: 0cm;" align="center"><font style="font-size: 9pt;" size="2">Теперь Вы можете пользоваться  интернетом!</font></p>
+</div><p></p></td>
+        <td align="left" valign="top" width="218"><table style="margin-top : 3px;" border="0" cellpadding="0" cellspacing="0" width="215">
+          <tbody><tr>
+            <td height="32" width="11"><img src="ava-vpn-setup_files/bg_mnu_top_l.png" height="32" width="11"></td>
+            <td height="32" width="192"><img src="ava-vpn-setup_files/bg_mnu_top_m_0.png" height="32" width="192"></td>
+            <td height="32" width="12"><img src="ava-vpn-setup_files/bg_mnu_top_r.png" height="32" width="12"></td>
+          </tr>
+          <tr>
+            <td background="ava-vpn-setup_files/bg_mnu_mid_l_0.gif" valign="top" width="11"><img src="ava-vpn-setup_files/bg_mnu_mid_l.jpg" height="110" width="11"></td>
+            <td style="background-position : top right; background-repeat : no-repeat; padding : 9px; padding-left : 25px;" background="ava-vpn-setup_files/bg_mnu_top_m_0_.gif" bgcolor="#EEEEEE" valign="top" width="192"><form method="post" action="?page=Kak_nastroity_AVANETVPN_3F&amp;">Пользователь:<br><input value="kravets1ja" name="checkuser" class="loginel" style="margin-bottom : 4px; margin-top : 1px; width : 135px;" type="text"><br>Пароль:<br><input name="checkpass" class="loginel" style="margin-bottom : 4px; width : 135px;" type="password"><br><input name="logincheck" value="Войти" class="submitbtn" type="submit"></form></td>
+            <td background="ava-vpn-setup_files/bg_mnu_mid_r_0.gif" valign="top" width="12"><img src="ava-vpn-setup_files/bg_mnu_mid_r.jpg" height="110" width="12"></td>
+          </tr>
+          <tr>
+            <td height="9" width="11"><img src="ava-vpn-setup_files/bg_mnu_bot_left.gif" height="9" width="11"></td>
+            <td height="9" width="192"><img src="ava-vpn-setup_files/bg_mnu_bot_mid.gif" height="9" width="192"></td>
+            <td height="9" width="12"><img src="ava-vpn-setup_files/bg_mnu_bot_right.gif" height="9" width="12"></td>
+          </tr>
+        </tbody></table>
+          <!--
+           -->
+          <table style="margin-top : 3px;" border="0" cellpadding="0" cellspacing="0" width="215">
+            <tbody><tr>
+              <td height="32" width="5"><img src="ava-vpn-setup_files/bg_mnu_top_l_1.gif" height="32" width="5"></td>
+              <td height="32" width="205"><img src="ava-vpn-setup_files/bg_mnu_top_m_2.png" height="32" width="205"></td>
+              <td height="32" width="5"><img src="ava-vpn-setup_files/bg_mnu_top_r_1.gif" height="32" width="5"></td>
+            </tr>
+            <tr>
+              <td background="ava-vpn-setup_files/bg_mnu_mid_l_1.gif" valign="top" width="5"><img src="ava-vpn-setup_files/bg_mnu_mid_l_1.png" height="114" width="5"></td>
+              <td style="background-position : top right; background-repeat : no-repeat; padding : 15px;" background="ava-vpn-setup_files/bg_mnu_top_m_2_.gif" bgcolor="#EEEEEE" valign="top" width="205">- <a href="http://mail.ava.net.ua/" target="_blank" class="black_menu">Web-почта</a><br>- <a href="http://www.ava.net.ua/?page=Forumi" class="black_menu">Форумы</a><br>- <a href="http://www.ava.net.ua//index.php?page=Fayli" class="black_menu">Файлы</a><br></td>
+              <td background="ava-vpn-setup_files/bg_mnu_mid_r_1.gif" valign="top" width="5"><img src="ava-vpn-setup_files/bg_mnu_mid_r_1.png" height="114" width="5"></td>
+            </tr>
+            <tr>
+              <td height="5" width="5"><img src="ava-vpn-setup_files/bg_mnu_bot_l_1.gif" height="5" width="5"></td>
+              <td height="5" width="205"><img src="ava-vpn-setup_files/bg_mnu_bot_m_1.gif" height="5" width="205"></td>
+              <td height="5" width="5"><img src="ava-vpn-setup_files/bg_mnu_bot_r_1.gif" height="5" width="5"></td>
+            </tr>
+          </tbody></table>
+          <table style="margin-top : 3px;" border="0" cellpadding="0" cellspacing="0" width="215">
+            <tbody><tr>
+              <td height="32" width="5"><img src="ava-vpn-setup_files/bg_mnu_top_l_1.gif" height="32" width="5"></td>
+              <td height="32" width="205"><img src="ava-vpn-setup_files/bg_mnu_top_m_1.png" height="32" width="205"></td>
+              <td height="32" width="5"><img src="ava-vpn-setup_files/bg_mnu_top_r_1.gif" height="32" width="5"></td>
+            </tr>
+            <tr>
+              <td background="ava-vpn-setup_files/bg_mnu_mid_l_1.gif" valign="top" width="5"><img src="ava-vpn-setup_files/bg_mnu_mid_l_1.png" height="114" width="5"></td>
+              <td style="background-position : top right; background-repeat : no-repeat; padding : 15px;" background="ava-vpn-setup_files/bg_mnu_top_m_1_.gif" bgcolor="#EEEEEE" valign="top" width="205">- <a href="http://www.ava.net.ua//index.php?page=underground" class="black_menu">Сетевые ресурсы пользователей</a><br></td>
+              <td background="ava-vpn-setup_files/bg_mnu_mid_r_1.gif" valign="top" width="5"><img src="ava-vpn-setup_files/bg_mnu_mid_r_1.png" height="114" width="5"></td>
+            </tr>
+            <tr>
+              <td height="5" width="5"><img src="ava-vpn-setup_files/bg_mnu_bot_l_1.gif" height="5" width="5"></td>
+              <td height="5" width="205"><img src="ava-vpn-setup_files/bg_mnu_bot_m_1.gif" height="5" width="205"></td>
+              <td height="5" width="5"><img src="ava-vpn-setup_files/bg_mnu_bot_r_1.gif" height="5" width="5"></td>
+            </tr>
+          </tbody></table>
+          <table style="margin-top : 3px; margin-bottom : 3px;" border="0" cellpadding="0" cellspacing="0" width="215">
+            <tbody><tr>
+              <td height="32" width="5"><img src="ava-vpn-setup_files/bg_mnu_top_l_1.gif" height="32" width="5"></td>
+              <td height="32" width="205"><img src="ava-vpn-setup_files/bg_mnu_top_m_3.png" height="32" width="205"></td>
+              <td height="32" width="5"><img src="ava-vpn-setup_files/bg_mnu_top_r_1.gif" height="32" width="5"></td>
+            </tr>
+            <tr>
+              <td background="ava-vpn-setup_files/bg_mnu_mid_l_1.gif" valign="top" width="5"><img src="ava-vpn-setup_files/bg_mnu_mid_l_1.png" height="114" width="5"></td>
+              <td style="background-position : top right; background-repeat : no-repeat; padding : 15px;" background="ava-vpn-setup_files/bg_mnu_top_m_3_.gif" bgcolor="#EEEEEE" valign="top" width="205">- <a href="http://www.ava.net.ua//index.php?page=oplata" class="black_menu">Способы оплаты</a><br>- <a href="http://www.ava.net.ua//index.php?page=Uslugi1175682386" class="black_menu">Описание услуг</a><br>- <a href="http://www.ava.net.ua//index.php?page=Chasto_zadavaemie_voprosi" class="black_menu">Часто задаваемые вопросы</a><br></td>
+              <td background="ava-vpn-setup_files/bg_mnu_mid_r_1.gif" valign="top" width="5"><img src="ava-vpn-setup_files/bg_mnu_mid_r_1.png" height="114" width="5"></td>
+            </tr>
+            <tr>
+              <td height="5" width="5"><img src="ava-vpn-setup_files/bg_mnu_bot_l_1.gif" height="5" width="5"></td>
+              <td height="5" width="205"><img src="ava-vpn-setup_files/bg_mnu_bot_m_1.gif" height="5" width="205"></td>
+              <td height="5" width="5"><img src="ava-vpn-setup_files/bg_mnu_bot_r_1.gif" height="5" width="5"></td>
+            </tr>
+          </tbody></table><a href="http://www.rakurs.com.ua/" target="_blank" style="color: #FFFFFF; font-size: 1px;">.</a>
+          <!--p align="center"><a target="_blank" href="http://www.crimea-ix.net/"><img src="/images/crimeaix-120-60.jpg" border="0" /></a></p-->
+          <p align="center"><a target="_blank" href="http://www.crimea-ix.net/"><img class=" lipmqeutotwaejetmkgs" src="ava-vpn-setup_files/crimeaix-120-60.jpg" border="0"></a></p>
+          </td>
+      </tr>
+    </tbody></table></td>
+    <td class="bg_right_shade" align="left" valign="top" width="37"><img src="ava-vpn-setup_files/bg_sh_mid_right.jpg" height="415" width="37"></td>
+  </tr>
+  <tr>
+    <td class="bg_left_shade" height="30">&nbsp;</td>
+    <td background="ava-vpn-setup_files/bg_bot.gif" height="30">&nbsp;</td>
+    <td class="bg_right_shade" height="30">&nbsp;</td>
+  </tr>
+</tbody></table>
+
+
+</body></html>

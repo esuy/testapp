@@ -1,0 +1,61 @@
+a. Physical Abuse                        b. Verbal / Emotional Abuse     c. Sexual Abuse    
+d. Sexual relationships                e. Poor self-esteem                   f. Depression       
+g. Self-harm, Suicide attempts    h. Alcohol / Drug Abuse
+
+ 
+Depression
+Alcohol or drug abuse
+Self-harm / suicide attempts
+Unknown
+
+Yes
+Disclosure process underway
+No
+
+Raised with caregiver
+Initiated process   
+Post disclosure
+
+Fully prepared to disclose
+Need counselling support to disclose
+Willing to disclose but non-conducive environment
+No intention to disclose
+
+
+Not a concern
+Minor concern
+Major concern
+Unknown
+
+Support Counselling
+Child Counselling    
+Adherence Counselling
+Disclosure Counselling 
+Preventive Education
+
+
+$visitTypes = dPgetSysVal('VisitType');
+$healthIssues = dPgetSysVal('ChildHealthIssues');
+$caregiverIssues = dPgetSysVal('CaregiverHealthIssues');
+$disclosureStatus = dPgetSysVal('DisclosureStatus');
+$disclosureResponse = dPgetSysVal('DisclosureResponse');
+$disclosureProcess = dPgetSysVal('DisclosureProcessStatus');
+$hivTreatmentStatus = dPgetSysVal('HIVTreatmentOptions');
+$serviceOptions = dPgetSysVal('ServiceOptions');
+$stigmatizationConcern = dPgetSysVal('StigmatizationOptions');
+
+insert into modules(
+mod_id,
+mod_name,
+mod_directory,
+mod_version,
+mod_type,
+mod_active,
+mod_ui_name,
+mod_ui_order,
+mod_ui_active,
+permissions_item_table,
+permissions_item_field
+)
+values
+(22, 'Counselling Visits', 'counselling',  '1.0.0', 'core', 1, 'Counselling Visits', 22, 0, 'counselling', 'counselling_id' )

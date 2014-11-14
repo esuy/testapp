@@ -1,0 +1,300 @@
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_staging (activity_date,activity_curriculum,activity_curriculum_desc,activity_entry_date,activity_description,activity_clinic,activity_clinic_name,activity_male_count,activity_female_count,activity_notes) VALUES ('2009-04-21','2',NULL,'2009-05-05','Disclosure for Caregivers','6','Kangemi','5','31',NULL);
+Unknown column 'activity_clinic_name' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_staging (activity_date,activity_curriculum,activity_curriculum_desc,activity_entry_date,activity_description,activity_clinic,activity_clinic_name,activity_male_count,activity_female_count,activity_notes) VALUES (\'2009-04-21\',\'2\',NULL,\'2009-05-05\',\'Disclosure for Caregivers\',\'6\',\'Kangemi\',\'5\',\'31\',NULL);
+Unknown column \'activity_clinic_name\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_staging (activity_date,activity_curriculum,activity_curriculum_desc,activity_entry_date,activity_description,activity_clinic,activity_clinic_name,activity_male_count,activity_female_count,activity_notes) VALUES (\'2009-04-21\',\'2\',NULL,\'2009-05-05\',\'Disclosure for Caregivers\',\'6\',\'Kangemi\',\'5\',\'31\',NULL);')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_staging (activity_date,activity_curriculum,activity_curriculum_desc,activity_entry_date,activity_description,activity_clinic,activity_clinic_name,activity_male_count,activity_female_count,activity_notes) VALUES ('2009-04-13','2',NULL,'2009-05-05',NULL,'6','Kangemi','18','13','The children started arriving by 8.00 and by 9.00 they were served with a cup of tea and bread.');
+Unknown column 'activity_clinic_name' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_staging (activity_date,activity_curriculum,activity_curriculum_desc,activity_entry_date,activity_description,activity_clinic,activity_clinic_name,activity_male_count,activity_female_count,activity_notes) VALUES (\'2009-04-13\',\'2\',NULL,\'2009-05-05\',NULL,\'6\',\'Kangemi\',\'18\',\'13\',\'The children started arriving by 8.00 and by 9.00 they were served with a cup of tea and bread.\');
+Unknown column \'activity_clinic_name\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_staging (activity_date,activity_curriculum,activity_curriculum_desc,activity_entry_date,activity_description,activity_clinic,activity_clinic_name,activity_male_count,activity_female_count,activity_notes) VALUES (\'2009-04-13\',\'2\',NULL,\'2009-05-05\',NULL,\'6\',\'Kangemi\',\'18\',\'13\',\'The children started arriving by 8.00 and by 9.00 they were served with a cup of tea and bread.\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES ('Disclosure for Caregivers','2009-04-21','Disclosure','1',NULL,'Paul Mulongo');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (\'Disclosure for Caregivers\',\'2009-04-21\',\'Disclosure\',\'1\',NULL,\'Paul Mulongo\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (\'Disclosure for Caregivers\',\'2009-04-21\',\'Disclosure\',\'1\',NULL,\'Paul Mulongo\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES ('Disclosure for Caregivers','2009-04-21','Disclosure','1',NULL,'Florence Nyanduaro');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (\'Disclosure for Caregivers\',\'2009-04-21\',\'Disclosure\',\'1\',NULL,\'Florence Nyanduaro\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (\'Disclosure for Caregivers\',\'2009-04-21\',\'Disclosure\',\'1\',NULL,\'Florence Nyanduaro\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (NULL,'2009-04-13','Lifeskills','2',NULL,'Florence Nyanduaro');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (NULL,\'2009-04-13\',\'Lifeskills\',\'2\',NULL,\'Florence Nyanduaro\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (NULL,\'2009-04-13\',\'Lifeskills\',\'2\',NULL,\'Florence Nyanduaro\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (NULL,'2009-04-13','Lifeskills','2',NULL,'Elizabeth Wanderi');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (NULL,\'2009-04-13\',\'Lifeskills\',\'2\',NULL,\'Elizabeth Wanderi\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (NULL,\'2009-04-13\',\'Lifeskills\',\'2\',NULL,\'Elizabeth Wanderi\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (NULL,'2009-04-13','Caregivers Training','3',NULL,'Purity Nyamu');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (NULL,\'2009-04-13\',\'Caregivers Training\',\'3\',NULL,\'Purity Nyamu\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_caregivers_staging (activity_description,activity_date,training_name,facilitator_training_id,facilitator_training,facilitator_name) VALUES (NULL,\'2009-04-13\',\'Caregivers Training\',\'3\',NULL,\'Purity Nyamu\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','2449','Miriam',NULL,'Wacheke','2','1011');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2449\',\'Miriam\',NULL,\'Wacheke\',\'2\',\'1011\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2449\',\'Miriam\',NULL,\'Wacheke\',\'2\',\'1011\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','945','Maryann ',NULL,'Wambuku ','2','105');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'945\',\'Maryann \',NULL,\'Wambuku \',\'2\',\'105\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'945\',\'Maryann \',NULL,\'Wambuku \',\'2\',\'105\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','2551','John',NULL,'Mwihuri','2','1095');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2551\',\'John\',NULL,\'Mwihuri\',\'2\',\'1095\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2551\',\'John\',NULL,\'Mwihuri\',\'2\',\'1095\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','2722','Saldin',NULL,'Njau','2','1147');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2722\',\'Saldin\',NULL,\'Njau\',\'2\',\'1147\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2722\',\'Saldin\',NULL,\'Njau\',\'2\',\'1147\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','2483','James ',NULL,'Muhase','2','116');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2483\',\'James \',NULL,\'Muhase\',\'2\',\'116\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2483\',\'James \',NULL,\'Muhase\',\'2\',\'116\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','4736','Faith','mwangi','Waithera','2','1196');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'4736\',\'Faith\',\'mwangi\',\'Waithera\',\'2\',\'1196\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'4736\',\'Faith\',\'mwangi\',\'Waithera\',\'2\',\'1196\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','5402','Peter','Mwaura','Njogu','2','1307');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5402\',\'Peter\',\'Mwaura\',\'Njogu\',\'2\',\'1307\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5402\',\'Peter\',\'Mwaura\',\'Njogu\',\'2\',\'1307\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','5448','Victor ',NULL,'Imbiya','2','1333');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5448\',\'Victor \',NULL,\'Imbiya\',\'2\',\'1333\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5448\',\'Victor \',NULL,\'Imbiya\',\'2\',\'1333\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','5425','Julius','Ruoro','Kairu','2','1354');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5425\',\'Julius\',\'Ruoro\',\'Kairu\',\'2\',\'1354\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5425\',\'Julius\',\'Ruoro\',\'Kairu\',\'2\',\'1354\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','5471','Brian',NULL,'Litala','2','1369');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5471\',\'Brian\',NULL,\'Litala\',\'2\',\'1369\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5471\',\'Brian\',NULL,\'Litala\',\'2\',\'1369\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','5617','Sammy ',NULL,'Busoro','2','1446');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5617\',\'Sammy \',NULL,\'Busoro\',\'2\',\'1446\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5617\',\'Sammy \',NULL,\'Busoro\',\'2\',\'1446\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','5480','Gideon',NULL,'Mwangi','2','1447');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5480\',\'Gideon\',NULL,\'Mwangi\',\'2\',\'1447\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'5480\',\'Gideon\',NULL,\'Mwangi\',\'2\',\'1447\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','2479','Peter',NULL,'Ndua','2','145');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2479\',\'Peter\',NULL,\'Ndua\',\'2\',\'145\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2479\',\'Peter\',NULL,\'Ndua\',\'2\',\'145\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','2478','Hannah',NULL,'Waithera ','2','146');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2478\',\'Hannah\',NULL,\'Waithera \',\'2\',\'146\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'2478\',\'Hannah\',NULL,\'Waithera \',\'2\',\'146\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','662','Bobby',NULL,'Njuguna','2','164');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'662\',\'Bobby\',NULL,\'Njuguna\',\'2\',\'164\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'662\',\'Bobby\',NULL,\'Njuguna\',\'2\',\'164\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','594','Leah',NULL,'Muthoni','2','215');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'594\',\'Leah\',NULL,\'Muthoni\',\'2\',\'215\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'594\',\'Leah\',NULL,\'Muthoni\',\'2\',\'215\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','399','Sebastian',NULL,'Njeru','2','238');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'399\',\'Sebastian\',NULL,\'Njeru\',\'2\',\'238\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'399\',\'Sebastian\',NULL,\'Njeru\',\'2\',\'238\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','41','Vivian',NULL,'Njoki','2','280');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'41\',\'Vivian\',NULL,\'Njoki\',\'2\',\'280\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'41\',\'Vivian\',NULL,\'Njoki\',\'2\',\'280\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','140','Flavian',NULL,'Chabila','2','350');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'140\',\'Flavian\',NULL,\'Chabila\',\'2\',\'350\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'140\',\'Flavian\',NULL,\'Chabila\',\'2\',\'350\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','279','George',NULL,'Gichere','2','445');
+Unknown column 'activity_description' in 'field list'
+
+Backtrace:
+0 E:\cheru\systems\web\leatoto\includes\db_adodb.php:61 dprint('E:\\cheru\\systems\\web\\leatoto\\includes\\db_adodb.php',61,0,'Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'279\',\'George\',NULL,\'Gichere\',\'2\',\'445\');
+Unknown column \'activity_description\' in \'field list\'
+')
+1 E:\cheru\systems\web\leatoto\modules\files\do_file_upload.php:81 db_exec('INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,\'2009-04-13\',\'279\',\'George\',NULL,\'Gichere\',\'2\',\'445\');')
+2 E:\cheru\systems\web\leatoto\index.php:259 require('E:\\cheru\\systems\\web\\leatoto\\modules\\files\\do_file_upload.php')
+ERROR: E:\cheru\systems\web\leatoto\includes\db_adodb.php(61): Error executing: 
+INSERT INTO activity_contacts_staging (activity_description,activity_date,client_adm_no,client_first_name,client_other_name,client_last_name,activity_clients_activity_id,activity_clients_client_id) VALUES (NULL,'2009-04-13','319','Elizabeth',NULL,'Akinyi','2','467');
+Unknown column 'activity_description' in 'field list'

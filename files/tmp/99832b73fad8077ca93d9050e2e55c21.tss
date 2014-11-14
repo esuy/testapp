@@ -1,0 +1,39 @@
+<table cellpadding=2 cellspacing=1 border="0" class="tbl sttable">
+<thead><tr class=" decor "><th class="sblk " colspan="1" rowspan="1">Amount</th>
+	<th colspan="8" >&nbsp;</th></tr><tr><th data-ptitle="CLI : Gender" colspan="1" class="missgr">CLI : Gender</th><th data-ptitle="Kangemi"  data-oid="0_0"  data-ocols="1" colspan="1" >Kangemi-&nbsp;Location</th>
+	<th data-ptitle="Kianda"  data-oid="0_1"  data-ocols="1" colspan="1" >Kianda-&nbsp;Location</th>
+	<th data-ptitle="Makina"  data-oid="0_2"  data-ocols="1" colspan="1" >Makina-&nbsp;Location</th>
+	<th data-ptitle="Mutuini"  data-oid="0_3"  data-ocols="1" colspan="1" >Mutuini-&nbsp;Location</th>
+	<th data-ptitle="Ruthimitu"  data-oid="0_4"  data-ocols="1" colspan="1" >Ruthimitu-&nbsp;Location</th>
+	<th data-ptitle="Sarangombe"  data-oid="0_5"  data-ocols="1" colspan="1" >Sarangombe-&nbsp;Location</th>
+	<th rowspan="1">Grand Total</th></tr>
+</thead><tbody><tr><td class="rowhead ysub" data-ptitle="Female"  data-rtitle="Female" rowspan="1">Female</td>
+<td class="vdata ">336</td>
+	<td class="vdata ">109</td>
+	<td class="vdata ">187</td>
+	<td class="vdata ">233</td>
+	<td class="vdata ">256</td>
+	<td class="vdata ">219</td>
+	<td class="summr">1340</td>
+	</tr>
+
+	<tr><td class="rowhead ysub" data-ptitle="Male"  data-rtitle="Male" rowspan="1">Male</td>
+<td class="vdata ">368</td>
+	<td class="vdata ">86</td>
+	<td class="vdata ">171</td>
+	<td class="vdata ">195</td>
+	<td class="vdata ">239</td>
+	<td class="vdata ">201</td>
+	<td class="summr">1260</td>
+	</tr>
+
+	<tr class="jkdata itog"><td class="rowhead" colspan="1"><b>Grand Total</b></td>
+<td>704</td>
+	<td>195</td>
+	<td>358</td>
+	<td>428</td>
+	<td>495</td>
+	<td>420</td>
+	<td class="summr">2600</td>
+	</tr>
+	</tbody></table>

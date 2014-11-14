@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Leatoto Front-End</title>
+    <link rel="stylesheet" href="front.css" media="all">
+    <script type="text/javascript" src="../js/1jquery.best.js"></script>
+    <script type="text/javascript" src="front.js"></script>
+</head>
+<body>
+<div id="top_head">
+    <ul class="top_list">
+        <li data-cval='all'> All Centers</li>
+        <li data-cval='dandora'> Dandora</li>
+        <li data-cval='dagoretti'> Dagoretti</li>
+        <li data-cval='mukuru'> Mukuru </li>
+        <li data-cval='mwiki'> Mwiki </li>
+        <li data-cval='kangemi'> Kangemi </li>
+        <li data-cval='kibera'> Kibera </li>
+        <li data-cval='kariobangi'> Kariobangi </li>
+        <li data-cval='kawangware'> Kawangware </li>
+    </ul>
+</div>
+<div id="ctxt">
+
+</div>
+</body>
+</html>

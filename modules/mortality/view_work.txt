@@ -1,0 +1,224 @@
+  <tr>
+         <td nowrap="nowrap"><?php echo $AppUI->_('Code (DASCOP)');?>:</td>
+         <td class="hilite">
+		    <?php echo @$row->counselling_dascop_code;?>
+         </td>
+       </tr>
+	   <tr>
+			<td nowrap="nowrap"><?php echo $AppUI->_('Registration Date');?>: </td>
+			<td class="hilite">
+				<?php echo $entry_date ? $entry_date->format( FMT_TIMESTAMP_DATE ) : "" ;?>
+				<?php echo $entry_date ? $entry_date->format( $df ) : "" ;?>
+			</td>
+		   </tr>
+
+       <tr>
+         <td nowrap="nowrap"><?php echo $AppUI->_('Referral Source');?>:</td>
+         <td class="hilite">
+          <?php echo @$row->counselling_referral_source;?>
+         </td>
+       </tr>
+      <tr>
+         <td nowrap="nowrap"><?php echo $AppUI->_('Location of Birth');?>:</td>
+		 <td class="hilite">
+	    <?php echo @$row->counselling_birth_location;?>
+		 </td>
+      </tr>
+      <tr>
+         <td nowrap="nowrap"><?php echo $AppUI->_('History of HIV Tests');?>:</td>
+		 <td class="hilite">
+		 <?php
+            if ($AppUI->isActiveModule('contacts') && $perms->checkModule('contacts', 'view')) 
+		{
+			echo "<'button' class='button' value='".$AppUI->_("enter previous HIV test results...")."' onclick='javascript:popFWContacts(selected_fw_contacts_id);' />";
+		}?>
+		 </td>
+	  </tr>
+	<tr>
+			<td colspan="2" align="center">
+				<img src="images/shim.gif" width="50" height="1" /><?php echo $AppUI->_('Test Results'); ?><br />
+				<hr width="500" align="center" size=1 />
+			</td>
+	 </tr>
+	  <tr>
+		<td nowrap="nowrap"><?php echo $AppUI->_('Client ID');?>:</td>
+		<td class="hilite">
+		<?php echo $client_code;?>
+	    </td>
+	
+      </tr>
+	  <tr>
+        <td nowrap="nowrap"><?php echo $AppUI->_("Mother's Year of Birth");?>:</td>
+        <td class="hilite">
+            <?php echo @$row->counselling_mothers_yob;?>
+        </td>
+      </tr>
+      <tr>
+			<td nowrap="nowrap"><?php echo $AppUI->_('When she knew her status');?>:</td>
+			<td align="left" valign="top"><?php echo $obj->counselling_date_mothers_status_known;?>&nbsp;yyyy-mm-dd</td>
+      </tr>
+	 <tr>
+	 <td nowrap="nowrap"><?php echo $AppUI->_('Did mother receive any antenatal care?');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo arraySelectRadio($boolTypes, "counselling[counselling_mother_antenatal]", 'onclick=toggleButtons()', $row->counselling_mother_antenatal ? $row->counselling_mother_antenatal : 2, $identifiers ); ?></td>
+     </tr>	  
+	 <tr>
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('Mother enrolled in a PMTCT program?');?>:</td>
+		<td align="left" valign="top">&nbsp;&nbsp;<?php echo arraySelectRadio($boolTypes, "counselling[counselling_mother_pmtct]", 'onclick=toggleButtons()', $row->counselling_mother_pmtct ? $row->counselling_mother_pmtct : 2, $identifiers ); ?></td>
+     </tr>
+	 <tr>
+	 
+	 	<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('If Y please describe');?>:</td>
+		<td align="right" valign="top">
+		<?php echo @$obj->counselling_mother_pmtct_description;?>
+		</td>
+     </tr>
+
+	<tr><td nowrap="nowrap"><?php echo $AppUI->_('Place of birth');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_place_birth;?></td>
+     </tr>	 
+	<tr><td nowrap="nowrap"><?php echo $AppUI->_('Mode of birth');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_mode_birth;?></td>
+     </tr>	 
+	<tr><td nowrap="nowrap"><?php echo $AppUI->_('Gestation period');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_gestation_period;?></td>
+     </tr>	 
+	<tr><td nowrap="nowrap"><?php echo $AppUI->_('Birth Weight');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_birth_weight;?></td>
+     </tr>
+ 	 <tr>
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('Any breastfeeding? ');?></td>
+		<td align="left" valign="top"><?php echo arraySelectRadio($boolTypes, "counselling[counselling_breastfeeding]", 'onclick=toggleButtons()', $row->counselling_breastfeeding ? $row->counselling_breastfeeding : 2, $identifiers ); ?></td>
+	  </tr>
+	  <tr>
+		 <td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;
+		<?php echo $AppUI->_('If Y duration exclusive BF');?>:</td>
+		<td >&nbsp;&nbsp;&nbsp;&nbsp;
+		<?php echo arraySelectRadio($boolTypes, "counselling[counselling_mode_of_birth]", 'onclick=toggleButtons()', $row->counselling_mode_of_birth ? $row->counselling_mode_of_birth : 2, $identifiers ); ?>
+		</td>
+        </tr>
+        <tr>		
+		<td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $AppUI->_('If Y duration of any BF');?>:</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;
+		<?php echo arraySelectRadio($boolTypes, "counselling[counselling_mode_of_birth]", 'onclick=toggleButtons()', $row->counselling_mode_of_birth ? $row->counselling_mode_of_birth : 2, $identifiers ); ?>
+		</td>	
+        </tr>		
+        <tr>		
+		<td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $AppUI->_('If Y any disease during BF') ?> </td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;
+		<?php echo arraySelectRadio($boolTypes, "counselling[counselling_mode_of_birth]", 'onclick=toggleButtons()', $row->counselling_mode_of_birth ? $row->counselling_mode_of_birth : 2, $identifiers ); ?>
+		</td>
+		 </tr>
+		 
+		 
+		 
+		 
+		 
+<tr>
+			<td colspan="2" align="center">
+				<img src="images/shim.gif" width="50" height="1" /><?php echo $AppUI->_('Todays Test (cont.)'); ?><br />
+				<hr width="500" align="center" size=1 />
+			</td>
+	 </tr>
+   
+	 <tr>
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('Child perinatal ARV exposure?');?>:</td>
+		<td class="hilite">
+			<?php echo arraySelectRadio($boolTypes, "counselling_child_perinatal_arv", 'onclick=toggleButtons()', $row->counselling_child_perinatal_arv ? $row->counselling_child_perinatal_arv : 2, $identifiers ); ?>
+        </td>
+	</tr>
+	<tr>
+	
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('If Y single dose NVP?') ?> </td>
+		<td valign="top">
+		<?php echo arraySelectRadio($boolTypes, "counselling_child_single_dose_nvp", 'onclick=toggleButtons()', $row->counselling_child_single_dose_nvp? $row->counselling_child_single_dose_nvp : 2, $identifiers ); ?>
+		</td>		
+     </tr>	 
+	 <tr>
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('Was AZT given?');?>:</td>
+		<td class="hilite">
+			<?php echo arraySelectRadio($boolTypes, "counselling_child_azt_given", 'onclick=toggleButtons()', $row->counselling_child_azt_given? $row->counselling_child_azt_given : 2, $identifiers ); ?>
+        </td>
+	 </tr>	 
+	 <tr>	
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('If AZT given describe when & # of doses') ?> </td>
+		<td class="hilite">
+		<?php echo dPformSafe(@$obj->counselling_child_azt_description);?>
+		</td>		
+     </tr>
+ <tr>
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('Mother perinatal ARV exposure?');?>:</td>
+		<td class="hilite">
+			<?php echo arraySelectRadio($boolTypes, "counselling_mother_perinatal_arv", 'onclick=toggleButtons()', $row->counselling_mother_perinatal_arv ? $row->counselling_mother_perinatal_arv : 2, $identifiers ); ?>
+        </td>
+     </tr>	 
+	 <tr>		
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('If Y single dose NVP') ?> </td>
+		<td class="hilite">
+		<?php echo arraySelectRadio($boolTypes, "counselling_mother_single_dose_nvp", 'onclick=toggleButtons()', $row->counselling_mother_single_dose_nvp ? $row->counselling_mother_single_dose_nvp : 2, $identifiers ); ?>
+		</td>		
+     </tr>	 
+	 <tr>
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('Was AZT given?');?>:</td>
+		<td class="hilite">
+			<?php echo arraySelectRadio($boolTypes, "counselling_mother_azt_given", 'onclick=toggleButtons()', $row->counselling_mother_azt_given ? $row->counselling_mother_azt_given : 2, $identifiers ); ?>
+        </td>
+	     </tr>	 
+	 <tr>	
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('If AZT given describe when & # of doses') ?> </td>
+		<td class="hilite">
+		<?php echo dPformSafe(@$obj->counselling_mother_azt_description);?>
+		</td>		
+     </tr>
+	 
+	 <tr>
+		<td align="left" ><?php echo $AppUI->_('Mother in treatment program?');?>:</td>
+		<td align="left" >&nbsp;&nbsp;
+			<?php echo arraySelectRadio($boolTypes, "counselling_mother_treatment_prg", 'onclick=toggleButtons()', $row->counselling_mother_treatment_prg ? $row->counselling_mother_treatment_prg : 2, $identifiers ); ?>
+        </td>
+	 </tr>	 
+	 <tr>
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('Mother on ART in pregnancy');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;
+			<?php echo arraySelectRadio($boolTypes, "counselling_mother_art_pregnancy", 'onclick=toggleButtons()', $row->counselling_mother_art_pregnancy ? $row->counselling_mother_art_pregnancy : 2, $identifiers ); ?>
+        </td>
+     </tr>	 
+	 <tr>
+		<td align="left" valign="top" nowrap><?php echo $AppUI->_('Date began ART');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_date_mother_art;?>&nbsp;</td>
+	 </tr>
+     <tr>
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('Most recent maternal CD4 count');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;
+			<?php echo arraySelectRadio($boolTypes, "counselling[counselling_mother_cd4_count", 'onclick=toggleButtons()', $row->counselling_mother_cd4_count ? $row->counselling_mother_cd4_count : 2, $identifiers ); ?>
+        </td>
+	 </tr>	
+	 <tr>
+		<td nowrap="nowrap" valign="top"><?php echo $AppUI->_('Date of CD4 test');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;4_test]" id="counselling_date_mother_cd4_test" value="<?php echo $obj->counselling_date_mother_cd4_test;?></td>
+	 </tr>
+	<tr>
+			<td colspan="2" align="center" nowrap>
+				<img src="images/shim.gif" width="50" height="1" /><?php echo $AppUI->_('PCR Test After 12 or 18 months'); ?><br />
+				<hr width="500" align="center" size=1 />
+			</td>
+	 </tr> 
+	 <tr>
+		<td align="left"><?php echo $AppUI->_('Date PCR test');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_date_pcr;?>&nbsp;</td>
+	 </tr>
+	 <tr>
+		<td align="left"><?php echo $AppUI->_('Client PCR test code');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_pcr_code;?></td>
+	 </tr>
+	 <tr>
+		<td align="left"><?php echo $AppUI->_('PCR Test result');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_pcr_result;?></td>
+	 </tr>
+	 <tr>
+		<td align="left"><?php echo $AppUI->_('12 month rapid test');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_12_month_rapid_test;?></td>
+	 </tr>
+	 <tr>
+		<td align="left"><?php echo $AppUI->_('12 month ELISA test');?>:</td>
+		<td class="hilite">&nbsp;&nbsp;<?php echo $obj->counselling_elisa_test;?></td>
+	 </tr>		 

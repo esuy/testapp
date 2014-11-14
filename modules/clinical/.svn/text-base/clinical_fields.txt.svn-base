@@ -1,0 +1,88 @@
+Adding Community Health Workers and Social Health Workers
+-add them as users
+-with a role of either community health worker / social health worker
+-why add em as users?  cos they have to log into system
+-getting list of community health workers = all users with community health worker role
+-shud i list contacts acc to roles? why not?
+-what shud i prioritise?
+-medical forms - make sure that we can add multiple medical visit forms for each client
+-work on client forms and visit forms
+clinical_next_date
+clinical_entry_date
+clinical_bloodtest_date
+clinical_tb_treatment_date
+
+DROP TABLE IF EXISTS `clinical_info`;
+CREATE TABLE `clinical_info` (
+
+clinical_id  int(10) NOT NULL auto_increment,
+clinical_client_id  int(10) NOT NULL,
+clinical_entry_date  date default NULL,
+clinical_clinic_id  int(10) ,
+clinical_age_yrs  int(10) ,
+clinical_age_months  int(10) ,
+clinical_child_attending  int(11) default '2',
+clinical_caregiver_attending  int(11) default '2',
+clinical_caregiver_id int(10) ,  
+clinical_illness  varchar(150),
+clinical_diarrhoea  int(11) default '2',
+clinical_vomiting  int(11) default '2',
+clinical_current_complaints varchar(255),  
+clinical_bloodtest_date date default NULL,  
+clinical_bloodtest_cd4  int(10) ,
+clinical_bloodtest_cd4_percentage int(10) ,  
+clinical_bloodtest_viral  varchar(150),
+clinical_bloodtest_hb  varchar(150),
+clinical_weight  int(10),
+clinical_height  int(10),
+clinical_zscore  varchar(150),
+clinical_muac  varchar(150),
+clinical_hc  varchar(150),
+clinical_child_unwell  int(11) default '2',
+clinical_temp  varchar(150),
+clinical_resp_rate  varchar(150),
+clinical_heart_rate  varchar(150),
+clinical_general  varchar(150),
+clinical_mouth  varchar(150),
+clinical_ears  varchar(150),
+clinical_clubbing  varchar(150),
+clinical_chest  varchar(150),
+clinical_cardiovascular  varchar(150),
+clinical_skin  varchar(150),
+clinical_abdomen  varchar(150),
+clinical_neurodevt  varchar(150),
+clinical_oedema  int(11) ,
+clinical_adherence int(11) ,
+clinical_adherence_notes varchar(255),
+clinical_diarrhoea_type int(11) default '0',
+clinical_diarrhoea_desc  varchar(255),
+clinical_dehydration  int(11) default '0',
+clinical_pneumonia int(11) default '0',  
+clinical_tb  int(11) default '0',
+clinical_tb_treatment_date  date default NULL,
+clinical_pulmonary  varchar(150),
+clinical_discharging_ears  int(11) default '0',
+clinical_other_diagnoses varchar(255), 
+clinical_malnutrition  int(11) default '0',
+clinical_growth  int(11) default '1',
+clinical_assessment_notes  varchar(255),
+clinical_investigations  int(11) default '1',
+clinical_investigations_notes  varchar(255),
+clinical_arv  int(11) default '1',
+clinical_arv_notes  varchar(255),
+clinical_arv_start  varchar(150),
+clinical_arv_reason  varchar(255),
+clinical_tb_drugs  int(11),
+clinical_tb_drugs_notes  varchar(255),
+clinical_septrin int(11) default '0',  
+clinical_vitamins  int(11) default '0',  
+clinical_drugs  varchar(255),
+clinical_nutritional_support  int(11) default '0',  
+clinical_nutritional_notes  varchar(255),
+clinical_referral  varchar(150),
+clinical_next_date  date default NULL,
+clinical_notes  text,
+clinical_custom  longtext,
+  PRIMARY KEY  (`clinical_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
